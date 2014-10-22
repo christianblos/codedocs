@@ -1,0 +1,25 @@
+{
+    "name": "christianblos/codedocs",
+    "description": "A tool that creates a simple documentation by markdown files inside your project code",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Christian Blos",
+            "email": "christian.blos@gmx.de"
+        }
+    ],
+    "require": {
+        "erusev/parsedown-extra": "0.2.2"
+    },
+    "bin": [
+        "codedocs"
+    ],
+    "autoload": {
+        "psr-4": { "CodeDocs\\": "src/" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        }
+    }
+}

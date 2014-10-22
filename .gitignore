@@ -1,0 +1,9 @@
+# Project files
+/build/
+
+# Dependencies
+/vendor/
+composer.lock
+
+# Editor
+/.idea/

@@ -1,0 +1,12 @@
+{
+    "name": "CodeDocs",
+    "description": "A tool that creates a simple documentation by *markdown* files inside your project code.",
+    "src": "docs",
+    "dest": "build",
+    "template": "default",
+    "additional": {
+        "headerLinks": {
+            "Github": "https://github.com/christianblos/codedocs"
+        }
+    }
+}
