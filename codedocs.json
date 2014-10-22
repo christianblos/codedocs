@@ -6,7 +6,13 @@
     "template": "default",
     "additional": {
         "headerLinks": {
-            "Github": "https://github.com/christianblos/codedocs"
+            "GitHub": "https://github.com/christianblos/codedocs"
+        },
+        "footerLinks": {
+            "Version 1.1.0": null,
+            "LICENSE": "https://github.com/christianblos/codedocs/blob/master/LICENSE",
+            "GitHub": "https://github.com/christianblos/codedocs",
+            "Issues": "https://github.com/christianblos/codedocs/issues"
         }
     }
 }

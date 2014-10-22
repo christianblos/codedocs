@@ -10,6 +10,10 @@ The `default` template allows the following *additional data* configuration in t
     "additional": {
         "headerLinks": {
             "Some Label": "http://some-url"
+        },
+        "footerLinks": {
+            "Info Text": null,
+            "Some Label": "http://some-url"
         }
     }
 }
@@ -18,3 +22,4 @@ The `default` template allows the following *additional data* configuration in t
 Configuration | Description
 ------------- | -------------
 headerLinks   | Links that will appear in the header of your documentation.
+footerLinks   | Links that will appear in the footer of your documentation.

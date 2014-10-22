@@ -1,8 +1,39 @@
+html,
+body {
+    height: 100%;
+}
+
 body {
     min-width: 970px;
     padding-top: 50px;
-    padding-bottom: 30px;
     font-family: "Open Sans",Helvetica,Arial,sans-serif;
+}
+
+#wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -60px;
+}
+
+#push {
+    height: 120px;
+}
+
+#footer {
+    height: 60px;
+    border-top: 1px dotted #ccc;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+#footer ul {
+    margin-top: 20px;
+}
+
+#footer li {
+    display: inline;
+    padding: 0 4px;
 }
 
 .icon-bar {
