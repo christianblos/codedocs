@@ -10,6 +10,7 @@
         },
         "footerLinks": {
             "Version 1.1.0": null,
+            "Changelog": "https://github.com/christianblos/codedocs/blob/master/CHANGELOG.md",
             "LICENSE": "https://github.com/christianblos/codedocs/blob/master/LICENSE",
             "GitHub": "https://github.com/christianblos/codedocs",
             "Issues": "https://github.com/christianblos/codedocs/issues"
