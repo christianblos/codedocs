@@ -17,7 +17,7 @@ Prepend each line with a number to create an ordered list:
 ## Definition lists
 
 First term
-:  This isthe first definition.
+:  This is the first definition.
 
 Second term
 :  This is the second definition.
