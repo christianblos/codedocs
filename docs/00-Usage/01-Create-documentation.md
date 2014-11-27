@@ -4,6 +4,7 @@ The navigation in your documentation will be created based on the folder structu
 Here's an example folder structure:
 
 ```markdown
+├─ assets
 ├─ 00-Usage
 │   ├─ 00-Installation.md
 │   └─ 01-Create-documentation.md
@@ -14,7 +15,7 @@ Here's an example folder structure:
 └─ index.md
 ```
 
-All files and folders must start with a number and a hyphen (`01-`). This number determines the order of the
+All markdown files and folders must start with a number and a hyphen (`01-`). This number determines the order of the
 navigation items. Multiple words must be separated by a hyphen (`-`). In the documentation, the hyphens will be replaced
 by the following rules:
 
@@ -25,6 +26,13 @@ by the following rules:
 | `---` | ...a hyphen wrapped by spaces ( - )   | 00-Just-a---Title.md → Just a - Title |
 
 The **index.md** file is optional. If it exists, the content will be shown on the documentation start page.
+
+The **assets** folder will be copied to the generated documentation. This is useful if you want to use images
+inside your documentation. In the markdown files, you can use a _relative url_ like:
+
+```markdown
+![alt text](../assets/img/someImage.jpg)
+```
 
 ## Create HTML files
 
