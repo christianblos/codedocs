@@ -72,6 +72,8 @@ class Builder
             }
         }
 
+        $destAssetsDir = $destDir . '/assets';
+
         $templateDir = $this->getConfig('template') ?: 'default';
         if (!is_dir($templateDir)) {
             $templateDir = __DIR__ . '/../templates/' . $templateDir;
@@ -100,7 +102,12 @@ class Builder
         $indexItem->relUrl = 'index.html';
         $this->buildHtmlFile($indexItem, $documentFile);
 
-        $this->copyFolder($templateDir . '/assets', $destDir . '/assets');
+        $this->copyFolder($templateDir . '/assets', $destAssetsDir);
+
+        $srcAssetsDir = $srcDir . '/assets';
+        if (is_dir($srcAssetsDir)) {
+            $this->copyFolder($srcAssetsDir, $destAssetsDir);
+        }
     }
 
     /**
