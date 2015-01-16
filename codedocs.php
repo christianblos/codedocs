@@ -36,6 +36,8 @@ try {
     $builder = new \CodeDocs\Builder($parsedown, $configFile);
     $builder->build();
 
+    echo 'Generated successfully!' . PHP_EOL;
+
 } catch (Exception $ex) {
     echo 'Error: ' . $ex->getMessage() . PHP_EOL;
     exit(1);
