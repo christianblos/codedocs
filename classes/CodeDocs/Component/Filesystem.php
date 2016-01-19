@@ -50,6 +50,10 @@ class Filesystem
      */
     public function purge($dir)
     {
+        if (!is_dir($dir)) {
+            return;
+        }
+
         $files = scandir($dir);
 
         if ($files !== false) {
