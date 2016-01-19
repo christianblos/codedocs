@@ -1,6 +1,8 @@
 <?php
 namespace CodeDocs\Component;
 
+use CodeDocs\Exception\FileException;
+
 class Filesystem
 {
     /**
@@ -74,6 +76,10 @@ class Filesystem
      */
     public function mirror($sourceDir, $targetDir)
     {
+        if (!is_dir($sourceDir)) {
+            throw new FileException(sprintf('directory %s does not exist', $sourceDir));
+        }
+
         $this->purge($targetDir);
         $this->copy($sourceDir, $targetDir);
     }
