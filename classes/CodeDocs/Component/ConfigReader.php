@@ -2,7 +2,7 @@
 namespace CodeDocs\Component;
 
 use CodeDocs\Exception\ConfigException;
-use CodeDocs\Processor\ProcessorInterface;
+use CodeDocs\Processor\Processor;
 use CodeDocs\ValueObject\Directory;
 
 class ConfigReader
@@ -61,7 +61,7 @@ class ConfigReader
     /**
      * @param string $key
      *
-     * @return ProcessorInterface[]
+     * @return Processor[]
      */
     public function getProcessors($key)
     {
@@ -77,18 +77,26 @@ class ConfigReader
 
         $processors = [];
 
-        foreach ($classes as $class) {
+        foreach ($classes as $key => $value) {
+            if (is_array($value)) {
+                $class = array_keys($value)[0];
+                $params = $value[$class];
+            } else {
+                $class = $value;
+                $params = [];
+            }
+
             if (!class_exists($class)) {
                 throw new ConfigException('processor class ' . $class . ' does not exist');
             }
 
-            $processor = new $class();
+            $processor = new $class($params);
 
-            if (!$processor instanceof ProcessorInterface) {
+            if (!$processor instanceof Processor) {
                 throw new ConfigException(sprintf(
-                    'processor class %s must implement %s',
+                    'processor class %s must be a %s',
                     $class,
-                    ProcessorInterface::class
+                    Processor::class
                 ));
             }
 

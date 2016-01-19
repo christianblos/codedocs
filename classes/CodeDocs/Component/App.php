@@ -4,7 +4,7 @@ namespace CodeDocs\Component;
 use AppendIterator;
 use CodeDocs\Annotation\AnnotationList;
 use CodeDocs\Markup\Markup;
-use CodeDocs\Processor\ProcessorInterface;
+use CodeDocs\Processor\Processor;
 use CodeDocs\ValueObject\Parsable;
 use Psr\Log\LoggerInterface;
 use RecursiveDirectoryIterator;
@@ -209,9 +209,9 @@ class App
     /**
      * Run given processors
      *
-     * @param ProcessorInterface[] $processors
-     * @param AnnotationList       $annotationList
-     * @param Source               $source
+     * @param Processor[]    $processors
+     * @param AnnotationList $annotationList
+     * @param Source         $source
      */
     private function runProcessors(array $processors, AnnotationList $annotationList, Source $source)
     {

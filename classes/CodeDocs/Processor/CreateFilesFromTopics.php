@@ -23,7 +23,7 @@ use CodeDocs\Topic;
  *
  * @ListItem(list="processors", link="/usage/processors/CreateFilesFromTopics")
  */
-class CreateFilesFromTopics implements ProcessorInterface
+class CreateFilesFromTopics extends Processor
 {
 
     /**
