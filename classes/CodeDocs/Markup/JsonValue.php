@@ -34,7 +34,7 @@ use Doctrine\Common\Annotations\Annotation\Required;
  * Example json file:
  *
  * ```json
- * {@FileContent("examples/markups/JsonValue/docs/example.json")}
+ * {@FileContent("examples/markups/JsonValue/example.json")}
  * ```
  *
  * Example documentation:

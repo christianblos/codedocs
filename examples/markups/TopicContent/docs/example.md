@@ -1,0 +1,3 @@
+---
+{@TopicContent("some-id")}
+---

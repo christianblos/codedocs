@@ -1,0 +1,10 @@
+buildDir: .
+
+processors:
+  pre:
+    - \CodeDocs\Processor\CreateFilesFromTopics
+
+sources:
+  - baseDir: .
+    classDirs:
+      - ./classes
