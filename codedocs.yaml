@@ -1,0 +1,16 @@
+buildDir: ./build
+
+processors:
+  pre:
+    - \CodeDocs\Processor\CreateFilesFromTopics
+
+sources:
+  - baseDir: .
+    docsDir: ./docs
+    classDirs:
+      - ./classes
+
+params:
+  projectName: CodeDocs
+  configFile: codedocs.yaml
+  executable: vendor/bin/codedocs
