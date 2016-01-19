@@ -1,5 +1,9 @@
 # Changelog
 
+#### Version 2.0.0
+
+- Completely reworked CodeDocs
+
 #### Version 1.2.0
 
 - Allow assets in docs
