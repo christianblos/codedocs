@@ -1,8 +1,8 @@
 <?php
 namespace CodeDocs\Markup;
 
-use CodeDocs\Annotation\AnnotationList;
 use CodeDocs\Component\Config;
+use CodeDocs\Component\ParseResult;
 use CodeDocs\Exception\MarkupException;
 use CodeDocs\ValueObject\Parsable;
 use ReflectionClass;
@@ -61,12 +61,12 @@ class ClassValue extends Markup
     public $value;
 
     /**
-     * @param AnnotationList $annotationList
-     * @param Config         $config
+     * @param ParseResult $parseResult
+     * @param Config      $config
      *
      * @return string|Parsable
      */
-    public function buildContent(AnnotationList $annotationList, Config $config)
+    public function buildContent(ParseResult $parseResult, Config $config)
     {
         $pos = strpos($this->value, '::');
 

@@ -1,8 +1,8 @@
 <?php
 namespace CodeDocs\Processor;
 
-use CodeDocs\Annotation\AnnotationList;
 use CodeDocs\Component\Config;
+use CodeDocs\Component\ParseResult;
 use CodeDocs\ListItem;
 use CodeDocs\Topic;
 
@@ -27,15 +27,15 @@ class CreateFilesFromTopics extends Processor
 {
 
     /**
-     * @param AnnotationList $annotationList
-     * @param Config         $config
+     * @param ParseResult $parseResult
+     * @param Config      $config
      */
-    public function run(AnnotationList $annotationList, Config $config)
+    public function run(ParseResult $parseResult, Config $config)
     {
         $exportPath = $config->getExportDir() . DIRECTORY_SEPARATOR;
 
         /** @var Topic[] $topics */
-        $topics = $annotationList->filterByClass(Topic::class)->toArray();
+        $topics = $parseResult->getAnnotations()->filterByClass(Topic::class)->toArray();
 
         foreach ($topics as $topic) {
             if (!$topic->file) {

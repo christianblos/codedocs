@@ -1,8 +1,8 @@
 <?php
 namespace CodeDocs\Markup;
 
-use CodeDocs\Annotation\AnnotationList;
 use CodeDocs\Component\Config;
+use CodeDocs\Component\ParseResult;
 use CodeDocs\ValueObject\Parsable;
 use Doctrine\Common\Annotations\Annotation;
 
@@ -94,12 +94,12 @@ abstract class Markup extends Annotation
     private $foundMarkupString;
 
     /**
-     * @param AnnotationList $annotationList
-     * @param Config         $config
+     * @param ParseResult $parseResult
+     * @param Config      $config
      *
      * @return string|Parsable
      */
-    abstract public function buildContent(AnnotationList $annotationList, Config $config);
+    abstract public function buildContent(ParseResult $parseResult, Config $config);
 
     /**
      * @param string $markupString

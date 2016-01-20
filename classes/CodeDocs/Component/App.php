@@ -113,14 +113,16 @@ class App
             $this->logger->info(' > extract annotations...');
             $annotationList = $this->extractAnnotations($classes);
 
+            $parseResult = new ParseResult($annotationList, $classes);
+
             $this->logger->info(' > run pre processors...');
-            $this->runProcessors($this->configReader->getProcessors('pre'), $annotationList, $source);
+            $this->runProcessors($this->configReader->getProcessors('pre'), $parseResult, $source);
 
             $this->logger->info(' > replace markups...');
-            $this->replaceMarkups($annotationList, $source);
+            $this->replaceMarkups($parseResult, $source);
 
             $this->logger->info(' > run post processors...');
-            $this->runProcessors($this->configReader->getProcessors('post'), $annotationList, $source);
+            $this->runProcessors($this->configReader->getProcessors('post'), $parseResult, $source);
         }
 
         $this->logger->info('done!');
@@ -209,27 +211,27 @@ class App
     /**
      * Run given processors
      *
-     * @param Processor[]    $processors
-     * @param AnnotationList $annotationList
-     * @param Source         $source
+     * @param Processor[] $processors
+     * @param ParseResult $parseResult
+     * @param Source      $source
      */
-    private function runProcessors(array $processors, AnnotationList $annotationList, Source $source)
+    private function runProcessors(array $processors, ParseResult $parseResult, Source $source)
     {
         $config = new Config($this, $source);
 
         foreach ($processors as $processor) {
             $this->logger->debug('   - run ' . get_class($processor));
-            $processor->run($annotationList, $config);
+            $processor->run($parseResult, $config);
         }
     }
 
     /**
      * Parse md files in cache dir and replace markups
      *
-     * @param AnnotationList $annotationList
-     * @param Source         $source
+     * @param ParseResult $parseResult
+     * @param Source      $source
      */
-    private function replaceMarkups(AnnotationList $annotationList, Source $source)
+    private function replaceMarkups(ParseResult $parseResult, Source $source)
     {
         $namespaces = $this->configReader->getMarkupNamespaces();
         foreach ($namespaces as $namespace) {
@@ -245,7 +247,7 @@ class App
             $this->logger->debug('   - replace markups in ' . $filePath);
 
             $fileContent = file_get_contents($filePath);
-            $fileContent = $this->replaceMarkupsInContent($fileContent, $annotationList, $config);
+            $fileContent = $this->replaceMarkupsInContent($fileContent, $parseResult, $config);
 
             $fileObject = $file->openFile('w+');
             $fileObject->fwrite($fileContent);
@@ -253,13 +255,13 @@ class App
     }
 
     /**
-     * @param string         $content
-     * @param AnnotationList $annotationList
-     * @param Config         $config
+     * @param string      $content
+     * @param ParseResult $parseResult
+     * @param Config      $config
      *
      * @return string
      */
-    private function replaceMarkupsInContent($content, AnnotationList $annotationList, Config $config)
+    private function replaceMarkupsInContent($content, ParseResult $parseResult, Config $config)
     {
         $markups = $this->markupParser->getMarkups($content);
 
@@ -268,10 +270,10 @@ class App
 
             $this->replaceConfigParamsInMarkup($markup);
 
-            $replace = $markup->buildContent($annotationList, $config);
+            $replace = $markup->buildContent($parseResult, $config);
 
             if ($replace instanceof Parsable) {
-                $replace = $this->replaceMarkupsInContent((string)$replace, $annotationList, $config);
+                $replace = $this->replaceMarkupsInContent((string)$replace, $parseResult, $config);
             }
 
             $content = str_replace($markup->getMarkupString(), $replace, $content);

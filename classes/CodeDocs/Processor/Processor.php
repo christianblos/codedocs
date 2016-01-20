@@ -1,8 +1,8 @@
 <?php
 namespace CodeDocs\Processor;
 
-use CodeDocs\Annotation\AnnotationList;
 use CodeDocs\Component\Config;
+use CodeDocs\Component\ParseResult;
 
 abstract class Processor
 {
@@ -34,8 +34,8 @@ abstract class Processor
     }
 
     /**
-     * @param AnnotationList $annotationList
-     * @param Config         $config
+     * @param ParseResult $parseResult
+     * @param Config      $config
      */
-    abstract public function run(AnnotationList $annotationList, Config $config);
+    abstract public function run(ParseResult $parseResult, Config $config);
 }

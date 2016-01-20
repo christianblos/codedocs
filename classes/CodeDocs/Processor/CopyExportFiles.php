@@ -1,9 +1,9 @@
 <?php
 namespace CodeDocs\Processor;
 
-use CodeDocs\Annotation\AnnotationList;
 use CodeDocs\Component\Config;
 use CodeDocs\Component\Filesystem;
+use CodeDocs\Component\ParseResult;
 use CodeDocs\Exception\ConfigException;
 use CodeDocs\ListItem;
 use CodeDocs\Topic;
@@ -31,10 +31,10 @@ class CopyExportFiles extends Processor
 {
 
     /**
-     * @param AnnotationList $annotationList
-     * @param Config         $config
+     * @param ParseResult $parseResult
+     * @param Config      $config
      */
-    public function run(AnnotationList $annotationList, Config $config)
+    public function run(ParseResult $parseResult, Config $config)
     {
         $dest = $this->getParam('dest');
         if ($dest === null) {

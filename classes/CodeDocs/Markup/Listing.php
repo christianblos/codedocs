@@ -1,8 +1,8 @@
 <?php
 namespace CodeDocs\Markup;
 
-use CodeDocs\Annotation\AnnotationList;
 use CodeDocs\Component\Config;
+use CodeDocs\Component\ParseResult;
 use CodeDocs\ListItem;
 use CodeDocs\ValueObject\Parsable;
 use Doctrine\Common\Annotations\Annotation\Required;
@@ -87,14 +87,14 @@ class Listing extends Markup
     public $contents = false;
 
     /**
-     * @param AnnotationList $annotationList
-     * @param Config         $config
+     * @param ParseResult $parseResult
+     * @param Config      $config
      *
      * @return string|Parsable
      */
-    public function buildContent(AnnotationList $annotationList, Config $config)
+    public function buildContent(ParseResult $parseResult, Config $config)
     {
-        $listItems = $annotationList
+        $listItems = $parseResult->getAnnotations()
             ->filter(function ($annotation) {
                 return $annotation instanceof ListItem && $annotation->list === $this->value;
             })
