@@ -26,8 +26,8 @@ class Directory
             throw new InvalidArgumentException(sprintf('directory %s does not exist', $rootDir));
         }
 
-        if (strpos($dir, './') === 0) {
-            $dir = $realRootDir . DIRECTORY_SEPARATOR . substr($dir, 2);
+        if (strpos($dir, './') === 0 || strpos($dir, '../') === 0 || $dir === '..') {
+            $dir = $realRootDir . DIRECTORY_SEPARATOR . $dir;
         } elseif ($dir === '.') {
             $dir = $realRootDir;
         }
