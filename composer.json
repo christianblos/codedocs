@@ -9,8 +9,7 @@
     }
   ],
   "require": {
-    "doctrine/annotations": "~1.2",
-    "psr/log": "~1.0"
+    "doctrine/annotations": "~1.2"
   },
   "bin": [
     "codedocs"

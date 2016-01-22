@@ -6,7 +6,6 @@ use CodeDocs\Annotation\AnnotationList;
 use CodeDocs\Markup\Markup;
 use CodeDocs\Processor\Processor;
 use CodeDocs\ValueObject\Parsable;
-use Psr\Log\LoggerInterface;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use RegexIterator;
@@ -41,7 +40,7 @@ class App
     private $filesystem;
 
     /**
-     * @var LoggerInterface
+     * @var OutputLogger
      */
     private $logger;
 
@@ -51,7 +50,7 @@ class App
      * @param MarkupParser     $markupParser
      * @param Tokenizer        $tokenizer
      * @param Filesystem       $filesystem
-     * @param LoggerInterface  $logger
+     * @param OutputLogger     $logger
      */
     public function __construct(
         ConfigReader $configReader,
@@ -59,7 +58,7 @@ class App
         MarkupParser $markupParser,
         Tokenizer $tokenizer,
         Filesystem $filesystem,
-        LoggerInterface $logger
+        OutputLogger $logger
     ) {
         $this->configReader     = $configReader;
         $this->annotationParser = $annotationParser;
@@ -90,42 +89,42 @@ class App
      */
     public function run()
     {
-        $this->logger->info('clean up export dir...');
+        $this->logger->log(0, 'clean up export dir...');
         $this->cleanExportDir();
 
         $this->registerAnnotationNamespaces();
 
         foreach ($this->configReader->getSources() as $source) {
-            $this->logger->info('handle source ' . $source->baseDir);
+            $this->logger->log(0, 'handle source ' . $source->baseDir);
 
             if ($source->docsDir !== null) {
-                $this->logger->info(' > move markdown files from docs to export...');
+                $this->logger->log(1, 'move markdown files from docs to export...');
                 $this->filesystem->mirror($source->docsDir, $this->getExportDir());
             }
 
             if ($source->classDirs) {
-                $this->logger->info(' > search and include classes...');
+                $this->logger->log(1, 'search and include classes...');
                 $classes = $this->includeClasses($source->classDirs);
             } else {
                 $classes = [];
             }
 
-            $this->logger->info(' > extract annotations...');
+            $this->logger->log(1, 'extract annotations...');
             $annotationList = $this->extractAnnotations($classes);
 
             $parseResult = new ParseResult($annotationList, $classes);
 
-            $this->logger->info(' > run pre processors...');
+            $this->logger->log(1, 'run pre processors...');
             $this->runProcessors($this->configReader->getProcessors('pre'), $parseResult, $source);
 
-            $this->logger->info(' > replace markups...');
+            $this->logger->log(1, 'replace markups...');
             $this->replaceMarkups($parseResult, $source);
 
-            $this->logger->info(' > run post processors...');
+            $this->logger->log(1, 'run post processors...');
             $this->runProcessors($this->configReader->getProcessors('post'), $parseResult, $source);
         }
 
-        $this->logger->info('done!');
+        $this->logger->log(0, 'done!');
     }
 
     /**
@@ -172,7 +171,7 @@ class App
             $classes  = $this->tokenizer->getClassesOfFile($filepath);
 
             foreach ($classes as $class) {
-                $this->logger->debug('   - found class ' . $class . ' in file ' . $filepath);
+                $this->logger->log(2, 'found class ' . $class . ' in file ' . $filepath);
                 $allClasses[] = $class;
             }
 
@@ -194,12 +193,12 @@ class App
         $annotationList = new AnnotationList();
 
         foreach ($classes as $class) {
-            $this->logger->debug('   - ...of class ' . $class);
+            $this->logger->log(2, '...of class ' . $class);
 
             $annotations = $this->annotationParser->extractAnnotations($class);
 
             foreach ($annotations as $annotation) {
-                $this->logger->debug('     > found ' . get_class($annotation));
+                $this->logger->log(3, 'found ' . get_class($annotation));
             }
 
             $annotationList->addMulti($annotations);
@@ -220,7 +219,7 @@ class App
         $config = new Config($this, $source);
 
         foreach ($processors as $processor) {
-            $this->logger->debug('   - run ' . get_class($processor));
+            $this->logger->log(2, 'run ' . get_class($processor));
             $processor->run($parseResult, $config);
         }
     }
@@ -244,7 +243,7 @@ class App
 
         foreach ($files as $file) {
             $filePath = $file->getRealPath();
-            $this->logger->debug('   - replace markups in ' . $filePath);
+            $this->logger->log(2, 'replace markups in ' . $filePath);
 
             $fileContent = file_get_contents($filePath);
             $fileContent = $this->replaceMarkupsInContent($fileContent, $parseResult, $config);
@@ -266,7 +265,7 @@ class App
         $markups = $this->markupParser->getMarkups($content);
 
         foreach ($markups as $markup) {
-            $this->logger->debug('     > replace markup ' . $markup->getMarkupString());
+            $this->logger->log(3, 'replace markup ' . $markup->getMarkupString());
 
             $this->replaceConfigParamsInMarkup($markup);
 
@@ -289,7 +288,7 @@ class App
     {
         foreach ($markup as $key => $value) {
             if (preg_match('/^%(.*)%$/', $value, $matches)) {
-                $this->logger->debug('   > replace config param ' . $value);
+                $this->logger->log(3, 'replace config param ' . $value);
                 $markup->$key = $this->configReader->getParam($matches[1]);
             }
         }

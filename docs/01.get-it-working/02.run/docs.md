@@ -13,7 +13,7 @@ command as first argument:
 $ {@ConfigParam("executable")} /path/to/{@ConfigParam("configFile")}
 ```
 
-For more verbose output, you can add **-v**:
+For more verbose output, you can add **-v**, **-vv** or **-vvv**:
 
 ```bash
 $ {@ConfigParam("executable")} -v

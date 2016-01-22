@@ -37,12 +37,12 @@ try {
         throw new \Exception('Can not find composer autoloader. Do you have installed it correctly?');
     }
 
-    $isDebug    = false;
+    $logLevel   = 0;
     $configFile = realpath(getcwd() . '/codedocs.yaml');
 
     foreach ($argv as $idx => $arg) {
-        if ($arg === '-v') {
-            $isDebug = true;
+        if (preg_match('/^-(v+)$/', $arg, $matches)) {
+            $logLevel = strlen($matches[1]);
         } elseif ($idx > 0) {
             $configFile = realpath($arg);
         }
@@ -64,7 +64,7 @@ try {
         new MarkupParser(new DocParser()),
         new Tokenizer(),
         new Filesystem(),
-        new OutputLogger($isDebug)
+        new OutputLogger($logLevel)
     );
 
     $app->run();
