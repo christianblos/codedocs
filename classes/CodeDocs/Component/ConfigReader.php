@@ -4,6 +4,7 @@ namespace CodeDocs\Component;
 use CodeDocs\Exception\ConfigException;
 use CodeDocs\Processor\Processor;
 use CodeDocs\ValueObject\Directory;
+use Symfony\Component\Yaml\Yaml;
 
 class ConfigReader
 {
@@ -30,7 +31,7 @@ class ConfigReader
         $this->configFile    = $configFile;
         $this->configRootDir = dirname($configFile);
 
-        $this->config = yaml_parse_file($configFile);
+        $this->config = Yaml::parse(file_get_contents($configFile));
         if (!is_array($this->config)) {
             throw new ConfigException('invalid config file');
         }
