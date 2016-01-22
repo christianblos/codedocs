@@ -3,6 +3,9 @@ buildDir: ./build
 processors:
   pre:
     - \CodeDocs\Processor\CreateFilesFromTopics
+  post:
+    - \CodeDocs\Processor\CopyExportFiles:
+        dest: ../../codedocs-documentation/user/pages
 
 sources:
   - baseDir: .
