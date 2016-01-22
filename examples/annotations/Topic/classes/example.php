@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @CodeDocs\Topic(file="someTopic.md")
+ * @CodeDocs\Topic(file="example.md")
  *
  * This whole text here will be
  * inside the generated file

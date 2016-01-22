@@ -79,10 +79,10 @@ class ConfigReader
 
         foreach ($classes as $key => $value) {
             if (is_array($value)) {
-                $class = array_keys($value)[0];
+                $class  = array_keys($value)[0];
                 $params = $value[$class];
             } else {
-                $class = $value;
+                $class  = $value;
                 $params = [];
             }
 

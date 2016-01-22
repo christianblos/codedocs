@@ -12,24 +12,6 @@ class DirectoryTest extends \PHPUnit_Framework_TestCase
      * @test
      * @expectedException \InvalidArgumentException
      */
-    public function dir_must_be_string()
-    {
-        new Directory(1, 'root');
-    }
-
-    /**
-     * @test
-     * @expectedException \InvalidArgumentException
-     */
-    public function root_dir_must_be_string()
-    {
-        new Directory('dir', 1);
-    }
-
-    /**
-     * @test
-     * @expectedException \InvalidArgumentException
-     */
     public function root_dir_must_exist()
     {
         new Directory('dir', 'dir');

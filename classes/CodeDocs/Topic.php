@@ -57,7 +57,7 @@ use CodeDocs\Annotation\ContentInterface;
  * The generated file will have this content:
  *
  * ```md
- * {@FileContent("examples/annotations/Topic/export/someTopic.md")}
+ * {@FileContent("examples/annotations/Topic/export/example.md")}
  * ```
  *
  *
