@@ -3,6 +3,7 @@ namespace CodeDocs\Markup;
 
 use CodeDocs\Component\Config;
 use CodeDocs\Component\ParseResult;
+use CodeDocs\ValueObject\ItemList;
 use CodeDocs\ValueObject\Parsable;
 use Doctrine\Common\Annotations\Annotation\Required;
 use ReflectionClass;
@@ -57,7 +58,7 @@ use ReflectionClass;
  *
  * @Annotation
  */
-class ConstantListing extends AbstractListing
+class ConstantListing extends Markup
 {
     /**
      * @Required
@@ -69,6 +70,11 @@ class ConstantListing extends AbstractListing
      * @var string
      */
     public $matches;
+
+    /**
+     * @var string|null
+     */
+    public $glue;
 
     /**
      * @param ParseResult $parseResult
@@ -88,6 +94,6 @@ class ConstantListing extends AbstractListing
             });
         }
 
-        return $this->combineItems($constants);
+        return (string)new ItemList($constants, $this->glue);
     }
 }

@@ -4,6 +4,7 @@ namespace CodeDocs\Markup;
 use CodeDocs\Component\Config;
 use CodeDocs\Component\ParseResult;
 use CodeDocs\Exception\MarkupException;
+use CodeDocs\ValueObject\ItemList;
 use CodeDocs\ValueObject\Parsable;
 use ReflectionClass;
 
@@ -63,7 +64,7 @@ use ReflectionClass;
  *
  * @Annotation
  */
-class ClassListing extends AbstractListing
+class ClassListing extends Markup
 {
     /**
      * @var string
@@ -79,6 +80,11 @@ class ClassListing extends AbstractListing
      * @var string
      */
     public $implements;
+
+    /**
+     * @var string|null
+     */
+    public $glue;
 
     /**
      * @param ParseResult $parseResult
@@ -100,7 +106,7 @@ class ClassListing extends AbstractListing
             })
             ->toArray();
 
-        return $this->combineItems($classes);
+        return (string)new ItemList($classes, $this->glue);
     }
 
     /**

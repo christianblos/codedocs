@@ -4,6 +4,8 @@ namespace CodeDocs\Markup;
 use CodeDocs\Component\Config;
 use CodeDocs\Component\ParseResult;
 use CodeDocs\ListItem;
+use CodeDocs\ValueObject\ContentList;
+use CodeDocs\ValueObject\ItemList;
 use CodeDocs\ValueObject\Parsable;
 use Doctrine\Common\Annotations\Annotation\Required;
 
@@ -63,13 +65,18 @@ use Doctrine\Common\Annotations\Annotation\Required;
  *
  * @Annotation
  */
-class Listing extends AbstractListing
+class Listing extends Markup
 {
     /**
      * @Required
      * @var string
      */
     public $value;
+
+    /**
+     * @var string|null
+     */
+    public $glue;
 
     /**
      * @var bool
@@ -102,10 +109,10 @@ class Listing extends AbstractListing
             });
 
         if ($this->contents) {
-            return $this->combineContents($listItems);
+            return (string)new ContentList($listItems, $this->glue);
         }
 
-        return $this->combineItems($listItems);
+        return (string)new ItemList($listItems, $this->glue);
     }
 
     /**
