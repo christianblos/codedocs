@@ -16,7 +16,7 @@ use ReflectionProperty;
  * category: docs
  * ---
  *
- * **Annotation** classes are simple classes with just public properties. We're using the
+ * **Annotation** classes are simple classes with just public properties. CodeDocs is using the
  * [Doctrine Annotation Library](http://doctrine-common.readthedocs.org/en/latest/reference/annotations.html)
  * to parse annotations. If you're not familiar with this library, it may help if you have a look into it first.
  *

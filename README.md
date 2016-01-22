@@ -1,9 +1,9 @@
 # CodeDocs
 
-CodeDocs is a tool that creates a simple documentation by *markdown* files inside your project code.
+CodeDocs is a tool that allows you to write your documentation directly inside your code.
+Check out the [full documentation](http://codedocs.chraxel.de/).
 
-Please read the [documentation](http://christianblos.github.io/codedocs/) for installation instructions.
 
 ## License
 
-CodeDocs is licensed under the MIT license.
+MIT license.
