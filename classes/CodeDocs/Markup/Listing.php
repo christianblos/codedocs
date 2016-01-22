@@ -63,18 +63,13 @@ use Doctrine\Common\Annotations\Annotation\Required;
  *
  * @Annotation
  */
-class Listing extends Markup
+class Listing extends AbstractListing
 {
     /**
      * @Required
      * @var string
      */
     public $value;
-
-    /**
-     * @var string|null
-     */
-    public $glue = null;
 
     /**
      * @var bool
@@ -106,14 +101,11 @@ class Listing extends Markup
                 return $this->getLabel($annotation);
             });
 
-        if ($this->glue === null) {
-            list($prefix, $glue) = $this->getDefaultGlueData();
-        } else {
-            $prefix = '';
-            $glue   = $this->glue;
+        if ($this->contents) {
+            return $this->combineContents($listItems);
         }
 
-        return $prefix . implode($glue, $listItems);
+        return $this->combineItems($listItems);
     }
 
     /**
@@ -138,17 +130,5 @@ class Listing extends Markup
         }
 
         return $label;
-    }
-
-    /**
-     * @return array 0 = prefix, 1 = separator
-     */
-    private function getDefaultGlueData()
-    {
-        if ($this->contents) {
-            return ['', "\n\n"];
-        }
-
-        return ['- ', "\n- "];
     }
 }

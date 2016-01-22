@@ -11,18 +11,18 @@ class ParseResult
     private $annotations;
 
     /**
-     * @var \string[]
+     * @var ClassList
      */
     private $classes;
 
     /**
      * @param AnnotationList $annotations
-     * @param string[]       $classes
+     * @param ClassList      $classes
      */
-    public function __construct(AnnotationList $annotations, $classes)
+    public function __construct(AnnotationList $annotations, ClassList $classes)
     {
         $this->annotations = $annotations;
-        $this->classes = $classes;
+        $this->classes     = $classes;
     }
 
     /**
@@ -34,7 +34,7 @@ class ParseResult
     }
 
     /**
-     * @return string[]
+     * @return ClassList
      */
     public function getClasses()
     {

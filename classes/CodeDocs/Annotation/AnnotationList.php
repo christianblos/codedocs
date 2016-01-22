@@ -12,7 +12,7 @@ class AnnotationList
     private $annotations = [];
 
     /**
-     * @param array $annotations
+     * @param Annotation[] $annotations
      */
     public function __construct(array $annotations = [])
     {
@@ -56,7 +56,7 @@ class AnnotationList
     /**
      * @param callable $callback
      *
-     * @return array
+     * @return mixed[]
      */
     public function map(callable $callback)
     {

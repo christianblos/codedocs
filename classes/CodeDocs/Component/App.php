@@ -112,7 +112,7 @@ class App
             $this->logger->log(1, 'extract annotations...');
             $annotationList = $this->extractAnnotations($classes);
 
-            $parseResult = new ParseResult($annotationList, $classes);
+            $parseResult = new ParseResult($annotationList, new ClassList($classes));
 
             $this->logger->log(1, 'run pre processors...');
             $this->runProcessors($this->configReader->getProcessors('pre'), $parseResult, $source);
