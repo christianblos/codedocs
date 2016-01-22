@@ -1,5 +1,7 @@
 <?php
-namespace CodeDocs\Annotation;
+namespace CodeDocs\Collection;
+
+use CodeDocs\Annotation\Annotation;
 
 /**
  * Collection of Annotation classes

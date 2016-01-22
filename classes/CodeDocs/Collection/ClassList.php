@@ -1,5 +1,5 @@
 <?php
-namespace CodeDocs\Component;
+namespace CodeDocs\Collection;
 
 class ClassList
 {

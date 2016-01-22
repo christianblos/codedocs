@@ -2,7 +2,8 @@
 namespace CodeDocs\Component;
 
 use AppendIterator;
-use CodeDocs\Annotation\AnnotationList;
+use CodeDocs\Collection\AnnotationList;
+use CodeDocs\Collection\ClassList;
 use CodeDocs\Markup\Markup;
 use CodeDocs\Processor\Processor;
 use CodeDocs\ValueObject\Parsable;

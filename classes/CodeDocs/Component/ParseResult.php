@@ -1,7 +1,8 @@
 <?php
 namespace CodeDocs\Component;
 
-use CodeDocs\Annotation\AnnotationList;
+use CodeDocs\Collection\AnnotationList;
+use CodeDocs\Collection\ClassList;
 
 class ParseResult
 {
