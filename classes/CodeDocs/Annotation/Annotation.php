@@ -1,8 +1,8 @@
 <?php
 namespace CodeDocs\Annotation;
 
+use CodeDocs\Exception\AnnotationException;
 use Doctrine\Common\Annotations\Annotation as DoctrineAnnotation;
-use Doctrine\Common\Annotations\AnnotationException;
 use ReflectionClass;
 use ReflectionMethod;
 use ReflectionProperty;

@@ -18,7 +18,7 @@ class AnnotationList
      */
     public function __construct(array $annotations = [])
     {
-        $this->annotations = $annotations;
+        $this->addMulti($annotations);
     }
 
     /**

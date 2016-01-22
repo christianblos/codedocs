@@ -16,8 +16,8 @@ class Directory
      */
     public function __construct($dir, $rootDir)
     {
-        if (!is_string($dir)) {
-            throw new InvalidArgumentException('directory config must be a string');
+        if (!is_string($dir) || !is_string($rootDir)) {
+            throw new InvalidArgumentException('directory must be a string');
         }
 
         $realRootDir = realpath($rootDir);
