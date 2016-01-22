@@ -1,3 +1,8 @@
+---
+title: Introduction
+taxonomy:
+    category: docs
+---
 
 Have you ever dreamed of a **documentation** that automatically changes along with your code?
 **CodeDocs** makes it possible!

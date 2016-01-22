@@ -1,0 +1,7 @@
+buildDir: ./build
+
+sources:
+  - baseDir: .
+    docsDir: ./docs
+    classDirs:
+      - ./classes

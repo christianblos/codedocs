@@ -4,8 +4,8 @@ taxonomy:
     category: docs
 ---
 
-You have to configure CodeDocs by putting a **{@ConfigParam("configFile")}** file
-into your project's root directory.
+CodeDocs can be configured by creating a **yaml**-File ({@ConfigParam("configFile")}) in your
+project's root directory. Here's the configuration of CodeDocs itself:
 
 ```yaml
 {@FileContent("%configFile%")}
