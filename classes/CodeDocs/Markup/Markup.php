@@ -27,14 +27,14 @@ use Doctrine\Common\Annotations\Annotation;
  *
  * This method receives some parameters:
  *
- * | Parameter       | Description
- * | --------------- | -----------
- * | $annotationList | List of all parsed annotations
- * | $config         | Holds configurations
+ * | Parameter    | Description
+ * | ------------ | -----------
+ * | $parseResult | Contains parsed annotations and classes
+ * | $config      | Holds configurations
  *
  * This method should return the string that will replace the markup string.
- * If it returns a **Parsable**-Object containing a string, this content will also
- * be parsed and markups will be replaced inside it.
+ * If you want this string to be parsed for markups as well, you have to return a
+ * **Parsable**-Object (`return new Parsable($string)`).
  *
  *
  * ## Namespaces

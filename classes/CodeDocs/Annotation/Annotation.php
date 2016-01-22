@@ -61,16 +61,16 @@ use ReflectionProperty;
  * **$something** will have the value "foo".
  *
  * You can see that the {@ConfigParam("projectName")}-Parser can find this annotation by
- * having a look at the command output. Execute `{@ConfigParam("executable")} -v` and
+ * having a look at the command output. Execute `{@ConfigParam("executable")} -vvv` and
  * see something like:
  *
  * ```
  *  ...
- *  > extract annotations...
- *    - ...of class \ExampleFullNamespace
- *      > found My\Annotation\Example
- *    - ...of class \ExampleImport
- *      > found My\Annotation\Example
+ * > extract annotations...
+ *    > ...of class \ExampleFullNamespace
+ *       > found My\Annotation\Example
+ *    > ...of class \ExampleImport
+ *       > found My\Annotation\Example
  *  ...
  * ```
  */
