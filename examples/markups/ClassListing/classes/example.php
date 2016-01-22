@@ -1,11 +1,21 @@
 <?php
 
-interface InterfaceA {}
+interface InterfaceA
+{
+}
 
-interface InterfaceB {}
+interface InterfaceB
+{
+}
 
-abstract class ParentClass {}
+abstract class ParentClass
+{
+}
 
-class A extends ParentClass implements InterfaceA {}
+class A extends ParentClass implements InterfaceA
+{
+}
 
-class B implements InterfaceA, InterfaceB {}
+class B implements InterfaceA, InterfaceB
+{
+}

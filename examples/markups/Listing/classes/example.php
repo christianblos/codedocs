@@ -11,7 +11,8 @@ class ItemOne
 /**
  * @CodeDocs\ListItem(list="myList", label="Second item")
  */
-class ItemTwo {
+class ItemTwo
+{
 
 }
 
