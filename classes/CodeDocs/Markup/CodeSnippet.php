@@ -120,7 +120,7 @@ class CodeSnippet extends Markup
             }
 
             $line = substr($line, $whitespaceLength);
-            $content .= $line ? $line : PHP_EOL;
+            $content .= $line ?: PHP_EOL;
 
             $fileObject->next();
 

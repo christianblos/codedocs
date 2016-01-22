@@ -32,7 +32,7 @@ class ConfigReader
 
         $this->config = yaml_parse_file($configFile);
         if (!is_array($this->config)) {
-            throw new \Exception('invalid config file');
+            throw new ConfigException('invalid config file');
         }
     }
 

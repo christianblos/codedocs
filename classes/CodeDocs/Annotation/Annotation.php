@@ -2,7 +2,7 @@
 namespace CodeDocs\Annotation;
 
 use Doctrine\Common\Annotations\Annotation as DoctrineAnnotation;
-use Exception;
+use Doctrine\Common\Annotations\AnnotationException;
 use ReflectionClass;
 use ReflectionMethod;
 use ReflectionProperty;
@@ -97,7 +97,7 @@ class Annotation extends DoctrineAnnotation
     public function getReflector()
     {
         if (!$this->originClass) {
-            throw new Exception('no originClass set');
+            throw new AnnotationException('no originClass set');
         }
 
         if ($this->originMethod) {

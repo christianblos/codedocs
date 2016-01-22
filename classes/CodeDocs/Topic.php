@@ -3,7 +3,6 @@ namespace CodeDocs;
 
 use CodeDocs\Annotation\Annotation;
 use CodeDocs\Annotation\ContentInterface;
-use Doctrine\Common\Annotations\Annotation\Required;
 
 /**
  * @Annotation

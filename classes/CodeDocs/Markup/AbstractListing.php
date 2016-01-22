@@ -10,7 +10,7 @@ abstract class AbstractListing extends Markup
     /**
      * @var string|null
      */
-    public $glue = null;
+    public $glue;
 
     /**
      * @param string[] $items

@@ -2,6 +2,7 @@
 namespace CodeDocs\Processor;
 
 use CodeDocs\Component\Config;
+use CodeDocs\Component\Filesystem;
 use CodeDocs\Component\ParseResult;
 use CodeDocs\ListItem;
 use CodeDocs\Topic;
@@ -37,6 +38,8 @@ class CreateFilesFromTopics extends Processor
         /** @var Topic[] $topics */
         $topics = $parseResult->getAnnotations()->filterByClass(Topic::class)->toArray();
 
+        $filesystem = new Filesystem();
+
         foreach ($topics as $topic) {
             if (!$topic->file) {
                 continue;
@@ -45,9 +48,7 @@ class CreateFilesFromTopics extends Processor
             $file = $exportPath . $topic->file;
             $dir  = dirname($file);
 
-            if (!is_dir($dir)) {
-                mkdir(dirname($file), 0777, true);
-            }
+            $filesystem->ensureDir($dir);
 
             file_put_contents($file, $topic->content);
         }
