@@ -12,7 +12,7 @@ use ReflectionClass;
  * @CodeDocs\Topic(file="02.usage/02.markups/00.ClassListing/docs.md")
  *
  * The **ClassListing**-Markup will display a list of classes matching the given criteria.
- * The class list will contain all classes parsed by {@ConfigParam("projectName")}.
+ * The class list will contain all classes parsed by CodeDocs.
  *
  * ## Usage
  *

@@ -3,6 +3,9 @@ buildDir: ./build
 processors:
   pre:
     - \CodeDocs\Processor\CreateFilesFromTopics
+  post:
+    - \CodeDocs\Processor\CopyExportFiles:
+        dest: ../../codedocs-documentation/user/pages
 
 sources:
   - baseDir: .
@@ -11,6 +14,5 @@ sources:
       - ./classes
 
 params:
-  projectName: CodeDocs
   configFile: codedocs.yaml
   executable: vendor/bin/codedocs

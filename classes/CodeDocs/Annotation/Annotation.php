@@ -60,7 +60,7 @@ use ReflectionProperty;
  * The string "this is a test" will be put inside the **$value** property.
  * **$something** will have the value "foo".
  *
- * You can see that the {@ConfigParam("projectName")}-Parser can find this annotation by
+ * You can see that the CodeDocs-Parser can find this annotation by
  * having a look at the command output. Execute `{@ConfigParam("executable")} -vvv` and
  * see something like:
  *

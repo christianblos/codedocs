@@ -4,7 +4,7 @@ taxonomy:
     category: docs
 ---
 
-You have to configure {@ConfigParam("projectName")} by putting a **{@ConfigParam("configFile")}** file
+You have to configure CodeDocs by putting a **{@ConfigParam("configFile")}** file
 into your project's root directory.
 
 ```yaml

@@ -8,4 +8,4 @@ taxonomy:
 
 # Extend
 
-See how to extend **{@ConfigParam("projectName")}**
+See how to extend **CodeDocs**

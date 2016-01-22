@@ -8,4 +8,4 @@ taxonomy:
 
 # Usage
 
-See how to use **{@ConfigParam("projectName")}**
+See how to use **CodeDocs**
