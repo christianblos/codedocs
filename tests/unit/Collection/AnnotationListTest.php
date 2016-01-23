@@ -4,6 +4,7 @@ namespace CodeDocs\Test\Collection;
 use CodeDocs\Annotation\Annotation;
 use CodeDocs\Collection\AnnotationList;
 use PHPUnit_Framework_MockObject_MockObject as MockObject;
+use ReflectionClass;
 
 /**
  * @covers \CodeDocs\Collection\AnnotationList
@@ -30,8 +31,15 @@ class AnnotationListTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->annotation1 = $this->getMock(Annotation::class, null, [], 'AnnotationOne', false);
-        $this->annotation2 = $this->getMock(Annotation::class, null, [], 'AnnotationTwo', false);
+        $this->annotation1 = $this->getMockBuilder(Annotation::class)
+            ->disableOriginalConstructor()
+            ->setMockClassName('AnnotationOne')
+            ->getMock();
+
+        $this->annotation2 = $this->getMockBuilder(Annotation::class)
+            ->disableOriginalConstructor()
+            ->setMockClassName('AnnotationTwo')
+            ->getMock();
 
         $this->list = new AnnotationList([$this->annotation1, $this->annotation2]);
     }
@@ -75,6 +83,28 @@ class AnnotationListTest extends \PHPUnit_Framework_TestCase
         $annotations = $list->toArray();
         $this->assertCount(1, $annotations);
         $this->assertSame($this->annotation1, $annotations[0]);
+    }
+
+    /**
+     * @test
+     */
+    public function can_be_filtered_by_reflector()
+    {
+        $ref = new ReflectionClass(get_class($this));
+
+        $this->annotation1
+            ->expects($this->once())
+            ->method('getReflector')
+            ->willReturn(null);
+
+        $this->annotation2
+            ->expects($this->once())
+            ->method('getReflector')
+            ->willReturn($ref);
+
+        $list = $this->list->filterByReflector(new ReflectionClass(get_class($this)));
+
+        $this->assertSame($this->annotation2, $list->getFirst());
     }
 
     /**

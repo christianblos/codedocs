@@ -74,45 +74,41 @@ class App
     {
         $config = $this->configReader->getConfig();
 
-        $this->logger->log(0, 'clean up export dir...');
-        $this->filesystem->purge($config->getExportDir());
-        $this->filesystem->ensureDir($config->getExportDir());
-
         $this->registerAnnotationNamespaces($config);
 
-        foreach ($config->getSources() as $idx => $source) {
-            $this->logger->log(0, 'handle source #' . $idx . ' ' . $source->getBaseDir());
+        $this->mountPlugins($config);
 
-            $docsDir = $source->getDocsDir();
-            if ($docsDir !== null) {
-                $this->logger->log(1, 'move markdown files from docs to export...');
-                $this->filesystem->mirror($docsDir, $config->getExportDir());
-            }
+        $this->cleanUpExportDir($config);
 
-            $classDirs = $source->getClassDirs();
-            if ($classDirs) {
-                $this->logger->log(1, 'search and include classes...');
-                $classes = $this->includeClasses($classDirs);
-            } else {
-                $classes = [];
-            }
-
-            $this->logger->log(1, 'extract annotations...');
-            $annotationList = $this->extractAnnotations($classes);
-
-            $parseResult = new ParseResult($annotationList, new ClassList($classes));
-
-            $this->logger->log(1, 'run pre processors...');
-            $this->runProcessors(Processor::TYPE_PRE, $config, $parseResult, $source);
-
-            $this->logger->log(1, 'replace markups...');
-            $this->replaceMarkups($config, $parseResult, $source);
-
-            $this->logger->log(1, 'run post processors...');
-            $this->runProcessors(Processor::TYPE_POST, $config, $parseResult, $source);
+        foreach ($config->getSources() as $source) {
+            $this->handleSource($config, $source);
         }
 
         $this->logger->log(0, 'done!');
+    }
+
+    /**
+     * @param Config $config
+     */
+    private function mountPlugins(Config $config)
+    {
+        $this->logger->log(0, 'mount plugins...');
+
+        foreach ($config->getPlugins() as $plugin) {
+            $this->logger->log(1, 'mount plugins ' . get_class($plugin));
+            $plugin->mount($config);
+        }
+    }
+
+    /**
+     * @param Config $config
+     */
+    private function cleanUpExportDir(Config $config)
+    {
+        $this->logger->log(0, 'clean up export dir...');
+
+        $this->filesystem->purge($config->getExportDir());
+        $this->filesystem->ensureDir($config->getExportDir());
     }
 
     /**
@@ -127,6 +123,43 @@ class App
         foreach ($config->getAnnotationNamespacePaths() as $namespace => $path) {
             $this->annotationParser->registerNamespace($namespace, $rootDir . DIRECTORY_SEPARATOR . $path);
         }
+    }
+
+    /**
+     * @param Config $config
+     * @param Source $source
+     */
+    private function handleSource(Config $config, Source $source)
+    {
+        $this->logger->log(0, 'handle source ' . $source->getBaseDir());
+
+        $docsDir = $source->getDocsDir();
+        if ($docsDir !== null) {
+            $this->logger->log(1, 'move markdown files from docs to export...');
+            $this->filesystem->mirror($docsDir, $config->getExportDir());
+        }
+
+        $classDirs = $source->getClassDirs();
+        if ($classDirs) {
+            $this->logger->log(1, 'search and include classes...');
+            $classes = $this->includeClasses($classDirs);
+        } else {
+            $classes = [];
+        }
+
+        $this->logger->log(1, 'extract annotations...');
+        $annotationList = $this->extractAnnotations($classes);
+
+        $parseResult = new ParseResult($annotationList, new ClassList($classes));
+
+        $this->logger->log(1, 'run pre processors...');
+        $this->runProcessors(Processor::TYPE_PRE, $config, $parseResult, $source);
+
+        $this->logger->log(1, 'replace markups...');
+        $this->replaceMarkups($config, $parseResult, $source);
+
+        $this->logger->log(1, 'run post processors...');
+        $this->runProcessors(Processor::TYPE_POST, $config, $parseResult, $source);
     }
 
     /**

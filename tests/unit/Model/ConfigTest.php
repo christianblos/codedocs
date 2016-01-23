@@ -2,6 +2,7 @@
 namespace CodeDocs\Test\ValueObject;
 
 use CodeDocs\Collection\ProcessorList;
+use CodeDocs\Component\Plugin;
 use CodeDocs\Model\Config;
 use CodeDocs\Model\Source;
 use CodeDocs\Processor\Processor;
@@ -75,6 +76,14 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function returns_null_for_not_existing_params()
+    {
+        $this->assertNull($this->config->getParam('foo'));
+    }
+
+    /**
+     * @test
+     */
     public function contains_processors()
     {
         $processor = $this->getMockBuilder(Processor::class)
@@ -86,6 +95,16 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $list = $this->config->getProcessors('pre');
         $this->assertInstanceOf(ProcessorList::class, $list);
         $this->assertSame($processor, $list->toArray()[0]);
+    }
+
+    /**
+     * @test
+     */
+    public function returns_empty_list_for_not_existing_processor_type()
+    {
+        $list = $this->config->getProcessors('foo');
+        $this->assertInstanceOf(ProcessorList::class, $list);
+        $this->assertCount(0, $list->toArray());
     }
 
     /**
@@ -107,4 +126,19 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('namespace', $this->config->getMarkupNamespaces()[0]);
     }
+
+    /**
+     * @test
+     */
+    public function contains_plugins()
+    {
+        $plugin = $this->getMockBuilder(Plugin::class)
+            ->disableOriginalConstructor()
+            ->getMockForAbstractClass();
+
+        $this->config->addPlugin($plugin);
+
+        $this->assertSame($plugin, $this->config->getPlugins()[0]);
+    }
+
 }

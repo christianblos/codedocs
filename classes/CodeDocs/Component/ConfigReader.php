@@ -46,6 +46,7 @@ class ConfigReader
         $this->addProcessors($config);
         $this->addAnnotationNamespaces($config);
         $this->addMarkupNamespaces($config);
+        $this->addPlugins($config);
 
         return $config;
     }
@@ -150,42 +151,11 @@ class ConfigReader
                 throw new ConfigException('config for ' . $type . ' processors must be an array');
             }
 
-            foreach ($processors as $processor) {
-                $config->addProcessor($type, $this->createProcessorFromConfig($processor));
+            $objects = $this->createConfigObjects($processors, Processor::class);
+            foreach ($objects as $object) {
+                $config->addProcessor($type, $object);
             }
         }
-    }
-
-    /**
-     * @param string|array $config
-     *
-     * @return Processor
-     */
-    private function createProcessorFromConfig($config)
-    {
-        if (is_array($config)) {
-            $class  = array_keys($config)[0];
-            $params = $config[$class];
-        } else {
-            $class  = $config;
-            $params = [];
-        }
-
-        if (!class_exists($class)) {
-            throw new ConfigException('processor class ' . $class . ' does not exist');
-        }
-
-        $processor = new $class($params);
-
-        if (!$processor instanceof Processor) {
-            throw new ConfigException(sprintf(
-                'processor class %s must be a %s',
-                $class,
-                Processor::class
-            ));
-        }
-
-        return $processor;
     }
 
     /**
@@ -222,5 +192,65 @@ class ConfigReader
         foreach ($this->config['markupNamespaces'] as $namespace) {
             $config->addMarkupNamespace($namespace);
         }
+    }
+
+    /**
+     * @param Config $config
+     */
+    private function addPlugins(Config $config)
+    {
+        if (!array_key_exists('plugins', $this->config) || !is_array($this->config['plugins'])) {
+            return;
+        }
+
+        $objects = $this->createConfigObjects($this->config['plugins'], Plugin::class);
+        foreach ($objects as $object) {
+            $config->addPlugin($object);
+        }
+    }
+
+    /**
+     * @param array  $classConfigs
+     * @param string $class
+     *
+     * @return array
+     */
+    private function createConfigObjects(array $classConfigs, $class)
+    {
+        $objects = [];
+
+        foreach ($classConfigs as $classConfig) {
+            $object = $this->createObjectOfConfiguredClass($classConfig);
+
+            if (!is_a($object, $class)) {
+                throw new ConfigException(sprintf('class %s must be a %s', get_class($object), $class));
+            }
+
+            $objects[] = $object;
+        }
+
+        return $objects;
+    }
+
+    /**
+     * @param array|string $classConfig
+     *
+     * @throws ConfigException
+     */
+    private function createObjectOfConfiguredClass($classConfig)
+    {
+        if (is_array($classConfig)) {
+            $class  = array_keys($classConfig)[0];
+            $params = $classConfig[$class];
+        } else {
+            $class  = $classConfig;
+            $params = [];
+        }
+
+        if (!class_exists($class)) {
+            throw new ConfigException('class ' . $class . ' does not exist');
+        }
+
+        return new $class($params);
     }
 }

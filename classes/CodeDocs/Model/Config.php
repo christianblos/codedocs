@@ -2,6 +2,7 @@
 namespace CodeDocs\Model;
 
 use CodeDocs\Collection\ProcessorList;
+use CodeDocs\Component\Plugin;
 use CodeDocs\Processor\Processor;
 
 class Config
@@ -40,6 +41,11 @@ class Config
      * @var string[]
      */
     private $markupNamespaces = [];
+
+    /**
+     * @var Plugin[]
+     */
+    private $plugins = [];
 
     /**
      * @param string $buildDir
@@ -172,5 +178,21 @@ class Config
     public function getMarkupNamespaces()
     {
         return $this->markupNamespaces;
+    }
+
+    /**
+     * @param Plugin $plugin
+     */
+    public function addPlugin(Plugin $plugin)
+    {
+        $this->plugins[] = $plugin;
+    }
+
+    /**
+     * @return Plugin[]
+     */
+    public function getPlugins()
+    {
+        return $this->plugins;
     }
 }
