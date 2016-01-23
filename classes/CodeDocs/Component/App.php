@@ -74,9 +74,9 @@ class App
     {
         $config = $this->configReader->getConfig();
 
-        $this->registerAnnotationNamespaces($config);
-
         $this->mountPlugins($config);
+
+        $this->registerAnnotationNamespaces($config);
 
         $this->cleanUpExportDir($config);
 
@@ -118,10 +118,8 @@ class App
      */
     private function registerAnnotationNamespaces(Config $config)
     {
-        $rootDir = $config->getConfigDir();
-
         foreach ($config->getAnnotationNamespacePaths() as $namespace => $path) {
-            $this->annotationParser->registerNamespace($namespace, $rootDir . DIRECTORY_SEPARATOR . $path);
+            $this->annotationParser->registerNamespace($namespace, $path);
         }
     }
 

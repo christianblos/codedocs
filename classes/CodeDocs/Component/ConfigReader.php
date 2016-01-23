@@ -175,7 +175,8 @@ class ConfigReader
         }
 
         foreach ($this->config['annotationNamespaces'] as $namespace => $path) {
-            $config->setAnnotationNamespacePath($namespace, $path);
+            $dir = (string)new Directory($path, $this->configDir);
+            $config->setAnnotationNamespacePath($namespace, $dir);
         }
     }
 

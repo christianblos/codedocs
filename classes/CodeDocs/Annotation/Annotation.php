@@ -29,10 +29,11 @@ use ReflectionProperty;
  *
  * If your annotations are in your own namespace, you should also add it to the **{@ConfigParam("configFile")}**.
  * For each namespace you have to specify a path following the [PSR-0 Standard](http://www.php-fig.org/psr/psr-0/):
+ * If the path starts with a dot (e.g. "./"), it will be relative to the {@ConfigParam("configFile")} file.
  *
  * ```yaml
  * annotationNamespaces:
- *   My\Annotation: annotations
+ *   My\Annotation: ./annotations
  * ```
  *
  * >>>>> The namespace paths are always relative to the directory where the {@ConfigParam("configFile")} lies.
