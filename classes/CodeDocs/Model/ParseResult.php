@@ -1,5 +1,5 @@
 <?php
-namespace CodeDocs\Component;
+namespace CodeDocs\Model;
 
 use CodeDocs\Collection\AnnotationList;
 use CodeDocs\Collection\ClassList;

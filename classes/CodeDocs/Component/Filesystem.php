@@ -1,7 +1,12 @@
 <?php
 namespace CodeDocs\Component;
 
+use AppendIterator;
 use CodeDocs\Exception\FileException;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use RegexIterator;
+use SplFileInfo;
 
 class Filesystem
 {
@@ -35,6 +40,23 @@ class Filesystem
         if (!is_dir($dir)) {
             $this->mkdir($dir);
         }
+    }
+
+    /**
+     * @param array  $dirs
+     * @param string $match
+     *
+     * @return SplFileInfo[]
+     */
+    public function getFilesOfDir(array $dirs, $match)
+    {
+        $iterator = new AppendIterator();
+
+        foreach ($dirs as $dir) {
+            $iterator->append(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir)));
+        }
+
+        return new RegexIterator($iterator, $match);
     }
 
     /**
@@ -94,7 +116,7 @@ class Filesystem
     {
         if (is_dir($src)) {
             $this->ensureDir($dest);
-            $files   = scandir($src);
+            $files = scandir($src);
             foreach ($files as $file) {
                 if ($file !== '.' && $file !== '..') {
                     $this->copy($src . DIRECTORY_SEPARATOR . $file, $dest . DIRECTORY_SEPARATOR . $file);

@@ -1,16 +1,14 @@
 <?php
 namespace CodeDocs\Component;
 
-use AppendIterator;
 use CodeDocs\Collection\AnnotationList;
 use CodeDocs\Collection\ClassList;
 use CodeDocs\Markup\Markup;
+use CodeDocs\Model\Config;
+use CodeDocs\Model\ParseResult;
+use CodeDocs\Model\Source;
 use CodeDocs\Processor\Processor;
 use CodeDocs\ValueObject\Parsable;
-use RecursiveDirectoryIterator;
-use RecursiveIteratorIterator;
-use RegexIterator;
-use SplFileInfo;
 
 class App
 {
@@ -70,42 +68,31 @@ class App
     }
 
     /**
-     * @return ConfigReader
-     */
-    public function getConfigReader()
-    {
-        return $this->configReader;
-    }
-
-    /**
-     * @return string
-     */
-    public function getExportDir()
-    {
-        return $this->configReader->getBuildDir() . '/export';
-    }
-
-    /**
      * Run application
      */
     public function run()
     {
+        $config = $this->configReader->getConfig();
+
         $this->logger->log(0, 'clean up export dir...');
-        $this->cleanExportDir();
+        $this->filesystem->purge($config->getExportDir());
+        $this->filesystem->ensureDir($config->getExportDir());
 
-        $this->registerAnnotationNamespaces();
+        $this->registerAnnotationNamespaces($config);
 
-        foreach ($this->configReader->getSources() as $source) {
-            $this->logger->log(0, 'handle source ' . $source->baseDir);
+        foreach ($config->getSources() as $idx => $source) {
+            $this->logger->log(0, 'handle source #' . $idx . ' ' . $source->getBaseDir());
 
-            if ($source->docsDir !== null) {
+            $docsDir = $source->getDocsDir();
+            if ($docsDir !== null) {
                 $this->logger->log(1, 'move markdown files from docs to export...');
-                $this->filesystem->mirror($source->docsDir, $this->getExportDir());
+                $this->filesystem->mirror($docsDir, $config->getExportDir());
             }
 
-            if ($source->classDirs) {
+            $classDirs = $source->getClassDirs();
+            if ($classDirs) {
                 $this->logger->log(1, 'search and include classes...');
-                $classes = $this->includeClasses($source->classDirs);
+                $classes = $this->includeClasses($classDirs);
             } else {
                 $classes = [];
             }
@@ -116,40 +103,28 @@ class App
             $parseResult = new ParseResult($annotationList, new ClassList($classes));
 
             $this->logger->log(1, 'run pre processors...');
-            $this->runProcessors($this->configReader->getProcessors('pre'), $parseResult, $source);
+            $this->runProcessors(Processor::TYPE_PRE, $config, $parseResult, $source);
 
             $this->logger->log(1, 'replace markups...');
-            $this->replaceMarkups($parseResult, $source);
+            $this->replaceMarkups($config, $parseResult, $source);
 
             $this->logger->log(1, 'run post processors...');
-            $this->runProcessors($this->configReader->getProcessors('post'), $parseResult, $source);
+            $this->runProcessors(Processor::TYPE_POST, $config, $parseResult, $source);
         }
 
         $this->logger->log(0, 'done!');
     }
 
     /**
-     * Clean up export dir or create it
-     */
-    private function cleanExportDir()
-    {
-        $exportDir = $this->getExportDir();
-
-        if ($this->filesystem->exists($exportDir)) {
-            $this->filesystem->purge($exportDir);
-        } else {
-            $this->filesystem->mkdir($exportDir);
-        }
-    }
-
-    /**
      * Register custom annotation namespaces
+     *
+     * @param Config $config
      */
-    private function registerAnnotationNamespaces()
+    private function registerAnnotationNamespaces(Config $config)
     {
-        $rootDir = $this->configReader->getConfigRootDir();
+        $rootDir = $config->getConfigDir();
 
-        foreach ($this->configReader->getAnnotationNamespaces() as $namespace => $path) {
+        foreach ($config->getAnnotationNamespacePaths() as $namespace => $path) {
             $this->annotationParser->registerNamespace($namespace, $rootDir . DIRECTORY_SEPARATOR . $path);
         }
     }
@@ -163,7 +138,7 @@ class App
      */
     private function includeClasses(array $dirs)
     {
-        $files = $this->getFilesOfDir($dirs, '/\.php$/');
+        $files = $this->filesystem->getFilesOfDir($dirs, '/\.php$/');
 
         $allClasses = [];
 
@@ -211,43 +186,43 @@ class App
     /**
      * Run given processors
      *
-     * @param Processor[] $processors
+     * @param string      $type
+     * @param Config      $config
      * @param ParseResult $parseResult
      * @param Source      $source
      */
-    private function runProcessors(array $processors, ParseResult $parseResult, Source $source)
+    private function runProcessors($type, Config $config, ParseResult $parseResult, Source $source)
     {
-        $config = new Config($this, $source);
+        $processors = $config->getProcessors($type)->toArray();
 
         foreach ($processors as $processor) {
             $this->logger->log(2, 'run ' . get_class($processor));
-            $processor->run($parseResult, $config);
+            $processor->run($parseResult, $config, $source);
         }
     }
 
     /**
      * Parse md files in cache dir and replace markups
      *
+     * @param Config      $config
      * @param ParseResult $parseResult
      * @param Source      $source
      */
-    private function replaceMarkups(ParseResult $parseResult, Source $source)
+    private function replaceMarkups(Config $config, ParseResult $parseResult, Source $source)
     {
-        $namespaces = $this->configReader->getMarkupNamespaces();
+        $namespaces = $config->getMarkupNamespaces();
         foreach ($namespaces as $namespace) {
             $this->markupParser->addMarkupNamespace($namespace);
         }
 
-        $config = new Config($this, $source);
-
-        $files = $this->getFilesOfDir([$this->getExportDir()], '/\.md$/');
+        $files = $this->filesystem->getFilesOfDir([$config->getExportDir()], '/\.md$/');
 
         foreach ($files as $file) {
             $filePath = $file->getRealPath();
             $this->logger->log(2, 'replace markups in ' . $filePath);
 
             $fileContent = file_get_contents($filePath);
-            $fileContent = $this->replaceMarkupsInContent($fileContent, $parseResult, $config);
+            $fileContent = $this->replaceMarkupsInContent($fileContent, $parseResult, $config, $source);
 
             $fileObject = $file->openFile('w+');
             $fileObject->fwrite($fileContent);
@@ -258,22 +233,23 @@ class App
      * @param string      $content
      * @param ParseResult $parseResult
      * @param Config      $config
+     * @param Source      $source
      *
      * @return string
      */
-    private function replaceMarkupsInContent($content, ParseResult $parseResult, Config $config)
+    private function replaceMarkupsInContent($content, ParseResult $parseResult, Config $config, Source $source)
     {
         $markups = $this->markupParser->getMarkups($content);
 
         foreach ($markups as $markup) {
             $this->logger->log(3, 'replace markup ' . $markup->getMarkupString());
 
-            $this->replaceConfigParamsInMarkup($markup);
+            $this->replaceConfigParamsInMarkup($markup, $config);
 
-            $replace = $markup->buildContent($parseResult, $config);
+            $replace = $markup->buildContent($parseResult, $config, $source);
 
             if ($replace instanceof Parsable) {
-                $replace = $this->replaceMarkupsInContent((string)$replace, $parseResult, $config);
+                $replace = $this->replaceMarkupsInContent((string)$replace, $parseResult, $config, $source);
             }
 
             $content = str_replace($markup->getMarkupString(), $replace, $content);
@@ -284,31 +260,15 @@ class App
 
     /**
      * @param Markup $markup
+     * @param Config $config
      */
-    private function replaceConfigParamsInMarkup(Markup $markup)
+    private function replaceConfigParamsInMarkup(Markup $markup, Config $config)
     {
         foreach ($markup as $key => $value) {
             if (preg_match('/^%(.*)%$/', $value, $matches)) {
                 $this->logger->log(3, 'replace config param ' . $value);
-                $markup->$key = $this->configReader->getParam($matches[1]);
+                $markup->$key = $config->getParam($matches[1]);
             }
         }
-    }
-
-    /**
-     * @param array  $dirs
-     * @param string $match
-     *
-     * @return SplFileInfo[]
-     */
-    private function getFilesOfDir(array $dirs, $match)
-    {
-        $iterator = new AppendIterator();
-
-        foreach ($dirs as $dir) {
-            $iterator->append(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir)));
-        }
-
-        return new RegexIterator($iterator, $match);
     }
 }

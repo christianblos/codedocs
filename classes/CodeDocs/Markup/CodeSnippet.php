@@ -1,8 +1,9 @@
 <?php
 namespace CodeDocs\Markup;
 
-use CodeDocs\Component\Config;
-use CodeDocs\Component\ParseResult;
+use CodeDocs\Model\Config;
+use CodeDocs\Model\ParseResult;
+use CodeDocs\Model\Source;
 use CodeDocs\ValueObject\Parsable;
 use ReflectionClass;
 use ReflectionMethod;
@@ -68,10 +69,11 @@ class CodeSnippet extends Markup
     /**
      * @param ParseResult $parseResult
      * @param Config      $config
+     * @param Source      $source
      *
-     * @return string|Parsable
+     * @return Parsable|string
      */
-    public function buildContent(ParseResult $parseResult, Config $config)
+    public function buildContent(ParseResult $parseResult, Config $config, Source $source)
     {
         $pos = strpos($this->value, '::');
 

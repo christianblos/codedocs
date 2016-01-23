@@ -1,11 +1,15 @@
 <?php
 namespace CodeDocs\Processor;
 
-use CodeDocs\Component\Config;
-use CodeDocs\Component\ParseResult;
+use CodeDocs\Model\Config;
+use CodeDocs\Model\ParseResult;
+use CodeDocs\Model\Source;
 
 abstract class Processor
 {
+    const TYPE_PRE  = 'pre';
+    const TYPE_POST = 'post';
+
     /**
      * @var array
      */
@@ -26,7 +30,7 @@ abstract class Processor
      */
     protected function getParam($name)
     {
-        if (isset($this->params[$name])) {
+        if (array_key_exists($name, $this->params)) {
             return $this->params[$name];
         }
 
@@ -36,6 +40,7 @@ abstract class Processor
     /**
      * @param ParseResult $parseResult
      * @param Config      $config
+     * @param Source      $source
      */
-    abstract public function run(ParseResult $parseResult, Config $config);
+    abstract public function run(ParseResult $parseResult, Config $config, Source $source);
 }

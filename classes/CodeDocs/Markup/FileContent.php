@@ -1,8 +1,9 @@
 <?php
 namespace CodeDocs\Markup;
 
-use CodeDocs\Component\Config;
-use CodeDocs\Component\ParseResult;
+use CodeDocs\Model\Config;
+use CodeDocs\Model\ParseResult;
+use CodeDocs\Model\Source;
 use CodeDocs\ValueObject\Parsable;
 
 /**
@@ -47,12 +48,13 @@ class FileContent extends Markup
     /**
      * @param ParseResult $parseResult
      * @param Config      $config
+     * @param Source      $source
      *
-     * @return string|Parsable
+     * @return Parsable|string
      */
-    public function buildContent(ParseResult $parseResult, Config $config)
+    public function buildContent(ParseResult $parseResult, Config $config, Source $source)
     {
-        $file = $config->getBaseDir() . '/' . $this->value;
+        $file = $source->getBaseDir() . '/' . $this->value;
 
         if (file_exists($file)) {
             return trim(file_get_contents($file));

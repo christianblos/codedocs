@@ -1,10 +1,11 @@
 <?php
 namespace CodeDocs\Processor;
 
-use CodeDocs\Component\Config;
 use CodeDocs\Component\Filesystem;
-use CodeDocs\Component\ParseResult;
 use CodeDocs\ListItem;
+use CodeDocs\Model\Config;
+use CodeDocs\Model\ParseResult;
+use CodeDocs\Model\Source;
 use CodeDocs\Topic;
 
 /**
@@ -30,8 +31,9 @@ class CreateFilesFromTopics extends Processor
     /**
      * @param ParseResult $parseResult
      * @param Config      $config
+     * @param Source      $source
      */
-    public function run(ParseResult $parseResult, Config $config)
+    public function run(ParseResult $parseResult, Config $config, Source $source)
     {
         $exportPath = $config->getExportDir() . DIRECTORY_SEPARATOR;
 

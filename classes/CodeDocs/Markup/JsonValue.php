@@ -1,9 +1,10 @@
 <?php
 namespace CodeDocs\Markup;
 
-use CodeDocs\Component\Config;
-use CodeDocs\Component\ParseResult;
 use CodeDocs\Exception\MarkupException;
+use CodeDocs\Model\Config;
+use CodeDocs\Model\ParseResult;
+use CodeDocs\Model\Source;
 use CodeDocs\ValueObject\Parsable;
 use Doctrine\Common\Annotations\Annotation\Required;
 
@@ -70,12 +71,13 @@ class JsonValue extends Markup
     /**
      * @param ParseResult $parseResult
      * @param Config      $config
+     * @param Source      $source
      *
-     * @return string|Parsable
+     * @return Parsable|string
      */
-    public function buildContent(ParseResult $parseResult, Config $config)
+    public function buildContent(ParseResult $parseResult, Config $config, Source $source)
     {
-        $file = $config->getBaseDir() . '/' . $this->file;
+        $file = $source->getBaseDir() . '/' . $this->file;
 
         if (!file_exists($file)) {
             throw new MarkupException(sprintf('json file %s does not exist', $this->file));

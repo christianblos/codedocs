@@ -2,6 +2,7 @@
 namespace CodeDocs\Collection;
 
 use CodeDocs\Annotation\Annotation;
+use Reflector;
 
 /**
  * Collection of Annotation classes
@@ -52,6 +53,18 @@ class AnnotationList
     {
         return $this->filter(function ($annotation) use ($className) {
             return is_a($annotation, $className);
+        });
+    }
+
+    /**
+     * @param Reflector $reflector
+     *
+     * @return AnnotationList
+     */
+    public function filterByReflector(Reflector $reflector)
+    {
+        return $this->filter(function (Annotation $annotation) use ($reflector) {
+            return $annotation->getReflector() == $reflector;
         });
     }
 

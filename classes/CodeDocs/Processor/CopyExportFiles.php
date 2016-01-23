@@ -1,11 +1,12 @@
 <?php
 namespace CodeDocs\Processor;
 
-use CodeDocs\Component\Config;
 use CodeDocs\Component\Filesystem;
-use CodeDocs\Component\ParseResult;
 use CodeDocs\Exception\ConfigException;
 use CodeDocs\ListItem;
+use CodeDocs\Model\Config;
+use CodeDocs\Model\ParseResult;
+use CodeDocs\Model\Source;
 use CodeDocs\Topic;
 use CodeDocs\ValueObject\Directory;
 
@@ -33,8 +34,9 @@ class CopyExportFiles extends Processor
     /**
      * @param ParseResult $parseResult
      * @param Config      $config
+     * @param Source      $source
      */
-    public function run(ParseResult $parseResult, Config $config)
+    public function run(ParseResult $parseResult, Config $config, Source $source)
     {
         $dest = $this->getParam('dest');
         if ($dest === null) {

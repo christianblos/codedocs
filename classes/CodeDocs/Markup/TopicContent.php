@@ -2,9 +2,10 @@
 namespace CodeDocs\Markup;
 
 use CodeDocs\Annotation\Annotation;
-use CodeDocs\Component\Config;
-use CodeDocs\Component\ParseResult;
 use CodeDocs\Exception\MarkupException;
+use CodeDocs\Model\Config;
+use CodeDocs\Model\ParseResult;
+use CodeDocs\Model\Source;
 use CodeDocs\Topic;
 use CodeDocs\ValueObject\Parsable;
 
@@ -56,10 +57,11 @@ class TopicContent extends Markup
     /**
      * @param ParseResult $parseResult
      * @param Config      $config
+     * @param Source      $source
      *
-     * @return string|Parsable
+     * @return Parsable|string
      */
-    public function buildContent(ParseResult $parseResult, Config $config)
+    public function buildContent(ParseResult $parseResult, Config $config, Source $source)
     {
         $annotation = $parseResult->getAnnotations()
             ->filter(function ($annotation) {
