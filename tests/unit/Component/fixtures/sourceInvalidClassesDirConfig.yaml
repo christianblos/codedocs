@@ -1,0 +1,6 @@
+buildDir: ./build
+
+sources:
+  - baseDir: .
+    classDirs: .
+

@@ -1,0 +1,4 @@
+buildDir: ./build
+
+sources:
+  - invalid

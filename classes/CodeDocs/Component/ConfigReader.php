@@ -28,6 +28,10 @@ class ConfigReader
     {
         $this->configDir = dirname($configFile);
 
+        if (!file_exists($configFile)) {
+            throw new ConfigException(sprintf('config file %s does not exist', $configFile));
+        }
+
         $this->config = Yaml::parse(file_get_contents($configFile));
         if (!is_array($this->config)) {
             throw new ConfigException('invalid config file');
@@ -163,11 +167,9 @@ class ConfigReader
      */
     private function addAnnotationNamespaces(Config $config)
     {
-        if (!array_key_exists('annotationNamespaces', $this->config)) {
-            return;
-        }
-
-        if (!is_array($this->config['annotationNamespaces'])) {
+        if (!array_key_exists('annotationNamespaces', $this->config)
+            || !is_array($this->config['annotationNamespaces'])
+        ) {
             return;
         }
 
@@ -181,11 +183,9 @@ class ConfigReader
      */
     private function addMarkupNamespaces(Config $config)
     {
-        if (!array_key_exists('markupNamespaces', $this->config)) {
-            return;
-        }
-
-        if (!is_array($this->config['markupNamespaces'])) {
+        if (!array_key_exists('markupNamespaces', $this->config)
+            || !is_array($this->config['markupNamespaces'])
+        ) {
             return;
         }
 
