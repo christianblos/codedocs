@@ -31,7 +31,8 @@ use Doctrine\Common\Annotations\Annotation;
  * | Parameter    | Description
  * | ------------ | -----------
  * | $parseResult | Contains parsed annotations and classes
- * | $config      | Holds configurations
+ * | $config      | Contains configurations
+ * | $source      | Current running source
  *
  * This method should return the string that will replace the markup string.
  * If you want this string to be parsed for markups as well, you have to return a

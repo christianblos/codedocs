@@ -1,0 +1,30 @@
+buildDir: ./build
+
+processors:
+  pre:
+    - \CodeDocs\Processor\CreateFilesFromTopics
+  post:
+    - \CodeDocs\Processor\CopyExportFiles:
+        dest: /some/dir
+
+sources:
+  - baseDir: .
+    docsDir: ./docs
+    classDirs:
+      - ./classes
+
+params:
+  someKey: someValue
+  someNumber: 123
+
+annotationNamespaces:
+  My\Annotation: /path/to/annotations
+
+markupNamespaces:
+  - My\Markup
+
+plugins:
+  - \My\Plugin
+  - \My\Other\Plugin:
+      paramKey: paramVal
+      foo: bar

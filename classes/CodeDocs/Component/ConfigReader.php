@@ -10,6 +10,7 @@ use Symfony\Component\Yaml\Yaml;
 
 class ConfigReader
 {
+    const DEFAULT_BUILD_DIR = 'build';
 
     /**
      * @var string
@@ -63,7 +64,7 @@ class ConfigReader
         if (array_key_exists('buildDir', $this->config)) {
             $buildDir = $this->config['buildDir'];
         } else {
-            $buildDir = $this->configDir . DIRECTORY_SEPARATOR . 'build';
+            $buildDir = $this->configDir . DIRECTORY_SEPARATOR . self::DEFAULT_BUILD_DIR;
         }
 
         return (string)new Directory($buildDir, $this->configDir);
