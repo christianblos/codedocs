@@ -12,6 +12,12 @@ use ReflectionClass;
 /**
  * @CodeDocs\Topic(file="02.usage/02.markups/00.ConstantListing/docs.md")
  *
+ * ---
+ * title: ConstantListing-Markup
+ * taxonomy:
+ *     category: docs
+ * ---
+ *
  * The **ConstantListing**-Markup will display a list of class constants matching the given criteria.
  *
  * ## Usage

@@ -9,6 +9,12 @@ use CodeDocs\Annotation\ContentInterface;
  *
  * @Topic(file="02.usage/01.annotations/00.Topic/docs.md")
  *
+ * ---
+ * title: Topic-Annotation
+ * taxonomy:
+ *     category: docs
+ * ---
+ *
  * Normally, you create the markdown documentation files in the docs folder.
  * But with the **Topic** Annotation together with the
  * [CreateFilesFromTopics-Processor](/usage/processors/CreateFilesFromTopics),

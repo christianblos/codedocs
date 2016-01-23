@@ -11,6 +11,12 @@ use Doctrine\Common\Annotations\Annotation\Required;
 /**
  * @CodeDocs\Topic(file="02.usage/02.markups/00.JsonValue/docs.md")
  *
+ * ---
+ * title: JsonValue-Markup
+ * taxonomy:
+ *     category: docs
+ * ---
+ *
  * The **JsonValue**-Markup will extract a value of a json file.
  *
  * ## Usage

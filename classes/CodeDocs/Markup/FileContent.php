@@ -9,6 +9,12 @@ use CodeDocs\ValueObject\Parsable;
 /**
  * @CodeDocs\Topic(file="02.usage/02.markups/00.FileContent/docs.md")
  *
+ * ---
+ * title: FileContent-Markup
+ * taxonomy:
+ *     category: docs
+ * ---
+ *
  * The **FileContent**-Markup will extract the content of a file.
  *
  * ## Usage

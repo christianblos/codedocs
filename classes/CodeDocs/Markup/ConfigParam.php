@@ -9,6 +9,12 @@ use CodeDocs\ValueObject\Parsable;
 /**
  * @CodeDocs\Topic(file="02.usage/02.markups/00.ConfigParam/docs.md")
  *
+ * ---
+ * title: ConfigParam-Markup
+ * taxonomy:
+ *     category: docs
+ * ---
+ *
  * The **ConfigParam**-Markup will display the value of a param in the
  * {@ConfigParam("configFile")} configuration file.
  *

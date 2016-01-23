@@ -11,6 +11,12 @@ use ReflectionMethod;
 /**
  * @CodeDocs\Topic(file="02.usage/02.markups/00.CodeSnippet/docs.md")
  *
+ * ---
+ * title: CodeSnippet-Markup
+ * taxonomy:
+ *     category: docs
+ * ---
+ *
  * The **CodeSnippet**-Markup will extract a code snippet from a class or method.
  *
  * ## Usage

@@ -12,6 +12,12 @@ use CodeDocs\ValueObject\Parsable;
 /**
  * @CodeDocs\Topic(file="02.usage/02.markups/00.TopicContent/docs.md")
  *
+ * ---
+ * title: TopicContent-Markup
+ * taxonomy:
+ *     category: docs
+ * ---
+ *
  * The **TopicContent**-Markup will include the content of a [Topic-Annotation](/usage/annotations/Topic).
  *
  * ## Usage

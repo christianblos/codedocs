@@ -11,6 +11,12 @@ use Doctrine\Common\Annotations\Annotation\Required;
  *
  * @Topic(file="02.usage/01.annotations/00.ListItem/docs.md")
  *
+ * ---
+ * title: ListItem-Annotation
+ * taxonomy:
+ *     category: docs
+ * ---
+ *
  * The **ListItem** Annotation can be used to assign an item to a list.
  * It will be used together with the [**Listing**-Markup](/usage/markups/Listing).
  *

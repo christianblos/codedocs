@@ -13,6 +13,12 @@ use Doctrine\Common\Annotations\Annotation\Required;
 /**
  * @CodeDocs\Topic(file="02.usage/02.markups/00.Listing/docs.md")
  *
+ * ---
+ * title: Listing-Markup
+ * taxonomy:
+ *     category: docs
+ * ---
+ *
  * The **Listing**-Markup should be used together with the
  * [**ListItem**-Annotation](/usage/annotations/ListItem).
  * It will display all ListItems in a list.
