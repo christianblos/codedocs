@@ -1,0 +1,11 @@
+buildDir: .
+
+sources:
+  - baseDir: .
+    docsDir: ./docs
+    classDirs:
+      - ./classes
+
+plugins:
+  - \My\MyPlugin:
+      foo: bar

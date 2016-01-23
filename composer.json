@@ -21,10 +21,15 @@
   "autoload": {
     "psr-0": {
       "CodeDocs\\": "classes/"
-    },
+    }
+  },
+  "autoload-dev": {
     "psr-4": {
       "CodeDocs\\Test\\": "tests/unit"
-    }
+    },
+    "classmap": [
+      "examples"
+    ]
   },
   "extra": {
     "branch-alias": {
