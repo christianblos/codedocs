@@ -20,16 +20,23 @@ use CodeDocs\ValueObject\Directory;
  *   post:
  *     - \CodeDocs\Processor\CopyExportFiles:
  *         dest: ./some/dir
+ *         purge: true
  * ```
  *
  * It will copy all exported files to the configured destination. If the dest path
  * starts with ".", it will be relative to the build directory.
  *
+ * If you set **purge** to true, it will remove all files in the destination directory on
+ * the first run.
  *
  * @ListItem(list="processors", link="/usage/processors/CopyExportFiles")
  */
 class CopyExportFiles extends Processor
 {
+    /**
+     * @var bool
+     */
+    private $isPurged = false;
 
     /**
      * @param ParseResult $parseResult
@@ -46,6 +53,12 @@ class CopyExportFiles extends Processor
         $dest = new Directory($dest, $config->getBuildDir());
 
         $filesystem = new Filesystem();
-        $filesystem->mirror($config->getExportDir(), $dest);
+
+        if ($this->isPurged === false && $this->getParam('purge')) {
+            $filesystem->purge($dest);
+            $this->isPurged = true;
+        }
+
+        $filesystem->copy($config->getExportDir(), $dest);
     }
 }

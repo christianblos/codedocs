@@ -6,6 +6,7 @@ processors:
   post:
     - \CodeDocs\Processor\CopyExportFiles:
         dest: ../../codedocs-documentation/user/pages
+        purge: true
 
 sources:
   - baseDir: .
