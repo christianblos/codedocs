@@ -46,19 +46,17 @@ class AnnotationParser
      */
     public function extractAnnotations($className)
     {
-
         $class = new ReflectionClass($className);
 
         $annotations = $this->reader->getClassAnnotations($class);
-
-        $annotations = array_filter($annotations, function ($annotation) {
-            return $annotation instanceof Annotation;
-        });
+        $annotations = $this->filterAnnotations($annotations);
 
         $this->extendAnnotations($annotations, $class);
 
         foreach ($class->getMethods() as $method) {
             $methodAnnotations = $this->reader->getMethodAnnotations($method);
+            $methodAnnotations = $this->filterAnnotations($methodAnnotations);
+
             $this->extendAnnotations($methodAnnotations, $method);
 
             $annotations = array_merge($annotations, $methodAnnotations);
@@ -66,12 +64,25 @@ class AnnotationParser
 
         foreach ($class->getProperties() as $property) {
             $propertyAnnotations = $this->reader->getPropertyAnnotations($property);
+            $propertyAnnotations = $this->filterAnnotations($propertyAnnotations);
+
             $this->extendAnnotations($propertyAnnotations, $property);
 
             $annotations = array_merge($annotations, $propertyAnnotations);
         }
 
         return $annotations;
+    }
+
+    /**
+     * @param array $annotations
+     *
+     * @return Annotation[]
+     */
+    private function filterAnnotations(array $annotations) {
+        return array_filter($annotations, function($annotation) {
+            return $annotation instanceof Annotation;
+        });
     }
 
     /**
