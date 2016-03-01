@@ -117,7 +117,7 @@ class Listing extends Markup
             });
 
         if ($this->contents) {
-            return (string)new ContentList($listItems, $this->glue);
+            return new Parsable((string)new ContentList($listItems, $this->glue));
         }
 
         return (string)new ItemList($listItems, $this->glue);
