@@ -11,6 +11,12 @@ use CodeDocs\Topic;
 /**
  * @Topic(file="02.usage/03.processors/00.CreateFilesFromTopics/docs.md")
  *
+ * ---
+ * title: CreateFilesFromTopics-Processor
+ * taxonomy:
+ *     category: docs
+ * ---
+ *
  * This processor should be added as **pre** processor in your {@ConfigParam("configFile")}:
  *
  * ```yaml

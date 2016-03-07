@@ -24,6 +24,12 @@ A list of _pre_ and _post_ processors (See [Processors](/usage/processors)).
 You can pass params to a processor like in the example above.
 
 
+##### finalizers
+
+A list of finalizers (See [Finalizers](/usage/finalizers)).
+You can pass params to a finalizer like in the example above.
+
+
 ##### sources
 
 A list of sources for your documentation. A source can be configured by these properties:

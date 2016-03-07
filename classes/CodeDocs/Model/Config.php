@@ -3,6 +3,7 @@ namespace CodeDocs\Model;
 
 use CodeDocs\Collection\ProcessorList;
 use CodeDocs\Component\Plugin;
+use CodeDocs\Finalizer\Finalizer;
 use CodeDocs\Processor\Processor;
 
 class Config
@@ -31,6 +32,11 @@ class Config
      * @var ProcessorList[]
      */
     private $processorLists = [];
+
+    /**
+     * @var Finalizer[]
+     */
+    private $finalizers = [];
 
     /**
      * @var string[]
@@ -145,6 +151,22 @@ class Config
         }
 
         return new ProcessorList();
+    }
+
+    /**
+     * @param Finalizer $finalizer
+     */
+    public function addFinalizer(Finalizer $finalizer)
+    {
+        $this->finalizers[] = $finalizer;
+    }
+
+    /**
+     * @return Finalizer[]
+     */
+    public function getFinalizers()
+    {
+        return $this->finalizers;
     }
 
     /**

@@ -2,6 +2,7 @@
 namespace CodeDocs\Component;
 
 use CodeDocs\Exception\ConfigException;
+use CodeDocs\Finalizer\Finalizer;
 use CodeDocs\Model\Config;
 use CodeDocs\Model\Source;
 use CodeDocs\Processor\Processor;
@@ -49,6 +50,7 @@ class ConfigReader
         $this->addSources($config);
         $this->addParams($config);
         $this->addProcessors($config);
+        $this->addFinalizers($config);
         $this->addAnnotationNamespaces($config);
         $this->addMarkupNamespaces($config);
         $this->addPlugins($config);
@@ -160,6 +162,21 @@ class ConfigReader
             foreach ($objects as $object) {
                 $config->addProcessor($type, $object);
             }
+        }
+    }
+
+    /**
+     * @param Config $config
+     */
+    private function addFinalizers(Config $config)
+    {
+        if (!array_key_exists('finalizers', $this->config) || !is_array($this->config['finalizers'])) {
+            return;
+        }
+
+        $objects = $this->createConfigObjects($this->config['finalizers'], Finalizer::class);
+        foreach ($objects as $object) {
+            $config->addFinalizer($object);
         }
     }
 

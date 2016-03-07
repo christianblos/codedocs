@@ -3,10 +3,11 @@ buildDir: ./build
 processors:
   pre:
     - \CodeDocs\Processor\CreateFilesFromTopics
-  post:
-    - \CodeDocs\Processor\CopyExportFiles:
-        dest: ../../codedocs-documentation/user/pages
-        purge: true
+
+finalizers:
+  - \CodeDocs\Finalizer\CopyExportFiles:
+      dest: ../../codedocs-documentation/user/pages
+      purge: true
 
 sources:
   - baseDir: .

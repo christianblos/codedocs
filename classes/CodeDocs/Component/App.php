@@ -84,6 +84,13 @@ class App
             $this->handleSource($config, $source);
         }
 
+        $this->logger->log(0, 'run finalizers...');
+
+        foreach ($config->getFinalizers() as $finalizer) {
+            $this->logger->log(1, 'run ' . get_class($finalizer));
+            $finalizer->run($config);
+        }
+
         $this->logger->log(0, 'done!');
     }
 

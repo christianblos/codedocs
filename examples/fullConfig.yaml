@@ -4,8 +4,13 @@ processors:
   pre:
     - \CodeDocs\Processor\CreateFilesFromTopics
   post:
-    - \CodeDocs\Processor\CopyExportFiles:
-        dest: /some/dir
+    - \My\SomeProcessor:
+        foo: bar
+
+finalizers:
+  - \CodeDocs\Finalizer\CopyExportFiles:
+      dest: ./some/dir
+      purge: true
 
 sources:
   - baseDir: .

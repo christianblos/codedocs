@@ -1,41 +1,15 @@
 <?php
 namespace CodeDocs\Processor;
 
+use CodeDocs\Component\ConfigurableComponent;
 use CodeDocs\Model\Config;
 use CodeDocs\Model\ParseResult;
 use CodeDocs\Model\Source;
 
-abstract class Processor
+abstract class Processor extends ConfigurableComponent
 {
     const TYPE_PRE  = 'pre';
     const TYPE_POST = 'post';
-
-    /**
-     * @var array
-     */
-    private $params;
-
-    /**
-     * @param array $params
-     */
-    public function __construct(array $params)
-    {
-        $this->params = $params;
-    }
-
-    /**
-     * @param string $name
-     *
-     * @return mixed
-     */
-    protected function getParam($name)
-    {
-        if (array_key_exists($name, $this->params)) {
-            return $this->params[$name];
-        }
-
-        return null;
-    }
 
     /**
      * @param ParseResult $parseResult

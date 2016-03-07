@@ -3,6 +3,7 @@ namespace CodeDocs\Test\ValueObject;
 
 use CodeDocs\Collection\ProcessorList;
 use CodeDocs\Component\Plugin;
+use CodeDocs\Finalizer\Finalizer;
 use CodeDocs\Model\Config;
 use CodeDocs\Model\Source;
 use CodeDocs\Processor\Processor;
@@ -97,6 +98,20 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($processor, $list->toArray()[0]);
     }
 
+    /**
+     * @test
+     */
+    public function contains_finalizers()
+    {
+        $finalizer = $this->getMockBuilder(Finalizer::class)
+            ->disableOriginalConstructor()
+            ->getMockForAbstractClass();
+
+        $this->config->addFinalizer($finalizer);
+
+        $list = $this->config->getFinalizers();
+        $this->assertSame($finalizer, $list[0]);
+    }
     /**
      * @test
      */
