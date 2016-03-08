@@ -303,7 +303,7 @@ class App
     private function replaceConfigParamsInMarkup(Markup $markup, Config $config)
     {
         foreach ($markup as $key => $value) {
-            if (preg_match('/^%(.*)%$/', $value, $matches)) {
+            if (is_string($value) && preg_match('/^%(.*)%$/', $value, $matches)) {
                 $this->logger->log(3, 'replace config param ' . $value);
                 $markup->$key = $config->getParam($matches[1]);
             }
