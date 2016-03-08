@@ -1,5 +1,14 @@
 # Changelog
 
+#### Version 2.2.0
+
+- added Finalizers
+- Params can be passed to command
+
+#### Version 2.1.0
+
+- Markups are allowed in Listing contents 
+
 #### Version 2.0.0
 
 - Completely reworked CodeDocs
