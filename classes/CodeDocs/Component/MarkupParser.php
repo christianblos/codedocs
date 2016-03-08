@@ -40,7 +40,7 @@ class MarkupParser
      */
     public function getMarkups($content)
     {
-        $found = preg_match_all('/\{@(([\w\\\\]+)\(.*\))\}/U', $content, $matches);
+        $found = preg_match_all('/\{@(([\w\\\\]+)\(.*\))\}/Us', $content, $matches);
         if ($found <= 0) {
             return [];
         }
