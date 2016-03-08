@@ -9,7 +9,7 @@ use Doctrine\Common\Annotations\Annotation\Required;
 /**
  * @Annotation
  *
- * @Topic(file="02.usage/01.annotations/00.ListItem/docs.md")
+ * @Topic(file="02.usage/02.annotations/00.ListItem/docs.md")
  *
  * ---
  * title: ListItem-Annotation

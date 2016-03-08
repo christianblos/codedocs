@@ -6,7 +6,7 @@ use CodeDocs\Model\Config;
 use CodeDocs\Topic;
 
 /**
- * @Topic(file="02.usage/04.finalizers/00.Passthru/docs.md")
+ * @Topic(file="02.usage/05.finalizers/00.Passthru/docs.md")
  *
  * ---
  * title: Passthru-Finalizer

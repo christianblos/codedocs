@@ -7,7 +7,7 @@ use CodeDocs\Annotation\ContentInterface;
 /**
  * @Annotation
  *
- * @Topic(file="02.usage/01.annotations/00.Topic/docs.md")
+ * @Topic(file="02.usage/02.annotations/00.Topic/docs.md")
  *
  * ---
  * title: Topic-Annotation

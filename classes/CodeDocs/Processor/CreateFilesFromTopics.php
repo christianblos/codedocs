@@ -9,7 +9,7 @@ use CodeDocs\Model\Source;
 use CodeDocs\Topic;
 
 /**
- * @Topic(file="02.usage/03.processors/00.CreateFilesFromTopics/docs.md")
+ * @Topic(file="02.usage/04.processors/00.CreateFilesFromTopics/docs.md")
  *
  * ---
  * title: CreateFilesFromTopics-Processor

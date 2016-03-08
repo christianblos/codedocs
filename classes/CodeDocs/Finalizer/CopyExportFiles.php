@@ -8,7 +8,7 @@ use CodeDocs\Topic;
 use CodeDocs\ValueObject\Directory;
 
 /**
- * @Topic(file="02.usage/04.finalizers/00.CopyExportFiles/docs.md")
+ * @Topic(file="02.usage/05.finalizers/00.CopyExportFiles/docs.md")
  *
  * ---
  * title: CopyExportFiles-Finalizer

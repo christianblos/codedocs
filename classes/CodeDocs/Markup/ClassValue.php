@@ -9,7 +9,7 @@ use CodeDocs\ValueObject\Parsable;
 use ReflectionClass;
 
 /**
- * @CodeDocs\Topic(file="02.usage/02.markups/00.ClassValue/docs.md")
+ * @CodeDocs\Topic(file="02.usage/03.markups/00.ClassValue/docs.md")
  *
  * ---
  * title: ClassValue-Markup
