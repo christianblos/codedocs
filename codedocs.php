@@ -39,10 +39,15 @@ try {
 
     $logLevel   = 0;
     $configFile = realpath(getcwd() . '/codedocs.yaml');
+    $params     = [];
 
     foreach ($argv as $idx => $arg) {
         if (preg_match('/^-(v+)$/', $arg, $matches)) {
             $logLevel = strlen($matches[1]);
+        } elseif (preg_match('/^--(.*)=(.*)$/U', $arg, $matches)) {
+            $params[$matches[1]] = $matches[2];
+        } elseif (preg_match('/^--(.*)$/', $arg, $matches)) {
+            $params[$matches[1]] = true;
         } elseif ($idx > 0) {
             $configFile = realpath($arg);
         }
@@ -59,7 +64,7 @@ try {
     $annotationParser->registerNamespace('CodeDocs', __DIR__ . '/classes');
 
     $app = new App(
-        new ConfigReader($configFile),
+        new ConfigReader($configFile, $params),
         $annotationParser,
         new MarkupParser(new DocParser()),
         new Tokenizer(),

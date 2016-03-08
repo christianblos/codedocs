@@ -24,11 +24,20 @@ class ConfigReader
     private $config = [];
 
     /**
-     * @param string $configFile
+     * @var array
      */
-    public function __construct($configFile)
+    private $params = [];
+
+    /**
+     * @param string $configFile
+     * @param array  $params
+     *
+     * @throws ConfigException
+     */
+    public function __construct($configFile, array $params = [])
     {
         $this->configDir = dirname($configFile);
+        $this->params    = $params;
 
         if (!file_exists($configFile)) {
             throw new ConfigException(sprintf('config file %s does not exist', $configFile));
@@ -141,6 +150,10 @@ class ConfigReader
             foreach ($this->config['params'] as $name => $value) {
                 $config->setParam($name, $value);
             }
+        }
+
+        foreach ($this->params as $name => $value) {
+            $config->setParam($name, $value);
         }
     }
 
