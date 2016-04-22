@@ -259,12 +259,16 @@ class App
             $filePath = $file->getRealPath();
             $this->logger->log(2, 'replace markups in ' . $filePath);
 
+            $source->setCurrentFile($filePath);
+
             $fileContent = file_get_contents($filePath);
             $fileContent = $this->replaceMarkupsInContent($fileContent, $parseResult, $config, $source);
 
             $fileObject = $file->openFile('w+');
             $fileObject->fwrite($fileContent);
         }
+
+        $source->setCurrentFile(null);
     }
 
     /**

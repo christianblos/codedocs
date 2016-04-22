@@ -19,6 +19,11 @@ class Source
     private $classDirs = [];
 
     /**
+     * @var string|null
+     */
+    private $currentFile;
+
+    /**
      * @param string      $baseDir
      * @param string|null $docsDir
      * @param string[]    $classDirs
@@ -52,5 +57,21 @@ class Source
     public function getClassDirs()
     {
         return $this->classDirs;
+    }
+
+    /**
+     * @param string|null $file
+     */
+    public function setCurrentFile($file)
+    {
+        $this->currentFile = $file;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCurrentFile()
+    {
+        return $this->currentFile;
     }
 }
