@@ -1,5 +1,9 @@
 # Changelog
 
+#### Version 2.3.0
+
+- added $source->getCurrentFile() for markups
+
 #### Version 2.2.0
 
 - added Finalizers
