@@ -5,7 +5,7 @@ Creates a markdown table.
 | Name | Type     | Description
 | ---- | -------- | ------------
 | of   | string[] | The items (A row is created per item)
-| cols | string[] | Key = column name, Value column content ('\_\_item__' is replaced by the actual item value)
+| cols | string[] | Key = column name, Value column content ('__item__' is replaced by the actual item value)
 
 #### Example
 
