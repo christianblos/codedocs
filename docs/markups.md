@@ -46,7 +46,7 @@ Here's a list of all default available functions:
 | [classes()](functions/classes.md) | Returns a list of classes matching the given criteria.
 | [codeSnippet()](functions/codeSnippet.md) | Returns a code snippet  of a class, method or class member.
 | [constants()](functions/constants.md) | Returns a list of class constants.
-| [defaultValue()](functions/defaultValue.md) | Returns a value of a class member.
+| [defaultValue()](functions/defaultValue.md) | Returns the default value of a class member or method param.
 | [docComment()](functions/docComment.md) | Returns the doc comment of a class, method or class member.
 | [file()](functions/file.md) | Returns the path either of the current file or of a class.
 | [fileContent()](functions/fileContent.md) | Returns the content of a file.

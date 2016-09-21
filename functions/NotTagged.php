@@ -11,10 +11,10 @@ use CodeDocs\Tag;
  *
  * #### Parameters
  *
- * | Name     | Type          | Description
- * | -------- | ------------- | ------------
- * | by       | string        | The tag name
- * | classes  | string[]|null | (Optional) Use this list of classes instead of all parsed ones
+ * | Name     | Type     | Description
+ * | -------- | -------- | ------------
+ * | by       | string   | The tag name
+ * | classes  | string[] | (Optional) Use this list of classes instead of all parsed ones
  *
  * #### Example
  *

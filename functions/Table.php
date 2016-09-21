@@ -19,7 +19,7 @@ use CodeDocs\Exception\MarkupException;
  * #### Example
  *
  * ```
- * {{parse(text:table(
+ * \{{parse(text:table(
  *   of: classes(extends:'\CodeDocs\Doc\MarkupFunction'),
  *   cols: [
  *     'Name'        => '{{ defaultValue(of:"__item__::FUNC_NAME") }}()',

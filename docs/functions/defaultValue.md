@@ -1,4 +1,4 @@
-Returns a value of a class member.
+Returns the default value of a class member or method param.
 
 #### Parameters
 
