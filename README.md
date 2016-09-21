@@ -9,4 +9,5 @@ See [full documentation](docs/index.md) of the upcoming version 3.0.
 ## Installation
 
 Version 3: `composer require codedocs/codedocs:3.*@dev`
+
 Version 2: `composer require christianblos/codedocs`
