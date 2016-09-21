@@ -1,5 +1,0 @@
-sources:
-  - baseDir: .
-
-processors:
-  pre: invalid

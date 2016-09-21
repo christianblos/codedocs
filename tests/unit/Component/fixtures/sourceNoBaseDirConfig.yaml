@@ -1,5 +1,0 @@
-buildDir: ./build
-
-sources:
-  - docsDir: docs
-

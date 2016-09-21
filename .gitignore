@@ -1,5 +1,6 @@
 # Project files
 /build/
+/test.php
 
 # Dependencies
 /vendor/

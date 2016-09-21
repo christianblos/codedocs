@@ -1,9 +1,7 @@
-# CodeDocs
+Have you ever dreamed of a **documentation** that automatically changes when your code changes?
+**CodeDocs** makes it possible!
 
-CodeDocs is a tool that allows you to write your documentation directly inside your code.
-Check out the [full documentation](http://codedocs.chraxel.de/).
+See [full documentation](docs/index.md) of the upcoming version 3.0.
 
-
-## License
-
-MIT license.
+> Note: **Version 3.0** is currently in development.
+> If you want to use the last stable version (2.*), you can find it's documentation [here](http://codedocs.chraxel.de/).

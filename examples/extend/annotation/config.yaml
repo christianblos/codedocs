@@ -1,9 +1,0 @@
-buildDir: .
-
-sources:
-  - baseDir: .
-    classDirs:
-      - ./classes
-
-annotationNamespaces:
-  My\Annotation: annotations

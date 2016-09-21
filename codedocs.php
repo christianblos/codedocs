@@ -1,14 +1,16 @@
 <?php
-use CodeDocs\Component\AnnotationParser;
-use CodeDocs\Component\App;
-use CodeDocs\Component\ConfigReader;
-use CodeDocs\Component\Filesystem;
-use CodeDocs\Component\MarkupParser;
-use CodeDocs\Component\OutputLogger;
-use CodeDocs\Component\Tokenizer;
-use CodeDocs\Exception\ConfigException;
-use Doctrine\Common\Annotations\DocParser;
-use Doctrine\Common\Annotations\SimpleAnnotationReader;
+use CodeDocs\Cli\Input;
+use CodeDocs\ConfigLoader;
+use CodeDocs\Exception\MarkupException;
+use CodeDocs\Logger;
+use CodeDocs\Processor\MirrorDocs;
+use CodeDocs\Processor\ParseAnnotations;
+use CodeDocs\Processor\ParseDocs;
+use CodeDocs\Processor\ParseSourceCode;
+use CodeDocs\Processor\RunPostProcessors;
+use CodeDocs\Processor\RunPreProcessors;
+use CodeDocs\Runner;
+use Doctrine\Common\Annotations\AnnotationRegistry;
 
 function includeComposerAutoloader()
 {
@@ -20,60 +22,54 @@ function includeComposerAutoloader()
     ];
 
     foreach ($autoloaderFiles as $autoloader) {
-        if (!file_exists($autoloader)) {
-            continue;
+        if (file_exists($autoloader)) {
+            return require_once $autoloader;
         }
-
-        require_once $autoloader;
-
-        return true;
     }
 
-    return false;
+    echo PHP_EOL . 'Error: Can not find composer autoloader. Do you have installed it correctly?' . PHP_EOL;
+    exit(1);
 }
 
+$loader = includeComposerAutoloader();
+
+$logger = new Logger();
+
 try {
-    if (!includeComposerAutoloader()) {
-        throw new \Exception('Can not find composer autoloader. Do you have installed it correctly?');
+    $input = new Input($argv);
+
+    $logger->setDepth($input->getVerbosity());
+
+    if ($input->getOption('no-color')) {
+        $logger->disableColors();
     }
 
-    $logLevel   = 0;
-    $configFile = realpath(getcwd() . '/codedocs.yaml');
-    $params     = [];
+    $configLoader = new ConfigLoader();
 
-    foreach ($argv as $idx => $arg) {
-        if (preg_match('/^-(v+)$/', $arg, $matches)) {
-            $logLevel = strlen($matches[1]);
-        } elseif (preg_match('/^--(.*)=(.*)$/U', $arg, $matches)) {
-            $params[$matches[1]] = $matches[2];
-        } elseif (preg_match('/^--(.*)$/', $arg, $matches)) {
-            $params[$matches[1]] = true;
-        } elseif ($idx > 0) {
-            $configFile = realpath($arg);
-        }
+    $configFiles = $input->getArguments();
+    $config      = $configLoader->load(getcwd(), $configFiles);
+
+    foreach ($input->getParams() as $name => $value) {
+        $config->params[$name] = $value;
     }
 
-    if (!$configFile) {
-        throw new ConfigException('config file not found');
-    }
+    AnnotationRegistry::registerLoader([$loader, 'loadClass']);
 
-    $reader = new SimpleAnnotationReader();
-    $reader->addNamespace('');
+    $runner = new Runner($logger);
+    $runner->addProcessor(new ParseSourceCode());
+    $runner->addProcessor(new ParseAnnotations());
+    $runner->addProcessor(new MirrorDocs());
+    $runner->addProcessor(new RunPreProcessors());
+    $runner->addProcessor(new ParseDocs());
+    $runner->addProcessor(new RunPostProcessors());
 
-    $annotationParser = new AnnotationParser($reader);
-    $annotationParser->registerNamespace('CodeDocs', __DIR__ . '/classes');
-
-    $app = new App(
-        new ConfigReader($configFile, $params),
-        $annotationParser,
-        new MarkupParser(new DocParser()),
-        new Tokenizer(),
-        new Filesystem(),
-        new OutputLogger($logLevel)
-    );
-
-    $app->run();
+    $runner->run($config);
 } catch (Exception $ex) {
-    echo 'Error: ' . $ex->getMessage() . PHP_EOL;
+    $logger->log(-1, PHP_EOL . '<red>Error: ' . $ex->getMessage() . '<reset>');
+
+    if ($ex instanceof MarkupException) {
+        $logger->logErrorPosition($ex->getPath(), $ex->getAt());
+    }
+
     exit(1);
 }
