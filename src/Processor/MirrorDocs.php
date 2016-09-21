@@ -39,7 +39,7 @@ class MirrorDocs implements ProcessorInterface
             return;
         }
 
-        $exportDir = realpath($state->config->getExportDir());
+        $exportDir = $state->config->getExportDir();
 
         $logger->log(0, sprintf('copy docs to export dir (%s -> %s)', $docsDir, $exportDir));
         $filesystem->mirror($docsDir, $exportDir);
