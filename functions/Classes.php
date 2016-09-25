@@ -29,21 +29,16 @@ class Classes extends MarkupFunction
     const FUNC_NAME = 'classes';
 
     /**
-     * @param string   $matches
-     * @param string   $extends
-     * @param string   $implements
-     * @param string[] $list
+     * @param string        $matches
+     * @param string        $extends
+     * @param string[]      $implements
+     * @param string[]|null $list
      *
      * @return string[]
      */
-    public function __invoke($matches = null, $extends = null, $implements = null, $list = null)
+    public function __invoke($matches = null, $extends = null, array $implements = [], $list = null)
     {
-        $interfaces = [];
-        $classes    = [];
-
-        if ($implements !== null) {
-            $interfaces = array_map('trim', explode(',', $implements));
-        }
+        $classes = [];
 
         foreach ($this->state->classes as $class) {
             if ($list !== null && !in_array($class->name, $list, true)) {
@@ -52,7 +47,7 @@ class Classes extends MarkupFunction
 
             if ($this->filterMatches($class, $matches)
                 && $this->filterExtends($class, $extends)
-                && $this->filterImplements($class, $interfaces)
+                && $this->filterImplements($class, $implements)
             ) {
                 $classes[] = $class->name;
             }
@@ -99,7 +94,7 @@ class Classes extends MarkupFunction
      */
     protected function filterImplements(RefClass $class, array $interfaces)
     {
-        if (!$interfaces) {
+        if (empty($interfaces)) {
             return true;
         }
 
