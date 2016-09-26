@@ -10,9 +10,7 @@ use CodeDocs\Doc\MarkupFunction;
  *
  * #### Parameters
  *
- * | Name | Type   | Description
- * | ---- | ------ | ------------
- * | of   | string | (Optional) The class name
+ * {{ methodParamsTable(of: '\CodeDocs\Func\File::__invoke') }}
  *
  * #### Example
  *
@@ -26,7 +24,7 @@ class File extends MarkupFunction
     const FUNC_NAME = 'file';
 
     /**
-     * @param string $of
+     * @param string $of The class name
      *
      * @return string
      */

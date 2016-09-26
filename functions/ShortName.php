@@ -10,9 +10,7 @@ use CodeDocs\Doc\MarkupFunction;
  *
  * #### Parameters
  *
- * | Name | Type   | Description
- * | ---- | -------| ------------
- * | of   | string | The class name
+ * {{ methodParamsTable(of: '\CodeDocs\Func\ShortName::__invoke') }}
  *
  * #### Example
  *
@@ -25,7 +23,7 @@ class ShortName extends MarkupFunction
     const FUNC_NAME = 'shortName';
 
     /**
-     * @param string $of
+     * @param string $of The class name
      *
      * @return string
      */

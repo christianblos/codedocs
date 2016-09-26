@@ -11,10 +11,7 @@ use CodeDocs\Exception\MarkupException;
  *
  * #### Parameters
  *
- * | Name    | Type   | Description
- * | ------- | -------| ------------
- * | of      | string | The class name
- * | matches | string | (Optional) Regex to filter constants
+ * {{ methodParamsTable(of: '\CodeDocs\Func\Constants::__invoke') }}
  *
  * #### Example
  *
@@ -28,8 +25,8 @@ class Constants extends MarkupFunction
     const FUNC_NAME = 'constants';
 
     /**
-     * @param string $of
-     * @param string $matches
+     * @param string $of      The class name
+     * @param string $matches Regex to filter constants
      *
      * @return string[]
      * @throws MarkupException

@@ -11,10 +11,7 @@ use CodeDocs\Exception\MarkupException;
  *
  * #### Parameters
  *
- * | Name | Type   | Description
- * | ---- | ------ | ------------
- * | of   | string | The json file relative to the baseDir
- * | key  | string | The key
+ * {{ methodParamsTable(of: '\CodeDocs\Func\JsonValue::__invoke') }}
  *
  * #### Example
  *
@@ -27,8 +24,8 @@ class JsonValue extends MarkupFunction
     const FUNC_NAME = 'jsonValue';
 
     /**
-     * @param string $of
-     * @param string $key
+     * @param string $of  The json file relative to the baseDir
+     * @param string $key The key
      *
      * @return string
      * @throws MarkupException

@@ -11,9 +11,7 @@ use CodeDocs\Exception\MarkupException;
  *
  * #### Parameters
  *
- * | Name | Type   | Description
- * | ---- | -------| ------------
- * | of   | string | The path to the file relative to the baseDir
+ * {{ methodParamsTable(of: '\CodeDocs\Func\FileContent::__invoke') }}
  *
  * #### Example
  *
@@ -26,7 +24,7 @@ class FileContent extends MarkupFunction
     const FUNC_NAME = 'fileContent';
 
     /**
-     * @param string $of
+     * @param string $of The path to the file relative to the baseDir
      *
      * @return string
      * @throws MarkupException

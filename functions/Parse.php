@@ -11,9 +11,7 @@ use CodeDocs\Type\Parsable;
  *
  * #### Parameters
  *
- * | Name | Type   | Description
- * | ---- | ------ | ------------
- * | text | string | The text to parse
+ * {{ methodParamsTable(of: '\CodeDocs\Func\Parse::__invoke') }}
  *
  * #### Example
  *
@@ -26,7 +24,7 @@ class Parse extends MarkupFunction
     const FUNC_NAME = 'parse';
 
     /**
-     * @param string $text
+     * @param string $text The text to parse
      *
      * @return Parsable
      */

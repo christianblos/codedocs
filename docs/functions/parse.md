@@ -2,8 +2,8 @@ Parse a string to replace markups.
 
 #### Parameters
 
-| Name | Type   | Description
-| ---- | ------ | ------------
+| Name | Type | Description
+| ---- | ---- | -----------
 | text | string | The text to parse
 
 #### Example

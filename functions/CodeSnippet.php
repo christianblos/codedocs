@@ -15,10 +15,7 @@ use CodeDocs\SourceCode\Ref\RefProperty;
  *
  * #### Parameters
  *
- * | Name    | Type   | Description
- * | ------- | -------| ------------
- * | of      | string | A class, method, or a class member
- * | comment | bool   | (Optional) True to also return the doc comment
+ * {{ methodParamsTable(of: '\CodeDocs\Func\CodeSnippet::__invoke') }}
  *
  * #### Example
  *
@@ -34,8 +31,8 @@ class CodeSnippet extends MarkupFunction
     const FUNC_NAME = 'codeSnippet';
 
     /**
-     * @param string $of
-     * @param bool   $comment
+     * @param string $of      A class, method, or a class member
+     * @param bool   $comment True to also return the doc comment
      *
      * @return string
      * @throws MarkupException

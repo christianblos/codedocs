@@ -10,10 +10,7 @@ use CodeDocs\Doc\MarkupFunction;
  *
  * #### Parameters
  *
- * | Name    | Type   | Description
- * | ------- | ------ | ------------
- * | of      | string | The name of the param
- * | default | mixed  | (Optional) The default value if param is not set
+ * {{ methodParamsTable(of: '\CodeDocs\Func\Param::__invoke') }}
  *
  * #### Example
  *
@@ -27,8 +24,8 @@ class Param extends MarkupFunction
     const FUNC_NAME = 'param';
 
     /**
-     * @param string $of
-     * @param mixed  $default
+     * @param string $of      The name of the param
+     * @param mixed  $default The default value if param is not set
      *
      * @return string
      */

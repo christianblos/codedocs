@@ -11,10 +11,7 @@ use CodeDocs\Tag;
  *
  * #### Parameters
  *
- * | Name     | Type     | Description
- * | -------- | -------- | ------------
- * | by       | string   | The tag name
- * | classes  | string[] | (Optional) Use this list of classes instead of all parsed ones
+ * {{ methodParamsTable(of: '\CodeDocs\Func\NotTagged::__invoke') }}
  *
  * #### Example
  *
@@ -27,8 +24,8 @@ class NotTagged extends MarkupFunction
     const FUNC_NAME = 'notTagged';
 
     /**
-     * @param string   $by
-     * @param string[] $classes
+     * @param string   $by      The tag name
+     * @param string[] $classes Use this list of classes instead of all parsed ones
      *
      * @return string[]
      */

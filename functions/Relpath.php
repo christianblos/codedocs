@@ -10,10 +10,7 @@ use CodeDocs\Doc\MarkupFunction;
  *
  * #### Parameters
  *
- * | Name      | Type   | Description
- * | --------- | ------ | ------------
- * | of        | string | The absolute path
- * | separator | string | (Optional) The separator
+ * {{ methodParamsTable(of: '\CodeDocs\Func\Relpath::__invoke') }}
  *
  * #### Example
  *
@@ -26,8 +23,8 @@ class Relpath extends MarkupFunction
     const FUNC_NAME = 'relpath';
 
     /**
-     * @param string $of
-     * @param string $separator
+     * @param string $of        The absolute path
+     * @param string $separator The separator
      *
      * @return string
      */

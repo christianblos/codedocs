@@ -12,11 +12,7 @@ use CodeDocs\Func\Helper\RefTrait;
  *
  * #### Parameters
  *
- * | Name               | Type   | Description
- * | ------------------ | -------| ------------
- * | of                 | string | The class name, method or class member
- * | excludeAnnotations | bool   | (Optional) True to hide annotations
- * | firstLine          | bool   | (Optional) True to only return the first line
+ * {{ methodParamsTable(of: '\CodeDocs\Func\DocComment::__invoke') }}
  *
  * #### Example
  *
@@ -32,9 +28,9 @@ class DocComment extends MarkupFunction
     const FUNC_NAME = 'docComment';
 
     /**
-     * @param string $of
-     * @param bool   $excludeAnnotations
-     * @param bool   $firstLine
+     * @param string $of                 The class name, method or class member
+     * @param bool   $excludeAnnotations True to hide annotations
+     * @param bool   $firstLine          True to only return the first line
      *
      * @return string
      * @throws MarkupException

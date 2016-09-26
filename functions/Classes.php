@@ -11,12 +11,7 @@ use CodeDocs\SourceCode\Ref\RefClass;
  *
  * #### Parameters
  *
- * | Name       | Type     | Description
- * | ---------- | -------- | ------------
- * | matches    | string   | (Optional) Regex to match class name
- * | extends    | string   | (Optional) Returns only classes extending this class
- * | implements | string[] | (Optional) Returns only classes implementing these interfaces
- * | list       | string[] | (Optional) Returns only classes in this list
+ * {{ methodParamsTable(of: '\CodeDocs\Func\Classes::__invoke') }}
  *
  * #### Example
  *
@@ -29,10 +24,10 @@ class Classes extends MarkupFunction
     const FUNC_NAME = 'classes';
 
     /**
-     * @param string        $matches
-     * @param string        $extends
-     * @param string[]      $implements
-     * @param string[]|null $list
+     * @param string        $matches    Regex to match class name
+     * @param string        $extends    Returns only classes extending this class
+     * @param string[]      $implements Returns only classes implementing these interfaces
+     * @param string[]|null $list       Returns only classes in this list
      *
      * @return string[]
      */

@@ -10,10 +10,7 @@ use CodeDocs\Doc\MarkupFunction;
  *
  * #### Parameters
  *
- * | Name   | Type     | Description
- * | ------ | -------- | ------------
- * | of     | string[] | The list items
- * | prefix | string   | (Optional) The list prefix
+ * {{ methodParamsTable(of: '\CodeDocs\Func\RenderList::__invoke') }}
  *
  * #### Example
  *
@@ -27,8 +24,8 @@ class RenderList extends MarkupFunction
     const FUNC_NAME = 'list';
 
     /**
-     * @param string[]    $of
-     * @param string|null $prefix
+     * @param string[]    $of     The list items
+     * @param string|null $prefix The list prefix
      *
      * @return string
      */

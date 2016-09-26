@@ -10,10 +10,7 @@ use CodeDocs\Doc\MarkupFunction;
  *
  * #### Parameters
  *
- * | Name   | Type     | Description
- * | ------ | -------- | ------------
- * | values | string[] | The values to join
- * | using  | string   | (Optional) The separator
+ * {{ methodParamsTable(of: '\CodeDocs\Func\Join::__invoke') }}
  *
  * #### Example
  *
@@ -26,8 +23,8 @@ class Join extends MarkupFunction
     const FUNC_NAME = 'join';
 
     /**
-     * @param array  $values
-     * @param string $using
+     * @param string[] $values The values to join
+     * @param string   $using  The separator
      *
      * @return string
      */

@@ -12,9 +12,7 @@ use CodeDocs\SourceCode\Ref\RefClass;
  *
  * #### Parameters
  *
- * | Name | Type   | Description
- * | ---- | -------| ------------
- * | of   | string | The reference to a class member or method param
+ * {{ methodParamsTable(of: '\CodeDocs\Func\DefaultValue::__invoke') }}
  *
  * #### Example
  *
@@ -29,7 +27,7 @@ class DefaultValue extends MarkupFunction
     const FUNC_NAME = 'defaultValue';
 
     /**
-     * @param string $of
+     * @param string $of The reference to a class member or method param
      *
      * @return string
      * @throws MarkupException

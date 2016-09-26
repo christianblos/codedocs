@@ -13,9 +13,7 @@ use CodeDocs\Type\Parsable;
  *
  * #### Parameters
  *
- * | Name | Type   | Description
- * | ---- | ------ | ------------
- * | id   | string | The topic id
+ * {{ methodParamsTable(of: '\CodeDocs\Func\Topic::__invoke') }}
  *
  * #### Example
  *
@@ -28,7 +26,7 @@ class Topic extends MarkupFunction
     const FUNC_NAME = 'topic';
 
     /**
-     * @param string $id
+     * @param string $id The topic id
      *
      * @return string|Parsable
      * @throws MarkupException

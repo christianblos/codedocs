@@ -11,11 +11,7 @@ use CodeDocs\Tag;
  *
  * #### Parameters
  *
- * | Name     | Type     | Description
- * | -------- | -------- | ------------
- * | by       | string   | The tag name
- * | contents | bool     | (Optional) True to return annotation contents instead of class name or label
- * | classes  | string[] | (Optional) Use this list of classes instead of all parsed ones
+ * {{ methodParamsTable(of: '\CodeDocs\Func\Tagged::__invoke') }}
  *
  * #### Example
  *
@@ -28,9 +24,9 @@ class Tagged extends MarkupFunction
     const FUNC_NAME = 'tagged';
 
     /**
-     * @param string   $by
-     * @param bool     $contents
-     * @param string[] $classes
+     * @param string   $by       The tag name
+     * @param bool     $contents True to return annotation contents instead of class name or label
+     * @param string[] $classes  Use this list of classes instead of all parsed ones
      *
      * @return string[]
      */

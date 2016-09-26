@@ -12,10 +12,7 @@ use CodeDocs\Func\Helper\MarkdownTrait;
  *
  * #### Parameters
  *
- * | Name | Type     | Description
- * | ---- | -------- | ------------
- * | of   | string[] | The items (A row is created per item)
- * | cols | string[] | Key = column name, Value column content ('__item__' is replaced by the actual item value)
+ * {{ methodParamsTable(of: '\CodeDocs\Func\Table::__invoke') }}
  *
  * #### Example
  *
@@ -36,8 +33,8 @@ class Table extends MarkupFunction
     const FUNC_NAME = 'table';
 
     /**
-     * @param array $of
-     * @param array $cols
+     * @param string[] $of   The items (A row is created per item)
+     * @param string[] $cols Key = column name, Value column content ('__item__' is replaced by the actual item value)
      *
      * @return string
      * @throws MarkupException
