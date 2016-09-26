@@ -9,6 +9,11 @@ class RefParam
     public $name;
 
     /**
+     * @var bool
+     */
+    public $hasDefault = false;
+
+    /**
      * @var mixed
      */
     public $default;
@@ -27,4 +32,9 @@ class RefParam
      * @var bool
      */
     public $isVariadic = false;
+
+    /**
+     * @var string
+     */
+    public $description;
 }

@@ -3,6 +3,7 @@ namespace CodeDocs\Func;
 
 use CodeDocs\Doc\MarkupFunction;
 use CodeDocs\Exception\MarkupException;
+use CodeDocs\Func\Helper\MarkdownTrait;
 
 /**
  * @CodeDocs\Topic(file="functions/table.md")
@@ -30,6 +31,8 @@ use CodeDocs\Exception\MarkupException;
  */
 class Table extends MarkupFunction
 {
+    use MarkdownTrait;
+
     const FUNC_NAME = 'table';
 
     /**
@@ -55,28 +58,5 @@ class Table extends MarkupFunction
         }
 
         return $this->renderMarkdownTable($headlines, $rows);
-    }
-
-    /**
-     * @param array $headlines
-     * @param array $rows
-     *
-     * @return string
-     */
-    private function renderMarkdownTable(array $headlines, array $rows)
-    {
-        $lines = [];
-        foreach ($headlines as $headline) {
-            $lines[] = str_repeat('-', strlen($headline));
-        }
-
-        $content = '| ' . implode(' | ', $headlines) . PHP_EOL;
-        $content .= '| ' . implode(' | ', $lines) . PHP_EOL;
-
-        foreach ($rows as $row) {
-            $content .= '| ' . implode(' | ', $row) . PHP_EOL;
-        }
-
-        return $content;
     }
 }

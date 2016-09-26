@@ -352,7 +352,7 @@ class RefVisitor implements NodeVisitor
         $ref->returnType = $this->getTypeName($node->getReturnType());
 
         foreach ($node->getParams() as $param) {
-            $param = $this->createParam($param);
+            $param = $this->createParam($param, $ref->docComment);
 
             $ref->params[$param->name] = $param;
         }
@@ -361,20 +361,33 @@ class RefVisitor implements NodeVisitor
     }
 
     /**
-     * @param Param $param
+     * @param Param      $param
+     * @param RefComment $comment
      *
      * @return RefParam
      */
-    private function createParam(Param $param)
+    private function createParam(Param $param, RefComment $comment = null)
     {
         $ref       = new RefParam();
         $ref->name = $param->name;
-        $ref->type = $this->getTypeName($param->type);
+
+        if ($comment !== null) {
+            $name = preg_quote($param->name, '/');
+            if (preg_match('/@param\s+([^\s]+)\s+\$' . $name . '(?:\s*$|\s+(.*)$)/m', $comment->text, $matches)) {
+                $ref->type        = $matches[1];
+                $ref->description = isset($matches[2]) ? $matches[2] : null;
+            }
+        }
+
+        if (!$ref->type) {
+            $ref->type = $this->getTypeName($param->type);
+        }
 
         $ref->byRef      = $param->byRef;
         $ref->isVariadic = $param->variadic;
 
-        $ref->default = $this->getValue($param->default);
+        $ref->hasDefault = $param->default !== null;
+        $ref->default    = $this->getValue($param->default);
 
         return $ref;
     }

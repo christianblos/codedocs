@@ -52,6 +52,7 @@ Here's a list of all default available functions:
 | [fileContent()](functions/fileContent.md) | Returns the content of a file.
 | [join()](functions/join.md) | Joins an array to one string.
 | [jsonValue()](functions/jsonValue.md) | Returns a value from a json file.
+| [methodParamsTable()](functions/methodParamsTable.md) | Creates a markdown table of method params.
 | [notTagged()](functions/notTagged.md) | Returns a list of classes that are not tagged by the Tag-Annotation.
 | [param()](functions/param.md) | Returns a param from the configuration.
 | [parse()](functions/parse.md) | Parse a string to replace markups.

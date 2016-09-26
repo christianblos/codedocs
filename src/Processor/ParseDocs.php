@@ -80,6 +80,7 @@ class ParseDocs implements ProcessorInterface
         $this->invoker->define(Func\FileContent::FUNC_NAME, new Func\FileContent());
         $this->invoker->define(Func\Join::FUNC_NAME, new Func\Join());
         $this->invoker->define(Func\JsonValue::FUNC_NAME, new Func\JsonValue());
+        $this->invoker->define(Func\MethodParamsTable::FUNC_NAME, new Func\MethodParamsTable());
         $this->invoker->define(Func\NotTagged::FUNC_NAME, new Func\NotTagged());
         $this->invoker->define(Func\Param::FUNC_NAME, new Func\Param());
         $this->invoker->define(Func\Parse::FUNC_NAME, new Func\Parse());
