@@ -13,11 +13,9 @@ The following processors are executed by CodeDocs:
 | RunPostProcessors | Runs all configured Post-Processors
 | RunPreProcessors | Runs all configured Pre-Processors
 
-
 CodeDocs also provices additional processors you can use:
 
 | Processor | Description
 | --------- | -----------
 | CopyExportFiles | Copies generated doc files to a given directory
 | CreateFilesFromTopics | Creates files from Topic-Annotations
-

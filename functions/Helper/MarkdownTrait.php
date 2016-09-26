@@ -26,7 +26,7 @@ trait MarkdownTrait
             $content .= '| ' . implode(' | ', $row) . PHP_EOL;
         }
 
-        return $content;
+        return rtrim($content);
     }
 
     /**

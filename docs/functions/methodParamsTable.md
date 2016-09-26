@@ -6,7 +6,6 @@ Creates a markdown table of method params.
 | ---- | ---- | -----------
 | of | string | The method
 
-
 #### Example
 
 ```

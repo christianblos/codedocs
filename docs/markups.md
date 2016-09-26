@@ -62,4 +62,3 @@ Here's a list of all default available functions:
 | [table()](functions/table.md) | Creates a markdown table.
 | [tagged()](functions/tagged.md) | Returns a list of classes tagged by the Tag-Annotation.
 | [topic()](functions/topic.md) | Returns a topic created by the Topic-Annotation.
-
