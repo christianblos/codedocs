@@ -5,7 +5,7 @@ Returns a list of class constants.
 | Name | Type | Description
 | ---- | ---- | -----------
 | of | string | The class name
-| matches | string | (Optional) Regex to filter constants
+| matches | string\|null | (Optional) Regex to filter constants
 
 #### Example
 

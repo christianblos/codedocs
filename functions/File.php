@@ -24,7 +24,7 @@ class File extends MarkupFunction
     const FUNC_NAME = 'file';
 
     /**
-     * @param string $of The class name
+     * @param string|null $of The class name
      *
      * @return string
      */

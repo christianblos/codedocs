@@ -4,8 +4,8 @@ Returns a list of classes matching the given criteria.
 
 | Name | Type | Description
 | ---- | ---- | -----------
-| matches | string | (Optional) Regex to match class name
-| extends | string | (Optional) Returns only classes extending this class
+| matches | string\|null | (Optional) Regex to match class name
+| extends | string\|null | (Optional) Returns only classes extending this class
 | implements | string[] | (Optional) Returns only classes implementing these interfaces
 | list | string[]\|null | (Optional) Returns only classes in this list
 

@@ -25,8 +25,8 @@ class Constants extends MarkupFunction
     const FUNC_NAME = 'constants';
 
     /**
-     * @param string $of      The class name
-     * @param string $matches Regex to filter constants
+     * @param string      $of      The class name
+     * @param string|null $matches Regex to filter constants
      *
      * @return string[]
      * @throws MarkupException

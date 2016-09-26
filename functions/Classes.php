@@ -24,8 +24,8 @@ class Classes extends MarkupFunction
     const FUNC_NAME = 'classes';
 
     /**
-     * @param string        $matches    Regex to match class name
-     * @param string        $extends    Returns only classes extending this class
+     * @param string|null   $matches    Regex to match class name
+     * @param string|null   $extends    Returns only classes extending this class
      * @param string[]      $implements Returns only classes implementing these interfaces
      * @param string[]|null $list       Returns only classes in this list
      *
