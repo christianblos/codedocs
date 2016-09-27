@@ -27,7 +27,7 @@ $config->buildDir = './build';
 $config->docsDir = './docs-src';
 
 // Your source code to parse
-$config->classDirs = ['src'];
+$config->classDirs = ['./src'];
 ```
 
 See more about configurations [here](configuration.md).

@@ -46,7 +46,7 @@ A list of locations where the parser looks for classes.
 All these classes are available in Markups.
 Relative to the baseDir if starting with "./".
 */
-$config->classDirs = ['src', 'annotations', 'functions'];
+$config->classDirs = ['./src', './annotations', './functions'];
 
 /*
 If configured, caching is enabled and all cache files are stored here.

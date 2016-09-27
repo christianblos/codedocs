@@ -19,7 +19,7 @@ $config->docsDir = './docs-src';
 /*
 {{ docComment(of:'\CodeDocs\Config::$classDirs', excludeAnnotations: true) }}
 */
-$config->classDirs = ['src', 'annotations', 'functions'];
+$config->classDirs = ['./src', './annotations', './functions'];
 
 /*
 {{ docComment(of:'\CodeDocs\Config::$cacheDir', excludeAnnotations: true) }}

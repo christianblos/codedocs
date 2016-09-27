@@ -7,7 +7,7 @@ $config->buildDir = './build';
 
 $config->docsDir = './docs-src';
 
-$config->classDirs = ['src', 'annotations', 'functions'];
+$config->classDirs = ['./src', './annotations', './functions'];
 
 $config->cacheDir = '/tmp/codedocs';
 
