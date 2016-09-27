@@ -5,19 +5,33 @@ use CodeDocs\Doc\MarkupFunction;
 use CodeDocs\SourceCode\Ref\RefClass;
 
 /**
- * @CodeDocs\Topic(file="functions/classes.md")
- *
  * Returns a list of classes matching the given criteria.
  *
- * #### Parameters
+ * @CodeDocs\Topic(file="functions/classes.md")
+ *
+ * # {{ defaultValue(of: '\CodeDocs\Func\Classes::FUNC_NAME') }}()
+ *
+ * {{ docComment(of: '\CodeDocs\Func\Classes', firstLine: true, excludeAnnotations: true) }}
+ *
+ * ### Parameters
  *
  * {{ methodParamsTable(of: '\CodeDocs\Func\Classes::__invoke') }}
  *
- * #### Example
+ * ### Example
+ *
+ * Documentation source:
  *
  * ```
- * \{{ classes(extends:'\CodeDocs\Doc\MarkupFunction') }}
+ * {{ fileContent(of: 'examples/functions/classes/docs-src/doc.md') }}
  * ```
+ *
+ * Result:
+ *
+ * ```
+ * {{ fileContent(of: 'examples/functions/classes/docs/doc.md') }}
+ * ```
+ *
+ * [See full example code here](../../examples/functions/classes)
  */
 class Classes extends MarkupFunction
 {

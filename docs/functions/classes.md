@@ -1,6 +1,8 @@
+# classes()
+
 Returns a list of classes matching the given criteria.
 
-#### Parameters
+### Parameters
 
 | Name | Type | Description
 | ---- | ---- | -----------
@@ -9,8 +11,23 @@ Returns a list of classes matching the given criteria.
 | implements | string[] | (Optional) Returns only classes implementing these interfaces
 | list | string[]\|null | (Optional) Returns only classes in this list
 
-#### Example
+### Example
+
+Documentation source:
 
 ```
-{{ classes(extends:'\CodeDocs\Doc\MarkupFunction') }}
+{{ classes(extends:'\ParentClass') }}
+
+{{ classes(implements:['\SomeInterface'], matches:'/^Class[A-Z]/') }}
 ```
+
+Result:
+
+```
+ChildClass
+
+ClassA
+ClassB
+```
+
+[See full example code here](../../examples/functions/classes)

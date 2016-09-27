@@ -1,0 +1,4 @@
+ChildClass
+
+ClassA
+ClassB

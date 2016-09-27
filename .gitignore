@@ -1,6 +1,7 @@
 # Project files
 /build/
 /test.php
+/examples/functions/*/build/
 
 # Dependencies
 /vendor/
