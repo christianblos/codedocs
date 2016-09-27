@@ -1,6 +1,6 @@
 # Markups
 
-Markups can be used inside the documentation files to acces the source code or just do whatever you want.
+Markups can be used inside the documentation files to acces the source code.
 A markup consists of a function call inside double curly braces. 
 
 ```
@@ -48,3 +48,8 @@ Here's a list of all default available functions:
         'Description' => '{{ docComment(of: "__item__", firstLine: true, excludeAnnotations: true) }}',
     ]
 ))}}
+
+
+---
+
+Next: [Annotations](annotations.md)

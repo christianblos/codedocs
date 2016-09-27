@@ -3,20 +3,27 @@
 You can write technical documentations by creating **plain text files** (e.g. Markdown)
 directly in your project's repository or even in the **Doc Comments** of your classes.
 
-If you want to see an example, just have a look at this documentation.
+If you want to see a live example, just have a look at this documentation.
 It was also created by CodeDocs itself.
 
 
 ## How does it work?
 
-CodeDocs parses your whole project and creates a list of your classes, methods, etc.
-In your documentation, you can access the parsed information by using **Markups**.
+CodeDocs parses your whole project and creates a list of your classes, methods, etc
+(You can also use [Annotations](annotations.md) and let CodeDocs access them).
+
+In your documentation, you can access the parsed information by using [Markups](markups.md).
 If your code changes, your documentation will also change because of the reference to the code.
 
-You can also use **Annotations** in your classes and let your documentation access them.
+![How it works](img/how-it-works.png)
 
+## Generate HTML?
 
-## Output
+CodeDocs does **not** generate HTML-Code out of the box.
+It just exports **plain text files** (like Markdown).
+But you can use a [Processor](processors.md) and a tool of your choice
+(like [Grav](https://getgrav.org/) or [Jekyll](https://jekyllrb.com/)) to create HTML.
 
-CodeDocs does **not** generate HTML-Code out of the box. It exports **plain text files (like Markdown)** to a configured directory.
-You can then use a tool of your choice to create an HTML-Documentation out of it.
+---
+
+Next: [Quick Start](quick-start.md)

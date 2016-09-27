@@ -20,18 +20,32 @@ in your project's root directory.
 
 $config->baseDir = __DIR__;
 
+// All generated files are stored here
 $config->buildDir = './build';
 
+// Your documentation source with markups
 $config->docsDir = './docs-src';
 
+// Your source code to parse
 $config->classDirs = ['src'];
-
-$config->cacheDir = '/tmp/codedocs';
 ```
 
 See more about configurations [here](configuration.md).
 
 
-## Run
+## Create final documentation
 
 Execute `vendor/bin/codedocs`.
+
+Possibles Options:
+
+| Option             | Description
+| ------------------ | -----------
+| -v, -vv, -vvv..    | Verbose output. The more **v**'s, the more output
+| --no-color         | Supress colors in cli output
+| --{name} ({value}) | Set/overwite config params
+
+
+---
+
+Next: [Configuration](configuration.md)

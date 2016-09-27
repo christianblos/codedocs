@@ -21,6 +21,19 @@ in your project's root directory.
 See more about configurations [here](configuration.md).
 
 
-## Run
+## Create final documentation
 
 Execute `vendor/bin/codedocs`.
+
+Possibles Options:
+
+| Option             | Description
+| ------------------ | -----------
+| -v, -vv, -vvv..    | Verbose output. The more **v**'s, the more output
+| --no-color         | Supress colors in cli output
+| --{name} ({value}) | Set/overwite config params
+
+
+---
+
+Next: [Configuration](configuration.md)

@@ -15,3 +15,7 @@ Here's a list of all build-in annotations provided by CodeDocs:
         'Description' => '{{ docComment(of: "__item__", firstLine: true) }}',
     ]
 ))}}
+
+---
+
+Next: [Processors](processors.md)

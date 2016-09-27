@@ -1,6 +1,6 @@
 # Markups
 
-Markups can be used inside the documentation files to acces the source code or just do whatever you want.
+Markups can be used inside the documentation files to acces the source code.
 A markup consists of a function call inside double curly braces. 
 
 ```
@@ -62,3 +62,8 @@ Here's a list of all default available functions:
 | [table()](functions/table.md) | Creates a markdown table.
 | [tagged()](functions/tagged.md) | Returns a list of classes tagged by the Tag-Annotation.
 | [topic()](functions/topic.md) | Returns a topic created by the Topic-Annotation.
+
+
+---
+
+Next: [Annotations](annotations.md)

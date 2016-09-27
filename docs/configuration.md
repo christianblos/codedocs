@@ -1,9 +1,23 @@
 # Configuration
 
 By default, CodeDocs searches for a file named **codedocs.config.php**
-in your project's root directory. But you can use another location if you want.
+in your project's root directory.
+But you can use another location if you want by passing the location to the CodeDocs command: 
 
-Here's a full configuration sample with descriptions:
+```bash
+$ vendor/bin/codedocs /path/to/config.php
+```
+
+You can also use multiple config files (e.g. for local configurations):
+
+```bash
+$ vendor/bin/codedocs codedocs.config.php codedocs.config.local.php
+```
+
+
+# Possible configurations
+
+Here's a full configuration example with descriptions:
 
 ```php
 <?php
@@ -80,3 +94,7 @@ $config->postProcessors = [
     new \CodeDocs\Processor\CopyExportFiles('docs'),
 ];
 ```
+
+---
+
+Next: [Markups](markups.md)
