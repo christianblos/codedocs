@@ -5,19 +5,7 @@ use CodeDocs\Doc\MarkupFunction;
 use CodeDocs\Exception\MarkupException;
 
 /**
- * @CodeDocs\Topic(file="functions/jsonValue.md")
- *
  * Returns a value from a json file.
- *
- * #### Parameters
- *
- * {{ methodParamsTable(of: '\CodeDocs\Func\JsonValue::__invoke') }}
- *
- * #### Example
- *
- * ```
- * \{{ jsonValue(of:'composer.json', key:'name') }}
- * ```
  */
 class JsonValue extends MarkupFunction
 {

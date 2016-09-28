@@ -8,19 +8,7 @@ use CodeDocs\Func\Helper\RefTrait;
 use CodeDocs\SourceCode\Ref\RefMethod;
 
 /**
- * @CodeDocs\Topic(file="functions/methodParamsTable.md")
- *
  * Creates a markdown table of method params.
- *
- * #### Parameters
- *
- * {{ methodParamsTable(of: '\CodeDocs\Func\MethodParamsTable::__invoke') }}
- *
- * #### Example
- *
- * ```
- * \{{ methodParamsTable(of: '\CodeDocs\Func\MethodParamsTable::__invoke') }}
- * ```
  */
 class MethodParamsTable extends MarkupFunction
 {

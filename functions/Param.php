@@ -4,20 +4,7 @@ namespace CodeDocs\Func;
 use CodeDocs\Doc\MarkupFunction;
 
 /**
- * @CodeDocs\Topic(file="functions/param.md")
- *
  * Returns a param from the configuration.
- *
- * #### Parameters
- *
- * {{ methodParamsTable(of: '\CodeDocs\Func\Param::__invoke') }}
- *
- * #### Example
- *
- * ```
- * \{{ param(of:'appName') }}
- * \{{ param(of:'env', default:'development') }}
- * ```
  */
 class Param extends MarkupFunction
 {

@@ -6,32 +6,6 @@ use CodeDocs\SourceCode\Ref\RefClass;
 
 /**
  * Returns a list of classes matching the given criteria.
- *
- * @CodeDocs\Topic(file="functions/classes.md")
- *
- * # {{ defaultValue(of: '\CodeDocs\Func\Classes::FUNC_NAME') }}()
- *
- * {{ docComment(of: '\CodeDocs\Func\Classes', firstLine: true, excludeAnnotations: true) }}
- *
- * ### Parameters
- *
- * {{ methodParamsTable(of: '\CodeDocs\Func\Classes::__invoke') }}
- *
- * ### Example
- *
- * Documentation source:
- *
- * ```
- * {{ fileContent(of: 'examples/functions/classes/docs-src/doc.md') }}
- * ```
- *
- * Result:
- *
- * ```
- * {{ fileContent(of: 'examples/functions/classes/docs/doc.md') }}
- * ```
- *
- * [See full example code here](../../examples/functions/classes)
  */
 class Classes extends MarkupFunction
 {

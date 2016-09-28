@@ -6,25 +6,7 @@ use CodeDocs\Exception\MarkupException;
 use CodeDocs\Func\Helper\MarkdownTrait;
 
 /**
- * @CodeDocs\Topic(file="functions/table.md")
- *
  * Creates a markdown table.
- *
- * #### Parameters
- *
- * {{ methodParamsTable(of: '\CodeDocs\Func\Table::__invoke') }}
- *
- * #### Example
- *
- * ```
- * \{{parse(text:table(
- *   of: classes(extends:'\CodeDocs\Doc\MarkupFunction'),
- *   cols: [
- *     'Name'        => '{{ defaultValue(of:"__item__::FUNC_NAME") }}()',
- *     'Description' => '{{ docComment(of:"__item__", firstLine: true) }}',
- *   ]
- * ))}}
- * ```
  */
 class Table extends MarkupFunction
 {

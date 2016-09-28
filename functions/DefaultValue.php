@@ -6,21 +6,7 @@ use CodeDocs\Exception\MarkupException;
 use CodeDocs\SourceCode\Ref\RefClass;
 
 /**
- * @CodeDocs\Topic(file="functions/defaultValue.md")
- *
  * Returns the default value of a class member or method param.
- *
- * #### Parameters
- *
- * {{ methodParamsTable(of: '\CodeDocs\Func\DefaultValue::__invoke') }}
- *
- * #### Example
- *
- * ```
- * \{{ defaultValue(of:'SomeClass::SOME_CONST') }}
- * \{{ defaultValue(of:'SomeClass::$someProperty') }}
- * \{{ defaultValue(of:'SomeClass::someMethod(someParam)') }}
- * ```
  */
 class DefaultValue extends MarkupFunction
 {

@@ -4,20 +4,7 @@ namespace CodeDocs\Func;
 use CodeDocs\Doc\MarkupFunction;
 
 /**
- * @CodeDocs\Topic(file="functions/list.md")
- *
- * Renders a list of the given array
- *
- * #### Parameters
- *
- * {{ methodParamsTable(of: '\CodeDocs\Func\RenderList::__invoke') }}
- *
- * #### Example
- *
- * ```
- * \{{ list(of:classes(extends: 'SomeClass')) }}
- * \{{ list(of:['A', 'B', 'C'], prefix:'# ') }}
- * ```
+ * Renders a list of the given array.
  */
 class RenderList extends MarkupFunction
 {

@@ -4,20 +4,7 @@ namespace CodeDocs\Func;
 use CodeDocs\Doc\MarkupFunction;
 
 /**
- * @CodeDocs\Topic(file="functions/file.md")
- *
  * Returns the path either of the current file or of a class.
- *
- * #### Parameters
- *
- * {{ methodParamsTable(of: '\CodeDocs\Func\File::__invoke') }}
- *
- * #### Example
- *
- * ```
- * \{{ file() }}
- * \{{ file(of:'SomeClass') }}
- * ```
  */
 class File extends MarkupFunction
 {

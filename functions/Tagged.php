@@ -5,19 +5,7 @@ use CodeDocs\Doc\MarkupFunction;
 use CodeDocs\Tag;
 
 /**
- * @CodeDocs\Topic(file="functions/tagged.md")
- *
  * Returns a list of classes tagged by the Tag-Annotation.
- *
- * #### Parameters
- *
- * {{ methodParamsTable(of: '\CodeDocs\Func\Tagged::__invoke') }}
- *
- * #### Example
- *
- * ```
- * \{{ tagged(by:'someTag') }}
- * ```
  */
 class Tagged extends MarkupFunction
 {

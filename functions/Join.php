@@ -4,8 +4,6 @@ namespace CodeDocs\Func;
 use CodeDocs\Doc\MarkupFunction;
 
 /**
- * @CodeDocs\Topic(file="functions/join.md")
- *
  * Joins an array to one string.
  *
  * #### Parameters

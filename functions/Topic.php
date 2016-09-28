@@ -6,19 +6,7 @@ use CodeDocs\Exception\MarkupException;
 use CodeDocs\Topic as TopicAnnot;
 
 /**
- * @CodeDocs\Topic(file="functions/topic.md")
- *
  * Returns a topic created by the Topic-Annotation.
- *
- * #### Parameters
- *
- * {{ methodParamsTable(of: '\CodeDocs\Func\Topic::__invoke') }}
- *
- * #### Example
- *
- * ```
- * \{{ topic(id:'myTopic') }}
- * ```
  */
 class Topic extends MarkupFunction
 {

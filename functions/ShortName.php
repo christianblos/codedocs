@@ -4,19 +4,7 @@ namespace CodeDocs\Func;
 use CodeDocs\Doc\MarkupFunction;
 
 /**
- * @CodeDocs\Topic(file="functions/shortName.md")
- *
  * Returns the class name without namespace.
- *
- * #### Parameters
- *
- * {{ methodParamsTable(of: '\CodeDocs\Func\ShortName::__invoke') }}
- *
- * #### Example
- *
- * ```
- * \{{ shortName(of:'\My\Namespace\ClassName') }}
- * ```
  */
 class ShortName extends MarkupFunction
 {

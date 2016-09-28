@@ -5,19 +5,7 @@ use CodeDocs\Doc\MarkupFunction;
 use CodeDocs\Exception\MarkupException;
 
 /**
- * @CodeDocs\Topic(file="functions/fileContent.md")
- *
  * Returns the content of a file.
- *
- * #### Parameters
- *
- * {{ methodParamsTable(of: '\CodeDocs\Func\FileContent::__invoke') }}
- *
- * #### Example
- *
- * ```
- * \{{ fileContent(of:'path/to/file') }}
- * ```
  */
 class FileContent extends MarkupFunction
 {

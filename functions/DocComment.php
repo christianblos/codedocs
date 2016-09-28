@@ -6,20 +6,7 @@ use CodeDocs\Exception\MarkupException;
 use CodeDocs\Func\Helper\RefTrait;
 
 /**
- * @CodeDocs\Topic(file="functions/docComment.md")
- *
  * Returns the doc comment of a class, method or class member.
- *
- * #### Parameters
- *
- * {{ methodParamsTable(of: '\CodeDocs\Func\DocComment::__invoke') }}
- *
- * #### Example
- *
- * ```
- * \{{ docComment(of:'SomeClass') }}
- * \{{ docComment(of:'SomeClass::$someProperty') }}
- * ```
  */
 class DocComment extends MarkupFunction
 {

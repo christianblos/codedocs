@@ -13,6 +13,7 @@ $config->cacheDir = '/tmp/codedocs';
 
 $config->preProcessors = [
     new \CodeDocs\Processor\CreateFilesFromTopics(),
+    new \CodeDocs\Processor\Internal\CreateFunctionDocs('functions/%s.md'),
 ];
 
 $config->postProcessors = [

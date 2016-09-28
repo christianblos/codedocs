@@ -1,15 +1,10 @@
+# constants()
+
 Returns a list of class constants.
 
-#### Parameters
+### Parameters
 
 | Name | Type | Description
 | ---- | ---- | -----------
 | of | string | The class name
 | matches | string\|null | (Optional) Regex to filter constants
-
-#### Example
-
-```
-{{ constants(of:'SomeClass') }}
-{{ constants(of:'SomeClass', matches:'/^TYPE_/') }}
-```

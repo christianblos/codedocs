@@ -9,20 +9,7 @@ use CodeDocs\SourceCode\Ref\RefMethod;
 use CodeDocs\SourceCode\Ref\RefProperty;
 
 /**
- * @CodeDocs\Topic(file="functions/codeSnippet.md")
- *
- * Returns a code snippet  of a class, method or class member.
- *
- * #### Parameters
- *
- * {{ methodParamsTable(of: '\CodeDocs\Func\CodeSnippet::__invoke') }}
- *
- * #### Example
- *
- * ```
- * \{{ codeSnippet(of:'SomeClass') }}
- * \{{ codeSnippet(of:'SomeClass::someMethod') }}
- * ```
+ * Returns a code snippet of a class, method or class member.
  */
 class CodeSnippet extends MarkupFunction
 {

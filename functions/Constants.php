@@ -5,20 +5,7 @@ use CodeDocs\Doc\MarkupFunction;
 use CodeDocs\Exception\MarkupException;
 
 /**
- * @CodeDocs\Topic(file="functions/constants.md")
- *
  * Returns a list of class constants.
- *
- * #### Parameters
- *
- * {{ methodParamsTable(of: '\CodeDocs\Func\Constants::__invoke') }}
- *
- * #### Example
- *
- * ```
- * \{{ constants(of:'SomeClass') }}
- * \{{ constants(of:'SomeClass', matches:'/^TYPE_/') }}
- * ```
  */
 class Constants extends MarkupFunction
 {

@@ -5,19 +5,7 @@ use CodeDocs\Doc\MarkupFunction;
 use CodeDocs\Tag;
 
 /**
- * @CodeDocs\Topic(file="functions/notTagged.md")
- *
  * Returns a list of classes that are not tagged by the Tag-Annotation.
- *
- * #### Parameters
- *
- * {{ methodParamsTable(of: '\CodeDocs\Func\NotTagged::__invoke') }}
- *
- * #### Example
- *
- * ```
- * \{{ notTagged(by:'someTag') }}
- * ```
  */
 class NotTagged extends MarkupFunction
 {

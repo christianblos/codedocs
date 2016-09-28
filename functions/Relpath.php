@@ -4,19 +4,7 @@ namespace CodeDocs\Func;
 use CodeDocs\Doc\MarkupFunction;
 
 /**
- * @CodeDocs\Topic(file="functions/relpath.md")
- *
  * Returns a path relative to the baseDir.
- *
- * #### Parameters
- *
- * {{ methodParamsTable(of: '\CodeDocs\Func\Relpath::__invoke') }}
- *
- * #### Example
- *
- * ```
- * \{{ relpath(of:file(of:'SomeClass')) }}
- * ```
  */
 class Relpath extends MarkupFunction
 {
