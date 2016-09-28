@@ -4,7 +4,6 @@ namespace CodeDocs\Func;
 use CodeDocs\Doc\MarkupFunction;
 use CodeDocs\Exception\MarkupException;
 use CodeDocs\Topic as TopicAnnot;
-use CodeDocs\Type\Parsable;
 
 /**
  * @CodeDocs\Topic(file="functions/topic.md")
@@ -28,14 +27,14 @@ class Topic extends MarkupFunction
     /**
      * @param string $id The topic id
      *
-     * @return string|Parsable
+     * @return string
      * @throws MarkupException
      */
     public function __invoke($id)
     {
         foreach ($this->state->annotations as $annotation) {
             if ($annotation instanceof TopicAnnot && $annotation->id === $id) {
-                return new Parsable($annotation->content);
+                return $annotation->content;
             }
         }
 
