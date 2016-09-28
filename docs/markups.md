@@ -58,6 +58,7 @@ Here's a list of all default available functions:
 | [parse()](functions/parse.md) | Parse a string to replace markups.
 | [relpath()](functions/relpath.md) | Returns a path relative to the baseDir.
 | [list()](functions/list.md) | Renders a list of the given array
+| [replace()](functions/replace.md) | Replaces strings in the given text.
 | [shortName()](functions/shortName.md) | Returns the class name without namespace.
 | [table()](functions/table.md) | Creates a markdown table.
 | [tagged()](functions/tagged.md) | Returns a list of classes tagged by the Tag-Annotation.

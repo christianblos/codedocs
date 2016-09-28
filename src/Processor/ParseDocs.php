@@ -86,6 +86,7 @@ class ParseDocs implements ProcessorInterface
         $this->invoker->define(Func\Parse::FUNC_NAME, new Func\Parse());
         $this->invoker->define(Func\Relpath::FUNC_NAME, new Func\Relpath());
         $this->invoker->define(Func\RenderList::FUNC_NAME, new Func\RenderList());
+        $this->invoker->define(Func\Replace::FUNC_NAME, new Func\Replace());
         $this->invoker->define(Func\ShortName::FUNC_NAME, new Func\ShortName());
         $this->invoker->define(Func\Table::FUNC_NAME, new Func\Table());
         $this->invoker->define(Func\Tagged::FUNC_NAME, new Func\Tagged());
