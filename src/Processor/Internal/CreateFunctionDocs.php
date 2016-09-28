@@ -81,7 +81,7 @@ class CreateFunctionDocs implements ProcessorInterface
 
         $exampleDir    = sprintf('%s/examples/functions/%s/', $state->config->getBaseDir(), $funcName);
         $docSrcFile    = $exampleDir . 'docs-src/doc.md';
-        $docResultFile = $exampleDir . 'docs/doc.md';
+        $docResultFile = $exampleDir . 'docs-result/doc.md';
 
         if (file_exists($docSrcFile)) {
             $lines[] = '';
