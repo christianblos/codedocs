@@ -8,9 +8,13 @@ It is possible to create your own processors by implementing \CodeDocs\Processor
 But CodeDocs also provices built-in processors you can use:
 
 {{parse(text:table(
-    of: classes(implements:['\CodeDocs\ProcessorInterface'], list: notTagged(by:'defaultProcessor')),
+    of: classes(
+        implements: ['\CodeDocs\ProcessorInterface'],
+        matches: '/CodeDocs\\Processor\\(?!Internal\\)/',
+        list: notTagged(by:'defaultProcessor')
+    ),
     cols: [
-        'Processor'        => '{{ shortName(of: "__item__") }}',
+        'Processor'   => '{{ shortName(of: "__item__") }}',
         'Description' => '{{ docComment(of: "__item__", firstLine: true) }}',
     ]
 ))}}

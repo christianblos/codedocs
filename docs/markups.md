@@ -44,7 +44,7 @@ Here's a list of all default available functions:
 | Name | Description
 | ---- | -----------
 | [classes()](functions/classes.md) | Returns a list of classes matching the given criteria.
-| [codeSnippet()](functions/codeSnippet.md) | Returns a code snippet  of a class, method or class member.
+| [codeSnippet()](functions/codeSnippet.md) | Returns a code snippet of a class, method or class member.
 | [constants()](functions/constants.md) | Returns a list of class constants.
 | [defaultValue()](functions/defaultValue.md) | Returns the default value of a class member or method param.
 | [docComment()](functions/docComment.md) | Returns the doc comment of a class, method or class member.
@@ -57,7 +57,7 @@ Here's a list of all default available functions:
 | [param()](functions/param.md) | Returns a param from the configuration.
 | [parse()](functions/parse.md) | Parse a string to replace markups.
 | [relpath()](functions/relpath.md) | Returns a path relative to the baseDir.
-| [list()](functions/list.md) | Renders a list of the given array
+| [list()](functions/list.md) | Renders a list of the given array.
 | [replace()](functions/replace.md) | Replaces strings in the given text.
 | [shortName()](functions/shortName.md) | Returns the class name without namespace.
 | [table()](functions/table.md) | Creates a markdown table.
