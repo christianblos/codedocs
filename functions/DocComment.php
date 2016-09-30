@@ -33,8 +33,7 @@ class DocComment extends MarkupFunction
         $content = $ref->docComment->text;
         $content = preg_replace('/^\s*\/\*\*/', '', $content);
         $content = preg_replace('/\s*\*\/\s*$/', '', $content);
-        $content = preg_replace('/^\s*\*\s?/m', '', $content);
-        $content = trim($content);
+        $content = preg_replace('/^\s*\*\h?/m', '', $content);
 
         if ($excludeAnnotations) {
             $content = $this->removeAnnotationLines($content);
@@ -44,7 +43,7 @@ class DocComment extends MarkupFunction
             $content = $this->getFirstLine($content);
         }
 
-        return $content;
+        return trim($content);
     }
 
     /**
