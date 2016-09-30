@@ -136,7 +136,7 @@ class AnnotationParser
 
         $lines = preg_split('/\n|\r\n/', $docComment);
         foreach ($lines as $line) {
-            if (preg_match('/^@' . $search . '(\s|\(|$)/', $line)) {
+            if ($isRecording === false && preg_match('/^@' . $search . '(\s|\(|$)/', $line)) {
                 $isRecording = true;
             } elseif ($isRecording) {
                 if (preg_match('/^@/', $line)) {
