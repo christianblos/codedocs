@@ -1,0 +1,1 @@
+{{ fileContent(of: 'config.php') }}
