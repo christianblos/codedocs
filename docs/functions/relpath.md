@@ -8,3 +8,19 @@ Returns a path relative to the baseDir.
 | ---- | ---- | -----------
 | of | string | The absolute path
 | separator | string | (Optional) The separator
+
+### Example
+
+Documentation source:
+
+```
+{{ relpath(of: file()) }}
+```
+
+Result:
+
+```
+build/export/doc.md
+```
+
+[See full example code here](../../examples/functions/relpath)

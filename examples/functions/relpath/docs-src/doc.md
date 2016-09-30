@@ -1,0 +1,1 @@
+{{ relpath(of: file()) }}
