@@ -14,7 +14,7 @@ But CodeDocs also provices built-in processors you can use:
         list: notTagged(by:'defaultProcessor')
     ),
     cols: [
-        'Processor'   => '{{ shortName(of: "__item__") }}',
-        'Description' => '{{ docComment(of: "__item__", firstLine: true) }}',
+        'Processor'   => '{{ shortName(of: "%item%") }}',
+        'Description' => '{{ docComment(of: "%item%", firstLine: true) }}',
     ]
 ))}}

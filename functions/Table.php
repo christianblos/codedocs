@@ -16,7 +16,7 @@ class Table extends MarkupFunction
 
     /**
      * @param string[] $of   The items (A row is created per item)
-     * @param string[] $cols Key = column name, Value column content ('__item__' is replaced by the actual item value)
+     * @param string[] $cols Key = column name, Value column content ('%item%' is replaced by the actual item value)
      *
      * @return string
      * @throws MarkupException
@@ -30,7 +30,7 @@ class Table extends MarkupFunction
             $values = [];
 
             foreach ($cols as $col) {
-                $values[] = str_replace('__item__', $item, $col);
+                $values[] = str_replace('%item%', $item, $col);
             }
 
             $rows[] = $values;

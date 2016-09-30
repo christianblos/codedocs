@@ -44,8 +44,8 @@ Here's a list of all default available functions:
 {{parse(text:table(
     of: classes(extends:'\CodeDocs\Doc\MarkupFunction'),
     cols: [
-        'Name'        => '[{{ defaultValue(of: "__item__::FUNC_NAME") }}()](functions/{{ defaultValue(of: "__item__::FUNC_NAME") }}.md)',
-        'Description' => '{{ docComment(of: "__item__", firstLine: true, excludeAnnotations: true) }}',
+        'Name'        => '[{{ defaultValue(of: "%item%::FUNC_NAME") }}()](functions/{{ defaultValue(of: "%item%::FUNC_NAME") }}.md)',
+        'Description' => '{{ docComment(of: "%item%", firstLine: true, excludeAnnotations: true) }}',
     ]
 ))}}
 

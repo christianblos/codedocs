@@ -11,8 +11,8 @@ Here's a list of all build-in annotations provided by CodeDocs:
 {{parse(text:table(
     of: classes(extends:'\CodeDocs\Annotation'),
     cols: [
-        'Name'        => '__item__',
-        'Description' => '{{ docComment(of: "__item__", firstLine: true) }}',
+        'Name'        => '%item%',
+        'Description' => '{{ docComment(of: "%item%", firstLine: true) }}',
     ]
 ))}}
 
