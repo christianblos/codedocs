@@ -80,6 +80,7 @@ class CreateFunctionDocs implements ProcessorInterface
         $lines[] = sprintf('{{ methodParamsTable(of: "%s::__invoke") }}', $class->name);
 
         $exampleDir    = sprintf('%s/examples/functions/%s/', $state->config->getBaseDir(), $funcName);
+        $exampleClass  = $exampleDir . 'code/SomeClass.php';
         $docSrcFile    = $exampleDir . 'docs-src/doc.md';
         $docResultFile = $exampleDir . 'docs-result/doc.md';
 
@@ -87,18 +88,27 @@ class CreateFunctionDocs implements ProcessorInterface
             $lines[] = '';
             $lines[] = '### Example';
 
+            if (file_exists($exampleClass)) {
+                $lines[] = '';
+                $lines[] = 'Source code:';
+                $lines[] = '';
+                $lines[] = '```';
+                $lines[] = sprintf('{{ fileContent(of: relpath(of: "%s")) }}', $exampleClass);
+                $lines[] = '```';
+            }
+
             $lines[] = '';
             $lines[] = 'Documentation source:';
             $lines[] = '';
             $lines[] = '```';
-            $lines[] = sprintf('{{ fileContent(of: relpath(of: "%s"))}}', $docSrcFile);
+            $lines[] = sprintf('{{ fileContent(of: relpath(of: "%s")) }}', $docSrcFile);
             $lines[] = '```';
 
             $lines[] = '';
             $lines[] = 'Result:';
             $lines[] = '';
             $lines[] = '```';
-            $lines[] = sprintf('{{ fileContent(of: relpath(of: "%s"))}}', $docResultFile);
+            $lines[] = sprintf('{{ fileContent(of: relpath(of: "%s")) }}', $docResultFile);
             $lines[] = '```';
 
             $lines[] = '';

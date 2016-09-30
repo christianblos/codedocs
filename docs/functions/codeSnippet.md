@@ -11,6 +11,23 @@ Returns a code snippet of a class, method or class member.
 
 ### Example
 
+Source code:
+
+```
+<?php
+
+class SomeClass
+{
+    /**
+     * @param string $name
+     */
+    public function sayHelloTo($name)
+    {
+        echo sprintf('Hello %s!', $name);
+    }
+}
+```
+
 Documentation source:
 
 ```

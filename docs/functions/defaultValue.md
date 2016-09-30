@@ -10,6 +10,24 @@ Returns the default value of a class member or method param.
 
 ### Example
 
+Source code:
+
+```
+<?php
+
+class SomeClass
+{
+    const SOME_CONST = 1;
+
+    private $someBool = false;
+
+    public function join($values, $separator = ', ')
+    {
+
+    }
+}
+```
+
 Documentation source:
 
 ```
