@@ -1,0 +1,1 @@
+{{ methodParamsTable(of:'\SomeClass::log') }}
