@@ -83,6 +83,7 @@ class CreateFunctionDocs implements ProcessorInterface
         $exampleClass  = $exampleDir . 'code/SomeClass.php';
         $docSrcFile    = $exampleDir . 'docs-src/doc.md';
         $docResultFile = $exampleDir . 'docs-result/doc.md';
+        $filesDir      = $exampleDir . 'files';
 
         if (file_exists($docSrcFile)) {
             $lines[] = '';
@@ -95,6 +96,22 @@ class CreateFunctionDocs implements ProcessorInterface
                 $lines[] = '```';
                 $lines[] = sprintf('{{ fileContent(of: relpath(of: "%s")) }}', $exampleClass);
                 $lines[] = '```';
+            }
+
+            if (is_dir($filesDir)) {
+                foreach (new \DirectoryIterator($filesDir) as $fileInfo) {
+                    /** @var $fileInfo \SplFileInfo */
+                    if (!$fileInfo->isFile()) {
+                        continue;
+                    }
+
+                    $lines[] = '';
+                    $lines[] = $fileInfo->getBasename() . ':';
+                    $lines[] = '';
+                    $lines[] = '```';
+                    $lines[] = sprintf('{{ fileContent(of: relpath(of: "%s")) }}', $fileInfo->getRealPath());
+                    $lines[] = '```';
+                }
             }
 
             $lines[] = '';
