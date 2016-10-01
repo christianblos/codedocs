@@ -19,7 +19,9 @@ Documentation source:
 ```
 {{ classes(extends:'\ParentClass') }}
 
-{{ classes(implements:['\SomeInterface'], matches:'/^Class[A-Z]/') }}
+{{ classes(implements:'SomeInterface', matches:'/^Class[A-Z]/') }}
+
+{{ classes(taggedWith:'myTag') }}
 ```
 
 Result:
@@ -29,6 +31,9 @@ ChildClass
 
 ClassA
 ClassB
+
+ChildClass
+ParentClass
 ```
 
 [See full example code here](../../examples/functions/classes)
