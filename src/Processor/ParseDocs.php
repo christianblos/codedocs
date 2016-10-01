@@ -81,7 +81,6 @@ class ParseDocs implements ProcessorInterface
         $this->invoker->define(Func\Join::FUNC_NAME, new Func\Join());
         $this->invoker->define(Func\JsonValue::FUNC_NAME, new Func\JsonValue());
         $this->invoker->define(Func\MethodParamsTable::FUNC_NAME, new Func\MethodParamsTable());
-        $this->invoker->define(Func\NotTagged::FUNC_NAME, new Func\NotTagged());
         $this->invoker->define(Func\Param::FUNC_NAME, new Func\Param());
         $this->invoker->define(Func\Parse::FUNC_NAME, new Func\Parse());
         $this->invoker->define(Func\Relpath::FUNC_NAME, new Func\Relpath());
@@ -89,7 +88,6 @@ class ParseDocs implements ProcessorInterface
         $this->invoker->define(Func\Replace::FUNC_NAME, new Func\Replace());
         $this->invoker->define(Func\ShortName::FUNC_NAME, new Func\ShortName());
         $this->invoker->define(Func\Table::FUNC_NAME, new Func\Table());
-        $this->invoker->define(Func\Tagged::FUNC_NAME, new Func\Tagged());
         $this->invoker->define(Func\Topic::FUNC_NAME, new Func\Topic());
 
         foreach ($config->getFunctions() as $name => $function) {

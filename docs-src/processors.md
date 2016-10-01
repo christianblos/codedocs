@@ -11,7 +11,7 @@ But CodeDocs also provices built-in processors you can use:
     of: classes(
         implements: ['\CodeDocs\ProcessorInterface'],
         matches: '/CodeDocs\\Processor\\(?!Internal\\)/',
-        list: notTagged(by:'defaultProcessor')
+        notTaggedWith: ['defaultProcessor']
     ),
     cols: [
         'Processor'   => '{{ shortName(of: "%item%") }}',

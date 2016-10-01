@@ -9,7 +9,8 @@ Returns a list of classes matching the given criteria.
 | matches | string\|null | (Optional) Regex to match class name
 | extends | string\|null | (Optional) Returns only classes extending this class
 | implements | string[] | (Optional) Returns only classes implementing these interfaces
-| list | string[]\|null | (Optional) Returns only classes in this list
+| taggedWith | string[] | (Optional) Returns only classes with these Tag annotations
+| notTaggedWith | string[] | (Optional) Returns only classes without these Tag annotations
 
 ### Example
 

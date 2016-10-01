@@ -53,7 +53,6 @@ Here's a list of all default available functions:
 | [join()](functions/join.md) | Joins an array to one string.
 | [jsonValue()](functions/jsonValue.md) | Returns a value from a json file.
 | [methodParamsTable()](functions/methodParamsTable.md) | Creates a markdown table of method params.
-| [notTagged()](functions/notTagged.md) | Returns a list of classes that are not tagged by the Tag-Annotation.
 | [param()](functions/param.md) | Returns a param from the configuration.
 | [parse()](functions/parse.md) | Parse a string to replace markups.
 | [relpath()](functions/relpath.md) | Returns a path relative to the baseDir.
@@ -61,7 +60,6 @@ Here's a list of all default available functions:
 | [replace()](functions/replace.md) | Replaces strings in the given text.
 | [shortName()](functions/shortName.md) | Returns the class name without namespace.
 | [table()](functions/table.md) | Creates a markdown table.
-| [tagged()](functions/tagged.md) | Returns a list of classes tagged by the Tag-Annotation.
 | [topic()](functions/topic.md) | Returns a topic created by the Topic-Annotation.
 
 

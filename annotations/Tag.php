@@ -2,7 +2,7 @@
 namespace CodeDocs;
 
 /**
- * Creates a tag that can be used by the tagged() and notTagged() markup function.
+ * Creates a tag that can be used to filter classes, methods, etc.
  *
  * @Annotation
  */
