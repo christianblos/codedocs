@@ -229,7 +229,7 @@ class CodeParserTest extends \PHPUnit_Framework_TestCase
         $param = $method->params['a'];
         self::assertSame('a', $param->name);
         self::assertNull($param->default);
-        self::assertNull($param->type);
+        self::assertSame('int', $param->type);
         self::assertFalse($param->byRef);
         self::assertFalse($param->isVariadic);
 
@@ -237,7 +237,7 @@ class CodeParserTest extends \PHPUnit_Framework_TestCase
         $param = $method->params['b'];
         self::assertSame('b', $param->name);
         self::assertSame(1, $param->default);
-        self::assertNull($param->type);
+        self::assertSame('int', $param->type);
         self::assertTrue($param->byRef);
         self::assertFalse($param->isVariadic);
 
