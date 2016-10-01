@@ -6,7 +6,7 @@ namespace CodeDocs;
  *
  * @Annotation
  */
-class Tag extends Annotation implements ContentInterface
+class Tag extends Annotation
 {
     /**
      * The tag name
@@ -14,22 +14,4 @@ class Tag extends Annotation implements ContentInterface
      * @var string
      */
     public $value;
-
-    /**
-     * @var string
-     */
-    public $label;
-
-    /**
-     * @var string
-     */
-    public $content;
-
-    /**
-     * @param string $content
-     */
-    public function setContent($content)
-    {
-        $this->content = $content;
-    }
 }
