@@ -9,9 +9,9 @@ But CodeDocs also provices built-in processors you can use:
 
 {{parse(text:table(
     of: classes(
-        implements: ['\CodeDocs\ProcessorInterface'],
+        implements: '\CodeDocs\ProcessorInterface',
         matches: '/CodeDocs\\Processor\\(?!Internal\\)/',
-        notTaggedWith: ['defaultProcessor']
+        notTaggedWith: 'defaultProcessor'
     ),
     cols: [
         'Processor'   => '{{ shortName(of: "%item%") }}',

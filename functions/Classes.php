@@ -13,26 +13,26 @@ class Classes extends MarkupFunction
     const FUNC_NAME = 'classes';
 
     /**
-     * @param string|null $matches       Regex to match class name
-     * @param string|null $extends       Returns only classes extending this class
-     * @param string[]    $implements    Returns only classes implementing these interfaces
-     * @param string[]    $taggedWith    Returns only classes with these Tag annotations
-     * @param string[]    $notTaggedWith Returns only classes without these Tag annotations
+     * @param string|null          $matches       Regex to match class name
+     * @param string|null          $extends       Returns only classes extending this class
+     * @param string|string[]|null $implements    Returns only classes implementing these interfaces
+     * @param string|string[]|null $taggedWith    Returns only classes with these Tag annotations
+     * @param string|string[]|null $notTaggedWith Returns only classes without these Tag annotations
      *
      * @return string[]
      */
     public function __invoke(
         $matches = null,
         $extends = null,
-        array $implements = [],
-        array $taggedWith = [],
-        array $notTaggedWith = []
+        $implements = null,
+        $taggedWith = null,
+        $notTaggedWith = null
     ) {
         $classes       = [];
         $filterClasses = [];
 
         if ($taggedWith) {
-            $filterClasses = $this->getClassesTaggedWith($taggedWith);
+            $filterClasses = $this->getClassesTaggedWith((array)$taggedWith);
         }
 
         foreach ($this->state->classes as $class) {
@@ -42,7 +42,7 @@ class Classes extends MarkupFunction
 
             if ($this->filterMatches($class, $matches)
                 && $this->filterExtends($class, $extends)
-                && $this->filterImplements($class, $implements)
+                && $this->filterImplements($class, $implements === null ? [] : (array)$implements)
             ) {
                 $classes[] = $class->name;
             }
@@ -51,7 +51,7 @@ class Classes extends MarkupFunction
         if ($notTaggedWith) {
             $classes = array_diff(
                 $classes,
-                $this->getClassesTaggedWith($notTaggedWith)
+                $this->getClassesTaggedWith((array)$notTaggedWith)
             );
         }
 
