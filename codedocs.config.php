@@ -17,5 +17,5 @@ $config->preProcessors = [
 ];
 
 $config->postProcessors = [
-    new \CodeDocs\Processor\CopyExportFiles('docs'),
+    new \CodeDocs\Processor\CopyExportFiles('docs', true),
 ];
