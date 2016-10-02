@@ -67,7 +67,7 @@ class Invoker
         $types     = [];
 
         foreach ($refParams as $idx => $refParam) {
-            $types[] = (string)$refParam->getType();
+            $types[] = $this->getType($refParam);
 
             if (isset($func->params[$refParam->name])) {
                 $params[] = $func->params[$refParam->name];
@@ -147,5 +147,25 @@ class Invoker
         }
 
         return $value;
+    }
+
+    /**
+     * @param ReflectionParameter $param
+     *
+     * @return string
+     */
+    private function getType(ReflectionParameter $param)
+    {
+        if (version_compare(PHP_VERSION, '7.0', '>=')) {
+            return (string) $param->getType();
+        }
+
+        // fallback for PHP < 7.0
+        // try to match type hint from stringified parameter, e.g. "Parameter #0 [ <required> int $foo ]"
+        if (preg_match('/\<\w+?\> (?<type>\w+)/', (string) $param, $matches)) {
+            return $matches['type'];
+        }
+
+        return '';
     }
 }
