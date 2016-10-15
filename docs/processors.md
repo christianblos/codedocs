@@ -10,3 +10,7 @@ Here's a list of built-in processors:
 | --------- | -----------
 | CopyExportFiles | Copies generated doc files to a given directory
 | CreateFilesFromTopics | Creates files from Topic-Annotations
+
+---
+
+Next: [State object](state.md)

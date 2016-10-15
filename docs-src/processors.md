@@ -17,3 +17,7 @@ Here's a list of built-in processors:
         'Description' => '{{ docComment(of: "%item%", firstLine: true) }}',
     ]
 ))}}
+
+---
+
+Next: [State object](state.md)
