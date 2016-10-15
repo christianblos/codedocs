@@ -1,28 +1,28 @@
 # Introduction
 
-You can write technical documentations by creating **plain text files** (e.g. Markdown)
-directly in your project's repository or even in the **Doc Comments** of your classes.
+With **CodeDocs** you can write a technical documentation that is able to access
+the source code of your project. This means if the source code changes,
+the documentation is updated automatically!
 
-If you want to see a live example, just have a look at this documentation.
-It was also created by CodeDocs itself.
+The documentation consists of **plain text files** (e.g. Markdown) which are located
+directly in the project's repository or even in the **Doc Comments** of your classes.
+You can use **Markups** to access the source code or generate documentation segments.
 
 
-## How does it work?
+When you execute CodeDocs, the following happens:
 
-CodeDocs parses your whole project and creates a list of your classes, methods, etc
-(You can also use [Annotations](annotations.md) and let CodeDocs access them).
-
-In your documentation, you can access the parsed information by using [Markups](markups.md).
-If your code changes, your documentation will also change because of the reference to the code.
+1. Parse source code (create a list of all classes, methods, etc)
+2. Copy documentation source to configured export directory
+3. Replace Markups in exported documentation
 
 ![How it works](img/how-it-works.png)
 
-## Generate HTML?
+> **Note:** If you use Markdown for instance and you want to generate HTML at the end,
+> you can use a [Processor](processors.md) in combination with a tool of your choice that
+> converts Markdown to HTML. Because CodeDocs itself does not take care of converting
+> the files to another type
 
-CodeDocs does **not** generate HTML-Code out of the box.
-It just exports **plain text files** (like Markdown).
-But you can use a [Processor](processors.md) and a tool of your choice
-(like [Grav](https://getgrav.org/) or [Jekyll](https://jekyllrb.com/)) to create HTML.
+By the way, this documentation was also created by CodeDocs itself.
 
 ---
 

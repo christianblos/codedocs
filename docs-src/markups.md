@@ -37,7 +37,7 @@ If the return value is an object of **\CodeDocs\Type\Parsable** it is parsed aga
 ## Functions
 
 CodeDocs comes with some built-in markup functions by default.
-You can also add your own functions in the configuration.
+You can also register your own functions in the configuration.
 
 Here's a list of all default available functions:
 

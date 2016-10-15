@@ -1,6 +1,7 @@
 # Quick Start
 
-## Installation
+
+### 1. Install CodeDocs
 
 Add CodeDocs to your project by using composer:
 
@@ -9,9 +10,9 @@ composer require codedocs/codedocs
 ```
 
 
-## Configuration
+### 2. Create Configuration
 
-By default, CodeDocs searches for a file named **codedocs.config.php**
+Create a file named **codedocs.config.php**
 in your project's root directory.
 
 ```php
@@ -33,11 +34,18 @@ $config->classDirs = ['./src'];
 See more about configurations [here](configuration.md).
 
 
-## Create final documentation
+### 3. Create the documentation source
+
+Create a folder (e.g. **docs-src**) with your documentation.
+It can be Markdown, RST, HTML or whatever you want.
+[See how to use Markups here](markups.md)
+
+
+### 4. Export final documentation
 
 Execute `vendor/bin/codedocs`.
 
-Possibles Options:
+Possibles command line options:
 
 | Option             | Description
 | ------------------ | -----------

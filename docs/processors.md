@@ -1,11 +1,10 @@
 # Processors
 
-Processors are executed one after another during the docs generation.
-You can add Processors in your [configuration](configuration.md) if you need additional
-steps during the documentation generation.
+Processors can be used to add additional steps to the execution of CodeDocs.
+Just add them to the [configuration](configuration.md) if you need them.
+You can also create your own Processors by implementing **\CodeDocs\ProcessorInterface**.
 
-It is possible to create your own processors by implementing \CodeDocs\ProcessorInterface.
-But CodeDocs also provices built-in processors you can use:
+Here's a list of built-in processors:
 
 | Processor | Description
 | --------- | -----------
