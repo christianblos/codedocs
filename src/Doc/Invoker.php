@@ -80,16 +80,20 @@ class Invoker
 
         foreach ($params as $key => $param) {
             $value = $this->resolveValue($param, $state);
-            $type  = gettype($value);
 
-            if ($types[$key] && $type !== $types[$key]) {
-                throw new MarkupException(sprintf(
-                    'parameter %d of function %s() must be of type %s. But %s was given',
-                    $key + 1,
-                    $func->name,
-                    $types[$key],
-                    $type
-                ));
+            if ($types[$key]) {
+                $realType     = $this->unifyType(gettype($value));
+                $expectedType = $this->unifyType($types[$key]);
+
+                if ($realType !== $expectedType) {
+                    throw new MarkupException(sprintf(
+                        'parameter %d of function %s() must be of type %s. But %s was given',
+                        $key + 1,
+                        $func->name,
+                        $expectedType,
+                        $realType
+                    ));
+                }
             }
 
             $params[$key] = $value;
@@ -157,9 +161,23 @@ class Invoker
     private function getType(ReflectionParameter $param)
     {
         if (version_compare(PHP_VERSION, '7.0', '>=')) {
-            return (string) $param->getType();
+            return (string)$param->getType();
         }
 
         return '';
+    }
+
+    /**
+     * @param string $type
+     *
+     * @return string
+     */
+    private function unifyType($type)
+    {
+        if ($type === 'int' || $type === 'float' || $type === 'double') {
+            return 'number';
+        }
+
+        return $type;
     }
 }
