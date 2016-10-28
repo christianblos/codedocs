@@ -1,6 +1,8 @@
 <?php
 namespace CodeDocs\Test\Integration;
 
+use CodeDocs\Processor\Internal\ExportParseResult;
+
 class ExamplesTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -9,11 +11,12 @@ class ExamplesTest extends \PHPUnit_Framework_TestCase
      */
     public function testFunctionExamples($func)
     {
-        $rootDir    = realpath(__DIR__ . '/../..');
-        $bin        = $rootDir . '/codedocs.php';
-        $configPath = $rootDir . '/examples/functions/' . $func . '/config.php';
+        $rootDir        = realpath(__DIR__ . '/../..');
+        $bin            = $rootDir . '/codedocs.php';
+        $configPath     = $rootDir . '/examples/functions/' . $func . '/config.php';
+        $testConfigPath = $rootDir . '/tests/integration/configs/examplesTestConfig.php';
 
-        $command = sprintf('php %s %s', $bin, $configPath);
+        $command = sprintf('php %s %s %s', $bin, $configPath, $testConfigPath);
         exec($command, $output, $exitCode);
 
         $this->assertEquals(0, $exitCode);
@@ -21,11 +24,21 @@ class ExamplesTest extends \PHPUnit_Framework_TestCase
         $expectedFile  = $rootDir . '/examples/functions/' . $func . '/docs-result/doc.md';
         $generatedFile = $rootDir . '/examples/functions/' . $func . '/build/export/doc.md';
 
-        self::assertFileEquals(
-            $expectedFile,
-            $generatedFile,
-            '```' . PHP_EOL . file_get_contents($generatedFile) . PHP_EOL . '```'
-        );
+        try {
+            self::assertFileEquals($expectedFile, $generatedFile);
+        } catch (\Exception $ex) {
+            $out = 'Expected export file:' . PHP_EOL .
+                '```' . PHP_EOL .
+                file_get_contents($generatedFile) . PHP_EOL .
+                '```' . PHP_EOL .
+                PHP_EOL .
+                'Parsed result:' . PHP_EOL .
+                file_get_contents($rootDir . '/examples/functions/' . $func . '/build/export/' . ExportParseResult::DEFAULT_FILE);
+
+            fwrite(STDERR, $out);
+
+            throw new $ex;
+        }
     }
 
     public function examplesProvider()
