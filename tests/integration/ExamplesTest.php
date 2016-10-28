@@ -20,7 +20,12 @@ class ExamplesTest extends \PHPUnit_Framework_TestCase
 
         $expectedFile  = $rootDir . '/examples/functions/' . $func . '/docs-result/doc.md';
         $generatedFile = $rootDir . '/examples/functions/' . $func . '/build/export/doc.md';
-        $this->assertFileEquals($expectedFile, $generatedFile, sprintf('check docs of function "%s"', $func));
+
+        self::assertFileEquals(
+            $expectedFile,
+            $generatedFile,
+            '```' . PHP_EOL . file_get_contents($generatedFile) . PHP_EOL . '```'
+        );
     }
 
     public function examplesProvider()
