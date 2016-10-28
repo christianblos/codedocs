@@ -16,7 +16,7 @@ class ExamplesTest extends \PHPUnit_Framework_TestCase
         $configPath     = $rootDir . '/examples/functions/' . $func . '/config.php';
         $testConfigPath = $rootDir . '/tests/integration/configs/examplesTestConfig.php';
 
-        $command = sprintf('php %s %s %s', $bin, $configPath, $testConfigPath);
+        $command = sprintf('php %s -v %s %s', $bin, $configPath, $testConfigPath);
         exec($command, $output, $exitCode);
 
         $this->assertEquals(0, $exitCode, implode(PHP_EOL, $output));
