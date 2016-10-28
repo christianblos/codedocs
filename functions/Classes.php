@@ -33,6 +33,9 @@ class Classes extends MarkupFunction
 
         if ($taggedWith) {
             $filterClasses = $this->getClassesTaggedWith((array)$taggedWith);
+            if (!$filterClasses) {
+                return [];
+            }
         }
 
         foreach ($this->state->classes as $class) {
