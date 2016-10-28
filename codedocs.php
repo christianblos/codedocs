@@ -53,7 +53,16 @@ try {
         $config->params[$name] = $value;
     }
 
-    AnnotationRegistry::registerLoader([$loader, 'loadClass']);
+    AnnotationRegistry::registerLoader(function ($class) use ($loader) {
+        /** @var $loader \Composer\Autoload\ClassLoader */
+        $loader->loadClass($class);
+
+        if (class_exists($class)) {
+            return true;
+        }
+
+        return false;
+    });
 
     $runner = new Runner($logger);
     $runner->addProcessor(new ParseSourceCode());

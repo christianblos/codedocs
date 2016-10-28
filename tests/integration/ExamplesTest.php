@@ -37,7 +37,7 @@ class ExamplesTest extends \PHPUnit_Framework_TestCase
 
             fwrite(STDERR, $out);
 
-            throw new $ex;
+            throw $ex;
         }
     }
 
