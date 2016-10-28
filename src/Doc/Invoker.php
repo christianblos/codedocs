@@ -160,12 +160,6 @@ class Invoker
             return (string) $param->getType();
         }
 
-        // fallback for PHP < 7.0
-        // try to match type hint from stringified parameter, e.g. "Parameter #0 [ <required> int $foo ]"
-        if (preg_match('/\<\w+?\> (?<type>[\w\\\\]+)/', (string) $param, $matches)) {
-            return $matches['type'];
-        }
-
         return '';
     }
 }
