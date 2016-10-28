@@ -19,7 +19,7 @@ class ExamplesTest extends \PHPUnit_Framework_TestCase
         $command = sprintf('php %s %s %s', $bin, $configPath, $testConfigPath);
         exec($command, $output, $exitCode);
 
-        $this->assertEquals(0, $exitCode);
+        $this->assertEquals(0, $exitCode, implode(PHP_EOL, $output));
 
         $expectedFile  = $rootDir . '/examples/functions/' . $func . '/docs-result/doc.md';
         $generatedFile = $rootDir . '/examples/functions/' . $func . '/build/export/doc.md';
