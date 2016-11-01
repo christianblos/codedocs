@@ -91,7 +91,7 @@ class MarkupParser extends BaseParser
      */
     protected function parseFile($path)
     {
-        $content = file_get_contents($path);
+        $content = $this->filesystem->readFile($path);
 
         return $this->parseContent($content, $path);
     }

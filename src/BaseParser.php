@@ -10,7 +10,7 @@ abstract class BaseParser
     /**
      * @var Filesystem
      */
-    private $filesystem;
+    protected $filesystem;
 
     /**
      * @param Filesystem $filesystem
@@ -46,7 +46,7 @@ abstract class BaseParser
                 return [];
             }
 
-            $hash = sha1_file($realPath);
+            $hash = $this->filesystem->getFileHash($realPath);
 
             if (isset($oldCache[$hash])) {
                 $fileResult = $this->fromCache($oldCache[$hash], $file);

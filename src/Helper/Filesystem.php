@@ -40,6 +40,16 @@ class Filesystem
     }
 
     /**
+     * @param string $path
+     *
+     * @return string
+     */
+    public function readFile($path)
+    {
+        return file_get_contents($path);
+    }
+
+    /**
      * @param string $file
      * @param string $content
      *
@@ -138,5 +148,15 @@ class Filesystem
 
             copy($src, $dest);
         }
+    }
+
+    /**
+     * @param string $path
+     *
+     * @return string
+     */
+    public function getFileHash($path)
+    {
+        return sha1_file($path);
     }
 }

@@ -53,5 +53,7 @@ class MarkupContext extends Context
 
                 return $this->func;
         }
+
+        return null;
     }
 }
