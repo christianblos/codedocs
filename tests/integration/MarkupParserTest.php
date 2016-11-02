@@ -3,6 +3,7 @@ namespace CodeDocs\Test\Integration;
 
 use CodeDocs\Doc\Lexer;
 use CodeDocs\Doc\MarkupParser;
+use CodeDocs\Doc\Parser\ArrayContext;
 use CodeDocs\Doc\Parser\FileContext;
 use CodeDocs\Doc\Parser\FuncContext;
 use CodeDocs\Doc\Parser\MarkupContext;
@@ -45,29 +46,76 @@ class MarkupParserTest extends \PHPUnit_Framework_TestCase
         $this->assertParsed('foo bar', $this->createFileContext());
     }
 
-    public function testMarkup()
+    public function testMarkupWithoutParams()
     {
-        $markupStr = '{{ foo(val1:99, val2: "string") }}';
+        $content = '{{ foo() }}';
 
         $expected = $this->createFileContext();
 
-        $markup = $this->createMarkup($expected, $markupStr, 0);
+        $markup = $this->createMarkup($expected, $content, 0);
 
         $markup->func         = new FuncContext([Lexer::AT => 3, Lexer::VALUE => 'foo'], $markup);
-        $markup->func->params = ['val1' => 99, 'val2' => 'string'];
+        $markup->func->params = [];
 
         $expected->markups = [$markup];
 
-        $this->assertParsed($markupStr, $expected);
+        $this->assertParsed($content, $expected);
+    }
+
+    public function testMarkupParams()
+    {
+        $content = '{{ foo(int:99, float:1.2, str: "string", bool: true, none: null) }}';
+
+        $expected = $this->createFileContext();
+
+        $markup = $this->createMarkup($expected, $content, 0);
+
+        $markup->func         = new FuncContext([Lexer::AT => 3, Lexer::VALUE => 'foo'], $markup);
+        $markup->func->params = [
+            'int'   => 99,
+            'float' => 1.2,
+            'str'   => 'string',
+            'bool'  => true,
+            'none'  => null,
+        ];
+
+        $expected->markups = [$markup];
+
+        $this->assertParsed($content, $expected);
+    }
+
+    public function testMarkupWithArrayParam()
+    {
+        $content = '{{ foo(arr:["val", "one" => 1, 2 => true, \'empty\' => null]) }}';
+
+        $expected = $this->createFileContext();
+
+        $markup = $this->createMarkup($expected, $content, 0);
+
+        $markup->func = new FuncContext([Lexer::AT => 3, Lexer::VALUE => 'foo'], $markup);
+
+        $array         = new ArrayContext([Lexer::AT => 11], $markup->func);
+        $array->values = [
+            0       => 'val',
+            'one'   => 1,
+            2       => true,
+            'empty' => null,
+        ];
+
+        $markup->func->params = ['arr' => $array];
+
+        $expected->markups = [$markup];
+
+        $this->assertParsed($content, $expected);
     }
 
     public function testNestedFunction()
     {
-        $markupStr = '{{ foo(sub: bar(val: 3)) }}';
+        $content = '{{ foo(sub: bar(val: 3)) }}';
 
         $expected = $this->createFileContext();
 
-        $markup = $this->createMarkup($expected, $markupStr, 0);
+        $markup = $this->createMarkup($expected, $content, 0);
 
         $markup->func = new FuncContext([Lexer::AT => 3, Lexer::VALUE => 'foo'], $markup);
 
@@ -82,7 +130,59 @@ class MarkupParserTest extends \PHPUnit_Framework_TestCase
 
         $expected->markups = [$markup];
 
-        $this->assertParsed($markupStr, $expected);
+        $this->assertParsed($content, $expected);
+    }
+
+    public function testAnyText()
+    {
+        $content = 'true 12.1 "text. {{ foo() }} Other stuff"';
+
+        $expected = $this->createFileContext();
+
+        $markup = $this->createMarkup($expected, '{{ foo() }}', 17);
+
+        $markup->func         = new FuncContext([Lexer::AT => 20, Lexer::VALUE => 'foo'], $markup);
+        $markup->func->params = [];
+
+        $expected->markups = [$markup];
+
+        $this->assertParsed($content, $expected);
+    }
+
+    public function testEscapedMarkup()
+    {
+        $content = '\\{{ foo() }} {{ bar() }}';
+
+        $expected = $this->createFileContext();
+
+        $escaped              = $this->createMarkup($expected, '\\{{', 0);
+        $escaped->replacement = '{{';
+
+        $markup               = $this->createMarkup($expected, '{{ bar() }}', 13);
+        $markup->func         = new FuncContext([Lexer::AT => 16, Lexer::VALUE => 'bar'], $markup);
+        $markup->func->params = [];
+
+        $expected->markups = [$escaped, $markup];
+
+        $this->assertParsed($content, $expected);
+    }
+
+    public function testEscapedMarkupWithAnyTextBefore()
+    {
+        $content = 'some \\{{ foo() }} {{ bar() }}';
+
+        $expected = $this->createFileContext();
+
+        $escaped              = $this->createMarkup($expected, '\\{{', 5);
+        $escaped->replacement = '{{';
+
+        $markup               = $this->createMarkup($expected, '{{ bar() }}', 18);
+        $markup->func         = new FuncContext([Lexer::AT => 21, Lexer::VALUE => 'bar'], $markup);
+        $markup->func->params = [];
+
+        $expected->markups = [$escaped, $markup];
+
+        $this->assertParsed($content, $expected);
     }
 
     /**
