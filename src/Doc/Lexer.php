@@ -22,8 +22,8 @@ class Lexer
     const T_FALSE               = 'FALSE';
     const T_NULL                = 'NULL';
     const T_ARRAY_OPEN          = 'ARRAY_OPEN';
-    const T_ARRAY_CLOSE        = 'ARRAY_CLOSE';
-    const T_ARRAY_ARROW        = 'ARRAY_ARROW';
+    const T_ARRAY_CLOSE         = 'ARRAY_CLOSE';
+    const T_ARRAY_ARROW         = 'ARRAY_ARROW';
     const T_COMMA               = 'COMMA';
     const T_ANY                 = 'ANY';
 
@@ -77,8 +77,6 @@ class Lexer
             self::T_ARRAY_ARROW => '\s*=>\s*',
 
             self::T_COMMA => '\s*,\s*',
-
-            self::T_ANY => '((?!(\\\\|)\{\{).)+',
         ];
     }
 
@@ -121,11 +119,7 @@ class Lexer
             $typeInfo = $this->scanNextType($this->currentInput);
 
             if ($typeInfo === null) {
-                throw new Exception(sprintf(
-                    'invalid token starting at position %s : %s',
-                    $this->currentPos,
-                    $this->currentInput
-                ));
+                $typeInfo = $this->getAnyType($this->currentInput);
             }
 
             $type   = $typeInfo['type'];
@@ -166,5 +160,35 @@ class Lexer
         }
 
         return null;
+    }
+
+    /**
+     * Get next ANY-type which is a string that does not match to any token
+     *
+     * @param string $string
+     *
+     * @return array|null
+     */
+    private function getAnyType($string)
+    {
+        $anyString = '';
+
+        do {
+            $anyString .= $string[0];
+            $string = substr($string, 1);
+
+            $typeInfo = $this->scanNextType($string);
+
+            // ignore all until markup reached
+            if ($typeInfo['type'] !== self::T_MARKUP_OPEN && $typeInfo['type'] !== self::T_MARKUP_OPEN_ESCAPED) {
+                $typeInfo = null;
+            }
+        } while ($typeInfo === null && $string);
+
+        return [
+            'type'   => self::T_ANY,
+            'match'  => $anyString,
+            'length' => strlen($anyString),
+        ];
     }
 }
