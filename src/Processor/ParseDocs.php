@@ -45,6 +45,13 @@ class ParseDocs implements ProcessorInterface
         $this->initDependencies();
         $this->initFunctions($state->config);
 
+        $exportDir = $state->config->getExportDir();
+        if (!is_dir($exportDir)) {
+            $logger->log(0, 'skip parsing docs (no documentation files found)');
+
+            return;
+        }
+
         $cacheDir  = $state->config->getCacheDir();
         $cacheNote = $cacheDir ? 'cache at ' . $cacheDir : 'cache disabled';
 

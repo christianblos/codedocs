@@ -24,7 +24,10 @@ class MirrorDocs implements ProcessorInterface
     {
         $filesystem = new Filesystem();
 
-        $docsDir = $state->config->getDocsDir();
+        $docsDir   = $state->config->getDocsDir();
+        $exportDir = $state->config->getExportDir();
+
+        $filesystem->ensureDir($exportDir);
 
         if ($docsDir === null) {
             $logger->log(0, 'skip copying docs to export dir (no docs dir configured)');
@@ -38,8 +41,6 @@ class MirrorDocs implements ProcessorInterface
 
             return;
         }
-
-        $exportDir = $state->config->getExportDir();
 
         $logger->log(0, sprintf('copy docs to export dir (%s -> %s)', $docsDir, $exportDir));
         $filesystem->mirror($docsDir, $exportDir);
