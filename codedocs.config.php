@@ -13,9 +13,12 @@ $config->cacheDir = '/tmp/codedocs';
 
 $config->preProcessors = [
     new \CodeDocs\Processor\CreateFilesFromTopics(),
-    new \CodeDocs\Processor\Internal\CreateFunctionDocs('functions/%s.md'),
+    new \CodeDocs\Processor\Internal\CreateFunctionDocs(
+        '03.Markups/%s.md',
+        'https://github.com/christianblos/codedocs/tree/master'
+    ),
 ];
 
 $config->postProcessors = [
-    new \CodeDocs\Processor\CopyExportFiles('docs', true),
+    new \CodeDocs\Processor\Internal\Mardown2Html('docs'),
 ];

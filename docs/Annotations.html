@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>CodeDocs</title>
+
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/font.css">
+    <link rel="stylesheet" href="assets/css/docs.css">
+    <link rel="stylesheet" href="assets/css/github-markdown.css">
+    <link rel="stylesheet" href="assets/css/highlight.min.css">
+    <link rel="stylesheet" href="assets/css/highlight.github.css">
+
+    
+    <script src="assets/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+
+<nav>
+    <a id="header" href="index.html">CodeDocs</a>
+
+    <ul>
+        <li class=""><a href="Quick-Start.html">Quick Start</a></li><li class=""><a href="Configuration.html">Configuration</a></li><li class=""><a href="Markups.html">Markups</a></li><li class="active"><a href="Annotations.html">Annotations</a></li><li class=""><a href="Processors.html">Processors</a></li><li class=""><a href="State-Object.html">State Object</a></li>    </ul>
+</nav>
+
+<section>
+    <ul class="breadcrumb">
+        <li><a href="Annotations.html">Annotations</a></li>    </ul>
+
+    <div class="markdown-body">
+        <h1>Annotations</h1>
+<p>Annotations can be used in classes to help generating the documentation.
+The Markups in the documentaion files are able to access all these annotations.</p>
+<p>CodeDocs uses the <a href="https://github.com/doctrine/annotations">Doctrine Annotations</a> library.
+You can also use your own Annotations by extending <strong>\CodeDocs\Annotation</strong>.</p>
+<p>Here's a list of all build-in annotations provided by CodeDocs:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CodeDocs\Tag</td>
+<td>Creates a tag that can be used to filter classes, methods, etc.</td>
+</tr>
+<tr>
+<td>CodeDocs\Topic</td>
+<td>Creates a topic that can be used by the topic() markup function.</td>
+</tr>
+</tbody>
+</table>
+        <footer>
+            <a class="prev" href="Markups.html">‹ Markups</a><a class="next" href="Processors.html">Processors ›</a>        </footer>
+    </div>
+</section>
+
+</body>
+</html>

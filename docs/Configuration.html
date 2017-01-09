@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>CodeDocs</title>
+
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/font.css">
+    <link rel="stylesheet" href="assets/css/docs.css">
+    <link rel="stylesheet" href="assets/css/github-markdown.css">
+    <link rel="stylesheet" href="assets/css/highlight.min.css">
+    <link rel="stylesheet" href="assets/css/highlight.github.css">
+
+    
+    <script src="assets/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+
+<nav>
+    <a id="header" href="index.html">CodeDocs</a>
+
+    <ul>
+        <li class=""><a href="Quick-Start.html">Quick Start</a></li><li class="active"><a href="Configuration.html">Configuration</a></li><li class=""><a href="Markups.html">Markups</a></li><li class=""><a href="Annotations.html">Annotations</a></li><li class=""><a href="Processors.html">Processors</a></li><li class=""><a href="State-Object.html">State Object</a></li>    </ul>
+</nav>
+
+<section>
+    <ul class="breadcrumb">
+        <li><a href="Configuration.html">Configuration</a></li>    </ul>
+
+    <div class="markdown-body">
+        <h1>Configuration</h1>
+<p>By default, CodeDocs searches for a file named <strong>codedocs.config.php</strong>
+in your project's root directory.
+But you can use another location if you want by passing the location to the CodeDocs command: </p>
+<pre><code class="language-bash">$ vendor/bin/codedocs /path/to/config.php</code></pre>
+<p>You can also use multiple config files (e.g. for local configurations):</p>
+<pre><code class="language-bash">$ vendor/bin/codedocs codedocs.config.php codedocs.config.local.php</code></pre>
+<h1>Possible configurations</h1>
+<p>Here's a full configuration example with descriptions:</p>
+<pre><code class="language-php">&lt;?php
+/** @var \CodeDocs\Config $config */
+
+/*
+Base directory of your project.
+Must be absolute path!
+*/
+$config-&gt;baseDir = __DIR__;
+
+/*
+The directory where all generated files are stored.
+Relative to the baseDir if starting with "./".
+*/
+$config-&gt;buildDir = './build';
+
+/*
+Location of the documentations.
+Relative to the baseDir if starting with "./".
+*/
+$config-&gt;docsDir = './docs-src';
+
+/*
+A list of locations where the parser looks for classes.
+All these classes are available in Markups.
+Relative to the baseDir if starting with "./".
+*/
+$config-&gt;classDirs = ['./src', './annotations', './functions'];
+
+/*
+If configured, caching is enabled and all cache files are stored here.
+*/
+$config-&gt;cacheDir = '/tmp/codedocs';
+
+/*
+Extra parameters that can be used e.g. in markups.
+*/
+$config-&gt;params = [
+    'someParam'   =&gt; 'someValue',
+    'currentTime' =&gt; time(),
+];
+
+/*
+You can register your namespaces for annotations here. This allows you to omit the namespace in the annotations.
+For example `@MyNamespace\Something`. If you register "MyNamespace", you can just use `@Something`.
+*/
+$config-&gt;annotationNamespaces = [
+    'MyNamespace',
+];
+
+/*
+If you want to use custom functions in your documentation, you can register them here.
+The array key must be the function name and the value must be a callable.
+To make use of the CodeDocs State object in your callable, it must extend \CodeDocs\Doc\MarkupFunction.
+*/
+$config-&gt;functions = [
+    'upper' =&gt; function ($value) {
+        return strtoupper($value);
+    },
+];
+
+/*
+Processors which are executed before Markups are replaced.
+*/
+$config-&gt;preProcessors = [
+    new \CodeDocs\Processor\CreateFilesFromTopics(),
+];
+
+/*
+Processors which are executed after Markups are replaced.
+*/
+$config-&gt;postProcessors = [
+    new \CodeDocs\Processor\CopyExportFiles('docs'),
+];</code></pre>
+        <footer>
+            <a class="prev" href="Quick-Start.html">‹ Quick Start</a><a class="next" href="Markups.html">Markups ›</a>        </footer>
+    </div>
+</section>
+
+</body>
+</html>

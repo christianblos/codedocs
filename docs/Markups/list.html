@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>CodeDocs</title>
+
+    <link rel="stylesheet" href="../assets/css/normalize.css">
+    <link rel="stylesheet" href="../assets/css/font.css">
+    <link rel="stylesheet" href="../assets/css/docs.css">
+    <link rel="stylesheet" href="../assets/css/github-markdown.css">
+    <link rel="stylesheet" href="../assets/css/highlight.min.css">
+    <link rel="stylesheet" href="../assets/css/highlight.github.css">
+
+    
+    <script src="../assets/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+
+<nav>
+    <a id="header" href="../index.html">CodeDocs</a>
+
+    <ul>
+        <li class=""><a href="../Quick-Start.html">Quick Start</a></li><li class=""><a href="../Configuration.html">Configuration</a></li><li class="active"><a href="../Markups.html">Markups</a><ul><li class=""><a href="../Markups/classes.html">classes</a></li><li class=""><a href="../Markups/methodParamsTable.html">methodParamsTable</a></li><li class=""><a href="../Markups/table.html">table</a></li><li class=""><a href="../Markups/shortName.html">shortName</a></li><li class=""><a href="../Markups/replace.html">replace</a></li><li class=""><a href="../Markups/relpath.html">relpath</a></li><li class=""><a href="../Markups/parse.html">parse</a></li><li class=""><a href="../Markups/param.html">param</a></li><li class="active"><a href="../Markups/list.html">list</a></li><li class=""><a href="../Markups/codeSnippet.html">codeSnippet</a></li><li class=""><a href="../Markups/jsonValue.html">jsonValue</a></li><li class=""><a href="../Markups/join.html">join</a></li><li class=""><a href="../Markups/fileContent.html">fileContent</a></li><li class=""><a href="../Markups/file.html">file</a></li><li class=""><a href="../Markups/docComment.html">docComment</a></li><li class=""><a href="../Markups/defaultValue.html">defaultValue</a></li><li class=""><a href="../Markups/constants.html">constants</a></li><li class=""><a href="../Markups/topic.html">topic</a></li></ul></li><li class=""><a href="../Annotations.html">Annotations</a></li><li class=""><a href="../Processors.html">Processors</a></li><li class=""><a href="../State-Object.html">State Object</a></li>    </ul>
+</nav>
+
+<section>
+    <ul class="breadcrumb">
+        <li><a href="../Markups.html">Markups</a></li><li><a href="../Markups/list.html">list</a></li>    </ul>
+
+    <div class="markdown-body">
+        <h1>list()</h1>
+<p>Renders a list of the given array.</p>
+<h3>Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>of</td>
+<td>string[]</td>
+<td>The list items</td>
+</tr>
+<tr>
+<td>prefix</td>
+<td>string|null</td>
+<td>(Optional) The list prefix</td>
+</tr>
+</tbody>
+</table>
+<h3>Example</h3>
+<p>Documentation source:</p>
+<pre><code>{{ list(of:['one', 'two', 'three']) }}
+
+{{ list(of:['one', 'two', 'three'], prefix: '+ ') }}</code></pre>
+<p>Result:</p>
+<pre><code>- one
+- two
+- three
+
++ one
++ two
++ three</code></pre>
+<p><a href="https://github.com/christianblos/codedocs/tree/master/examples/functions/list">See full example code here</a></p>
+        <footer>
+            <a class="prev" href="../Markups/param.html">‹ param</a><a class="next" href="../Markups/codeSnippet.html">codeSnippet ›</a>        </footer>
+    </div>
+</section>
+
+</body>
+</html>

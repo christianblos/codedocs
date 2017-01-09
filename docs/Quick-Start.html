@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>CodeDocs</title>
+
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/font.css">
+    <link rel="stylesheet" href="assets/css/docs.css">
+    <link rel="stylesheet" href="assets/css/github-markdown.css">
+    <link rel="stylesheet" href="assets/css/highlight.min.css">
+    <link rel="stylesheet" href="assets/css/highlight.github.css">
+
+    
+    <script src="assets/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+
+<nav>
+    <a id="header" href="index.html">CodeDocs</a>
+
+    <ul>
+        <li class="active"><a href="Quick-Start.html">Quick Start</a></li><li class=""><a href="Configuration.html">Configuration</a></li><li class=""><a href="Markups.html">Markups</a></li><li class=""><a href="Annotations.html">Annotations</a></li><li class=""><a href="Processors.html">Processors</a></li><li class=""><a href="State-Object.html">State Object</a></li>    </ul>
+</nav>
+
+<section>
+    <ul class="breadcrumb">
+        <li><a href="Quick-Start.html">Quick Start</a></li>    </ul>
+
+    <div class="markdown-body">
+        <h1>Quick Start</h1>
+<h3>1. Install CodeDocs</h3>
+<p>Add CodeDocs to your project by using composer:</p>
+<pre><code class="language-bash">composer require codedocs/codedocs</code></pre>
+<h3>2. Create Configuration</h3>
+<p>Create a file named <strong>codedocs.config.php</strong>
+in your project's root directory.</p>
+<pre><code class="language-php">&lt;?php
+/** @var \CodeDocs\Config $config */
+
+$config-&gt;baseDir = __DIR__;
+
+// All generated files are stored here
+$config-&gt;buildDir = './build';
+
+// Your documentation source with markups
+$config-&gt;docsDir = './docs-src';
+
+// Your source code to parse
+$config-&gt;classDirs = ['./src'];</code></pre>
+<p>See more about configurations <a href="configuration.html">here</a>.</p>
+<h3>3. Create the documentation source</h3>
+<p>Create a folder (e.g. <strong>docs-src</strong>) with your documentation.
+It can be Markdown, RST, HTML or whatever you want.
+<a href="markups.html">See how to use Markups here</a></p>
+<h3>4. Export final documentation</h3>
+<p>Execute <code>vendor/bin/codedocs</code>.</p>
+<p>Possibles command line options:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-v, -vv, -vvv..</td>
+<td>Verbose output. The more <strong>v</strong>'s, the more output</td>
+</tr>
+<tr>
+<td>--no-color</td>
+<td>Supress colors in cli output</td>
+</tr>
+<tr>
+<td>--{name} ({value})</td>
+<td>Set/overwite config params</td>
+</tr>
+</tbody>
+</table>
+        <footer>
+            <a class="next" href="Configuration.html">Configuration ›</a>        </footer>
+    </div>
+</section>
+
+</body>
+</html>

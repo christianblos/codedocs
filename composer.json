@@ -13,6 +13,10 @@
     "nikic/php-parser": "^2.1",
     "doctrine/annotations": "^1.2"
   },
+  "require-dev": {
+    "phpunit/phpunit": "^5.5",
+    "christianblos/markdown2html": "^0.1"
+  },
   "bin": [
     "codedocs"
   ],
@@ -29,8 +33,5 @@
     "branch-alias": {
       "dev-master": "3.x-dev"
     }
-  },
-  "require-dev": {
-    "phpunit/phpunit": "^5.5"
   }
 }

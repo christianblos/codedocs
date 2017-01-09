@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>CodeDocs</title>
+
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/font.css">
+    <link rel="stylesheet" href="assets/css/docs.css">
+    <link rel="stylesheet" href="assets/css/github-markdown.css">
+    <link rel="stylesheet" href="assets/css/highlight.min.css">
+    <link rel="stylesheet" href="assets/css/highlight.github.css">
+
+    
+    <script src="assets/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+
+<nav>
+    <a id="header" href="index.html">CodeDocs</a>
+
+    <ul>
+        <li class=""><a href="Quick-Start.html">Quick Start</a></li><li class=""><a href="Configuration.html">Configuration</a></li><li class=""><a href="Markups.html">Markups</a></li><li class=""><a href="Annotations.html">Annotations</a></li><li class=""><a href="Processors.html">Processors</a></li><li class=""><a href="State-Object.html">State Object</a></li>    </ul>
+</nav>
+
+<section>
+    <ul class="breadcrumb">
+            </ul>
+
+    <div class="markdown-body">
+        <h1>What is CodeDocs?</h1>
+<p>With <strong>CodeDocs</strong> you can write a technical documentation that is able to access
+the source code of your project. This means if the source code changes,
+the documentation is updated automatically!</p>
+<p>The documentation consists of <strong>plain text files</strong> (e.g. Markdown) which are located
+directly in the project's repository or even in the <strong>Doc Comments</strong> of your classes.
+You can use <strong>Markups</strong> to access the source code or generate documentation segments.</p>
+<p>When you execute CodeDocs, the following happens:</p>
+<ol>
+<li>Parse source code (create a list of all classes, methods, etc)</li>
+<li>Copy documentation source to configured export directory</li>
+<li>Replace Markups in exported documentation</li>
+</ol>
+<p><img src="img/how-it-works.png" alt="How it works" /></p>
+<blockquote>
+<p><strong>Note:</strong> If you use Markdown for instance and you want to generate HTML at the end,
+you can use a <a href="processors.html">Processor</a> in combination with a tool of your choice that
+converts Markdown to HTML. Because CodeDocs itself does not take care of converting
+the files to another type</p>
+</blockquote>
+<p>By the way, this documentation was also created by CodeDocs itself.</p>
+<p>See <a href="Quick-Start.html">Quick Start</a> to start with your first documentation.</p>
+        <footer>
+                    </footer>
+    </div>
+</section>
+
+</body>
+</html>

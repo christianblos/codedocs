@@ -19,11 +19,18 @@ class CreateFunctionDocs implements ProcessorInterface
     private $path;
 
     /**
-     * @param string $path Path with "%s" as placeholder for function name
+     * @var string
      */
-    public function __construct($path)
+    private $baseUrl;
+
+    /**
+     * @param string $path Path with "%s" as placeholder for function name
+     * @param string $baseUrl
+     */
+    public function __construct($path, $baseUrl)
     {
-        $this->path = $path;
+        $this->path    = $path;
+        $this->baseUrl = $baseUrl;
     }
 
     /**
@@ -129,7 +136,7 @@ class CreateFunctionDocs implements ProcessorInterface
             $lines[] = '```';
 
             $lines[] = '';
-            $lines[] = sprintf('[See full example code here](../../examples/functions/%s)', $funcName);
+            $lines[] = sprintf('[See full example code here](%s/examples/functions/%s)', $this->baseUrl, $funcName);
         }
 
         return implode(PHP_EOL, $lines);

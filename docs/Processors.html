@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>CodeDocs</title>
+
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/font.css">
+    <link rel="stylesheet" href="assets/css/docs.css">
+    <link rel="stylesheet" href="assets/css/github-markdown.css">
+    <link rel="stylesheet" href="assets/css/highlight.min.css">
+    <link rel="stylesheet" href="assets/css/highlight.github.css">
+
+    
+    <script src="assets/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+
+<nav>
+    <a id="header" href="index.html">CodeDocs</a>
+
+    <ul>
+        <li class=""><a href="Quick-Start.html">Quick Start</a></li><li class=""><a href="Configuration.html">Configuration</a></li><li class=""><a href="Markups.html">Markups</a></li><li class=""><a href="Annotations.html">Annotations</a></li><li class="active"><a href="Processors.html">Processors</a></li><li class=""><a href="State-Object.html">State Object</a></li>    </ul>
+</nav>
+
+<section>
+    <ul class="breadcrumb">
+        <li><a href="Processors.html">Processors</a></li>    </ul>
+
+    <div class="markdown-body">
+        <h1>Processors</h1>
+<p>Processors can be used to add additional steps to the execution of CodeDocs.
+Just add them to the <a href="configuration.html">configuration</a> if you need them.
+You can also create your own Processors by implementing <strong>\CodeDocs\ProcessorInterface</strong>.</p>
+<p>Here's a list of built-in processors:</p>
+<table>
+<thead>
+<tr>
+<th>Processor</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CopyExportFiles</td>
+<td>Copies generated doc files to a given directory</td>
+</tr>
+<tr>
+<td>CreateFilesFromTopics</td>
+<td>Creates files from Topic-Annotations</td>
+</tr>
+</tbody>
+</table>
+        <footer>
+            <a class="prev" href="Annotations.html">‹ Annotations</a><a class="next" href="State-Object.html">State Object ›</a>        </footer>
+    </div>
+</section>
+
+</body>
+</html>
