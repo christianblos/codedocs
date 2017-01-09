@@ -11,14 +11,16 @@ $config->classDirs = ['./src', './annotations', './functions'];
 
 $config->cacheDir = '/tmp/codedocs';
 
+$githubUrl = 'https://github.com/christianblos/codedocs';
+
 $config->preProcessors = [
     new \CodeDocs\Processor\CreateFilesFromTopics(),
     new \CodeDocs\Processor\Internal\CreateFunctionDocs(
         '03.Markups/%s.md',
-        'https://github.com/christianblos/codedocs/tree/master'
+        $githubUrl . '/tree/master'
     ),
 ];
 
 $config->postProcessors = [
-    new \CodeDocs\Processor\Internal\Mardown2Html('docs'),
+    new \CodeDocs\Processor\Internal\Mardown2Html('docs', $githubUrl),
 ];

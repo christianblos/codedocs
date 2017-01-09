@@ -20,11 +20,18 @@ class Mardown2Html implements ProcessorInterface
     private $destination;
 
     /**
-     * @param string $destination
+     * @var string
      */
-    public function __construct($destination)
+    private $githubLink;
+
+    /**
+     * @param string $destination
+     * @param string $githubLink
+     */
+    public function __construct($destination, $githubLink)
     {
         $this->destination = $destination;
+        $this->githubLink  = $githubLink;
     }
 
     /**
@@ -52,6 +59,10 @@ class Mardown2Html implements ProcessorInterface
 
         $theme        = new DefaultTheme();
         $theme->title = 'CodeDocs';
+
+        $theme->naviLinks = [
+            'Github' => $this->githubLink,
+        ];
 
         $builder = new Builder();
         $builder->build($from, $this->destination, $theme);

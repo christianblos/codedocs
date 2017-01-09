@@ -34,6 +34,12 @@ nav ul li {
     overflow: hidden;
 }
 
+nav ul li.spacer {
+    background-color: #666;
+    height: 1px;
+    margin: .5rem 0;
+}
+
 nav ul li a {
     padding: 0.3rem;
     text-decoration: none;
