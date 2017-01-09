@@ -18,7 +18,7 @@ When you execute CodeDocs, the following happens:
 ![How it works](img/how-it-works.png)
 
 > **Note:** If you use Markdown for instance and you want to generate HTML at the end,
-> you can use a [Processor](processors.md) in combination with a tool of your choice that
+> you can use a [Processor](05.Processors.md) in combination with a tool of your choice that
 > converts Markdown to HTML. Because CodeDocs itself does not take care of converting
 > the files to another type
 
