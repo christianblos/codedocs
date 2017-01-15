@@ -13,6 +13,7 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\Array_;
 use PhpParser\Node\Expr\ConstFetch;
 use PhpParser\Node\Name;
+use PhpParser\Node\NullableType;
 use PhpParser\Node\Param;
 use PhpParser\Node\Scalar\DNumber;
 use PhpParser\Node\Scalar\LNumber;
@@ -254,7 +255,13 @@ class RefVisitor implements NodeVisitor
             return $name;
         }
 
-        return $this->getFullClassName($name);
+        $prefix = '';
+        if ($name instanceof NullableType) {
+            $name   = $name->type;
+            $prefix = '?';
+        }
+
+        return $prefix . $this->getFullClassName($name);
     }
 
     /**
