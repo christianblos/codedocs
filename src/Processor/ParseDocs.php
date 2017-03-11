@@ -94,6 +94,7 @@ class ParseDocs implements ProcessorInterface
         $this->invoker->define(Func\RenderList::FUNC_NAME, new Func\RenderList());
         $this->invoker->define(Func\Replace::FUNC_NAME, new Func\Replace());
         $this->invoker->define(Func\ShortName::FUNC_NAME, new Func\ShortName());
+        $this->invoker->define(Func\Split::FUNC_NAME, new Func\Split());
         $this->invoker->define(Func\Table::FUNC_NAME, new Func\Table());
         $this->invoker->define(Func\Topic::FUNC_NAME, new Func\Topic());
 
