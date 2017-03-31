@@ -57,6 +57,11 @@
 <td>bool</td>
 <td>(Optional) True to only return the first line</td>
 </tr>
+<tr>
+<td>firstBlock</td>
+<td>bool</td>
+<td>(Optional) True to only return the first text block</td>
+</tr>
 </tbody>
 </table>
 <h3>Example</h3>
@@ -66,7 +71,9 @@
 class SomeClass
 {
     /**
-     * This method does something cool.
+     *
+     * This method does something
+     * really cool.
      *
      * Maybe there's a detailed description here.
      * But maybe not :)
@@ -78,12 +85,21 @@ class SomeClass
     }
 }</code></pre>
 <p>Documentation source:</p>
-<pre><code>{{ docComment(of:'SomeClass::doSomething', excludeAnnotations:true) }}</code></pre>
+<pre><code>{{ docComment(of:'SomeClass::doSomething', excludeAnnotations:true) }}
+
+---
+
+{{ docComment(of:'SomeClass::doSomething', firstBlock:true) }}</code></pre>
 <p>Result:</p>
-<pre><code>This method does something cool.
+<pre><code>This method does something
+really cool.
 
 Maybe there's a detailed description here.
-But maybe not :)</code></pre>
+But maybe not :)
+
+---
+
+This method does something really cool.</code></pre>
 <p><a href="https://github.com/christianblos/codedocs/tree/master/examples/functions/docComment">See full example code here</a></p>
         <footer>
             <a class="prev" href="../Markups/file.html">‹ file</a><a class="next" href="../Markups/defaultValue.html">defaultValue ›</a>        </footer>

@@ -1,4 +1,5 @@
 <?php
+
 namespace CodeDocs\Func;
 
 use CodeDocs\Doc\MarkupFunction;
@@ -18,11 +19,12 @@ class DocComment extends MarkupFunction
      * @param string $of                 The class name, method or class member
      * @param bool   $excludeAnnotations True to hide annotations
      * @param bool   $firstLine          True to only return the first line
+     * @param bool   $firstBlock         True to only return the first text block
      *
      * @return string
      * @throws MarkupException
      */
-    public function __invoke($of, $excludeAnnotations = false, $firstLine = false)
+    public function __invoke($of, $excludeAnnotations = false, $firstLine = false, $firstBlock = false)
     {
         $ref = $this->getRef($this->state, $of);
 
@@ -41,6 +43,8 @@ class DocComment extends MarkupFunction
 
         if ($firstLine) {
             $content = $this->getFirstLine($content);
+        } elseif ($firstBlock) {
+            $content = $this->getFirstBlock($content);
         }
 
         return trim($content);
@@ -78,5 +82,29 @@ class DocComment extends MarkupFunction
         }
 
         return '';
+    }
+
+    /**
+     * @param string $content
+     *
+     * @return string
+     */
+    private function getFirstBlock($content)
+    {
+        $lines = preg_split('/\r\n|\n/', $content);
+        $block = [];
+        $found = false;
+
+        foreach ($lines as $line) {
+            $line = trim($line);
+            if (!$line && $found === true) {
+                break;
+            }
+
+            $found   = true;
+            $block[] = $line;
+        }
+
+        return implode(' ', $block);
     }
 }
