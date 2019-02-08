@@ -5,8 +5,9 @@ use CodeDocs\SourceCode\CodeParser;
 use CodeDocs\SourceCode\Ref\RefClass;
 use CodeDocs\SourceCode\Ref\RefComment;
 use CodeDocs\SourceCode\Ref\Visibility;
+use PHPUnit\Framework\TestCase;
 
-class CodeParserTest extends \PHPUnit_Framework_TestCase
+class CodeParserTest extends TestCase
 {
     public function testParser()
     {
@@ -37,7 +38,7 @@ class CodeParserTest extends \PHPUnit_Framework_TestCase
 
         $ref = $refs['CodeDocs\Integration\InterSecond'];
         self::assertTrue($ref->isInterface);
-        self::assertEquals(['NotExists\AnotherInterface'], $ref->implements);
+        self::assertEquals(['CodeDocs\Integration\AnotherInterface'], $ref->implements);
         self::assertSame(16, $ref->startLine);
         self::assertSame(19, $ref->endLine);
 

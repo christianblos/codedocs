@@ -8,9 +8,10 @@ use CodeDocs\Doc\Parser\FileContext;
 use CodeDocs\Doc\Parser\FuncContext;
 use CodeDocs\Doc\Parser\MarkupContext;
 use CodeDocs\Helper\Filesystem;
-use PHPUnit_Framework_MockObject_MockObject as MockObject;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 
-class MarkupParserTest extends \PHPUnit_Framework_TestCase
+class MarkupParserTest extends TestCase
 {
     /**
      * @var Filesystem|MockObject
