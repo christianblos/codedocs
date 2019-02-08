@@ -2,8 +2,9 @@
 namespace CodeDocs\Test\Integration;
 
 use CodeDocs\Processor\Internal\ExportParseResult;
+use PHPUnit\Framework\TestCase;
 
-class ExamplesTest extends \PHPUnit_Framework_TestCase
+class ExamplesTest extends TestCase
 {
 
     /**

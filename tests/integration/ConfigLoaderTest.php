@@ -3,8 +3,9 @@ namespace CodeDocs\Test\Integration;
 
 use CodeDocs\Config;
 use CodeDocs\ConfigLoader;
+use PHPUnit\Framework\TestCase;
 
-class ConfigLoaderTest extends \PHPUnit_Framework_TestCase
+class ConfigLoaderTest extends TestCase
 {
     /**
      * @var ConfigLoader

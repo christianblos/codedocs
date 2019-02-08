@@ -76,7 +76,7 @@ class RefVisitor implements NodeVisitor
             $this->namespace->name = (string)$node->name;
         } elseif ($node instanceof Use_) {
             foreach ($node->uses as $use) {
-                $this->namespace->uses[$use->alias] = (string)$use->name;
+                $this->namespace->uses[(string)$use->alias] = (string)$use->name;
             }
         } elseif ($node instanceof Class_) {
             $this->class = $this->createClass($node);
@@ -123,7 +123,7 @@ class RefVisitor implements NodeVisitor
             $this->classes[$this->class->name] = $this->class;
             $this->class                       = null;
         } elseif ($node instanceof ClassMethod) {
-            $this->class->methods[$node->name]->endLine = $node->getAttribute('endLine');
+            $this->class->methods[(string)$node->name]->endLine = $node->getAttribute('endLine');
         }
     }
 
@@ -152,7 +152,7 @@ class RefVisitor implements NodeVisitor
         $ref = new RefClass();
 
         $ref->fileName   = $this->file;
-        $ref->name       = $this->getFullClassName($node->name);
+        $ref->name       = $this->getFullClassName((string)$node->name);
         $ref->docComment = $this->createDocComment($node);
 
         $ref->startLine = $node->getLine();
@@ -183,7 +183,7 @@ class RefVisitor implements NodeVisitor
 
         $ref->isInterface = true;
         $ref->fileName    = $this->file;
-        $ref->name        = $this->getFullClassName($node->name);
+        $ref->name        = $this->getFullClassName((string)$node->name);
         $ref->docComment  = $this->createDocComment($node);
 
         $ref->startLine = $node->getLine();
@@ -206,7 +206,7 @@ class RefVisitor implements NodeVisitor
 
         $ref->isTrait    = true;
         $ref->fileName   = $this->file;
-        $ref->name       = $this->getFullClassName($node->name);
+        $ref->name       = $this->getFullClassName((string)$node->name);
         $ref->docComment = $this->createDocComment($node);
 
         $ref->startLine = $node->getLine();
@@ -294,7 +294,7 @@ class RefVisitor implements NodeVisitor
         $ref = new RefProperty();
 
         $ref->class   = $this->class;
-        $ref->name    = $node->props[0]->name;
+        $ref->name    = (string)$node->props[0]->name;
         $ref->default = $this->getValue($node->props[0]->default);
 
         if ($node->isPrivate()) {
@@ -322,7 +322,7 @@ class RefVisitor implements NodeVisitor
         $ref = new RefConstant();
 
         $ref->class      = $this->class;
-        $ref->name       = $node->consts[0]->name;
+        $ref->name       = (string)$node->consts[0]->name;
         $ref->value      = $this->getValue($node->consts[0]->value);
         $ref->line       = $node->getLine();
         $ref->docComment = $this->createDocComment($node);
@@ -339,7 +339,7 @@ class RefVisitor implements NodeVisitor
     {
         $ref        = new RefMethod();
         $ref->class = $this->class;
-        $ref->name  = $node->name;
+        $ref->name  = (string)$node->name;
 
         if ($node->isPrivate()) {
             $ref->visibility = Visibility::IS_PRIVATE;
@@ -376,10 +376,10 @@ class RefVisitor implements NodeVisitor
     private function createParam(Param $param, RefComment $comment = null)
     {
         $ref       = new RefParam();
-        $ref->name = $param->name;
+        $ref->name = $param->var->name;
 
         if ($comment !== null) {
-            $name = preg_quote($param->name, '/');
+            $name = preg_quote($param->var->name, '/');
             if (preg_match('/@param\s+([^\s]+)\s+\$' . $name . '(?:\s*$|\s+(.*)$)/m', $comment->text, $matches)) {
                 $ref->type        = $matches[1];
                 $ref->description = isset($matches[2]) ? $matches[2] : null;
