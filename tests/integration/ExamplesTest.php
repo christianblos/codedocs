@@ -1,4 +1,5 @@
 <?php
+
 namespace CodeDocs\Test\Integration;
 
 use CodeDocs\Processor\Internal\ExportParseResult;
@@ -28,7 +29,12 @@ class ExamplesTest extends TestCase
         try {
             self::assertFileEquals($expectedFile, $generatedFile);
         } catch (\Exception $ex) {
-            $out = 'Expected export file:' . PHP_EOL .
+            $out = 'Expected export file for function "' . $func . '" :' . PHP_EOL .
+                '```' . PHP_EOL .
+                file_get_contents($expectedFile) . PHP_EOL .
+                '```' . PHP_EOL .
+                PHP_EOL .
+                'Actually generated file:' . PHP_EOL .
                 '```' . PHP_EOL .
                 file_get_contents($generatedFile) . PHP_EOL .
                 '```' . PHP_EOL .
