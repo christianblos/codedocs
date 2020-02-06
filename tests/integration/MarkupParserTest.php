@@ -33,7 +33,7 @@ class MarkupParserTest extends TestCase
      */
     private $fakeFileHash = 'someHash';
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $lexer = new Lexer();
 

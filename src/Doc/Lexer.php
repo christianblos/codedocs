@@ -180,7 +180,7 @@ class Lexer
             $typeInfo = $this->scanNextType($string);
 
             // ignore all until markup reached
-            if ($typeInfo['type'] !== self::T_MARKUP_OPEN && $typeInfo['type'] !== self::T_MARKUP_OPEN_ESCAPED) {
+            if ($typeInfo != null && $typeInfo['type'] !== self::T_MARKUP_OPEN && $typeInfo['type'] !== self::T_MARKUP_OPEN_ESCAPED) {
                 $typeInfo = null;
             }
         } while ($typeInfo === null && $string);

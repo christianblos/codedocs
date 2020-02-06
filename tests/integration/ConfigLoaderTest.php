@@ -12,7 +12,7 @@ class ConfigLoaderTest extends TestCase
      */
     private $configLoader;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->configLoader = new ConfigLoader();
     }
