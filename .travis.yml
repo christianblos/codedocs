@@ -20,7 +20,7 @@ matrix:
 
 before_script:
   - rm -f ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
-  - composer install --prefer-dist
+  - composer update --prefer-dist
 
 script:
   - vendor/bin/phpunit
