@@ -58,6 +58,8 @@ class Classes extends MarkupFunction
             );
         }
 
+        sort($classes);
+
         return $classes;
     }
 
