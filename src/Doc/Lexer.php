@@ -178,12 +178,14 @@ class Lexer
             $string = substr($string, 1);
 
             $typeInfo = $this->scanNextType($string);
-
+            if ($typeInfo === null) {
+                break;
+            }
             // ignore all until markup reached
             if ($typeInfo['type'] !== self::T_MARKUP_OPEN && $typeInfo['type'] !== self::T_MARKUP_OPEN_ESCAPED) {
-                $typeInfo = null;
+                break;
             }
-        } while ($typeInfo === null && $string);
+        } while ($string);
 
         return [
             'type'   => self::T_ANY,
