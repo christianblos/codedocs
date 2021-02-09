@@ -27,6 +27,7 @@ use PhpParser\Node\Stmt\Property;
 use PhpParser\Node\Stmt\Trait_;
 use PhpParser\Node\Stmt\TraitUse;
 use PhpParser\Node\Stmt\Use_;
+use PhpParser\Node\UnionType;
 use PhpParser\NodeVisitor;
 
 class RefVisitor implements NodeVisitor
@@ -249,6 +250,15 @@ class RefVisitor implements NodeVisitor
     {
         if (!$name) {
             return null;
+        }
+
+        if ($name instanceof UnionType) {
+            $types = [];
+            foreach ($name->types as $type) {
+                $types[] = $this->getFullClassName($type);
+            }
+
+            return implode("|", $types);
         }
 
         if (is_string($name)) {
