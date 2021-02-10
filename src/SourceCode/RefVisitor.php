@@ -30,6 +30,8 @@ use PhpParser\Node\Stmt\Use_;
 use PhpParser\Node\UnionType;
 use PhpParser\NodeVisitor;
 
+use function implode;
+
 class RefVisitor implements NodeVisitor
 {
     /**
@@ -255,7 +257,7 @@ class RefVisitor implements NodeVisitor
         if ($name instanceof UnionType) {
             $types = [];
             foreach ($name->types as $type) {
-                $types[] = $this->getFullClassName($type);
+                $types[] = $this->getTypeName($type);
             }
 
             return implode("|", $types);
