@@ -79,7 +79,7 @@ class RefVisitor implements NodeVisitor
             $this->namespace->name = (string)$node->name;
         } elseif ($node instanceof Use_) {
             foreach ($node->uses as $use) {
-                $this->namespace->uses[(string)$use->alias] = (string)$use->name;
+                $this->namespace->uses[$use->getAlias()->toString()] = $use->name->toString();
             }
         } elseif ($node instanceof Class_) {
             $this->class = $this->createClass($node);
