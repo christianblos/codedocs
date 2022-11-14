@@ -38,7 +38,7 @@ class CodeParserTest extends TestCase
 
         $ref = $refs['CodeDocs\Integration\InterSecond'];
         self::assertTrue($ref->isInterface);
-        self::assertEquals(['CodeDocs\Integration\AnotherInterface'], $ref->implements);
+        self::assertEquals(['NotExists\AnotherInterface'], $ref->implements);
         self::assertSame(16, $ref->startLine);
         self::assertSame(19, $ref->endLine);
 
