@@ -223,22 +223,19 @@ class MarkupParserTest extends TestCase
     {
         $file = $this->createMock(\SplFileInfo::class);
 
-        $file->expects(self::any())
+        $file
             ->method('getRealPath')
             ->willReturn($this->fakeFileName);
 
         $this->filesystem
-            ->expects(self::any())
             ->method('getFilesOfDirs')
             ->willReturn([$file]);
 
         $this->filesystem
-            ->expects(self::any())
             ->method('readFile')
             ->willReturn($content);
 
         $this->filesystem
-            ->expects(self::any())
             ->method('getFileHash')
             ->willReturn($this->fakeFileHash);
 

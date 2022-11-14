@@ -21,6 +21,7 @@ use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassConst;
 use PhpParser\Node\Stmt\ClassMethod;
+use PhpParser\Node\Stmt\Enum_;
 use PhpParser\Node\Stmt\Interface_;
 use PhpParser\Node\Stmt\Namespace_;
 use PhpParser\Node\Stmt\Property;
@@ -87,6 +88,8 @@ class RefVisitor implements NodeVisitor
             $this->class = $this->createInterface($node);
         } elseif ($node instanceof Trait_) {
             $this->class = $this->createTrait($node);
+        } elseif ($node instanceof Enum_) {
+            $this->class = $this->createEnum($node);
         } elseif ($node instanceof TraitUse) {
             foreach ($node->traits as $name) {
                 $this->class->traits[] = $this->getFullClassName($name);
@@ -171,6 +174,28 @@ class RefVisitor implements NodeVisitor
         $ref->isAbstract  = $node->isAbstract();
         $ref->isAnonymous = $node->isAnonymous();
         $ref->isFinal     = $node->isFinal();
+
+        return $ref;
+    }
+
+    /**
+     * @param Enum_ $node
+     *
+     * @return RefClass
+     */
+    private function createEnum(Enum_ $node)
+    {
+        $ref = new RefClass();
+
+        $ref->fileName   = $this->file;
+        $ref->name       = $this->getFullClassName((string)$node->name);
+        $ref->docComment = $this->createDocComment($node);
+
+        $ref->startLine = $node->getLine();
+
+        foreach ($node->implements as $implement) {
+            $ref->implements[] = $this->getFullClassName($implement);
+        }
 
         return $ref;
     }

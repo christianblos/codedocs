@@ -26,3 +26,8 @@ final class Complex extends Base implements InterFirst, InterSecond
 trait SomeTrait {
 
 }
+
+enum SomeEnum
+{
+    use SomeTrait;
+}
