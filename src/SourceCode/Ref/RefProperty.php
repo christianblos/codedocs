@@ -37,4 +37,9 @@ class RefProperty
      * @var RefComment|null
      */
     public $docComment;
+
+    /**
+     * @var string|null
+     */
+    public $type;
 }

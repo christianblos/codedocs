@@ -1,4 +1,5 @@
 <?php
+
 namespace CodeDocs\SourceCode;
 
 use CodeDocs\SourceCode\Ref\RefClass;
@@ -12,6 +13,7 @@ use CodeDocs\SourceCode\Ref\Visibility;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Array_;
 use PhpParser\Node\Expr\ConstFetch;
+use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
 use PhpParser\Node\NullableType;
 use PhpParser\Node\Param;
@@ -32,6 +34,7 @@ use PhpParser\Node\UnionType;
 use PhpParser\NodeVisitor;
 
 use function implode;
+use function preg_match;
 
 class RefVisitor implements NodeVisitor
 {
@@ -116,15 +119,7 @@ class RefVisitor implements NodeVisitor
     {
         if ($node instanceof Namespace_) {
             $this->namespace->name = null;
-        } elseif ($node instanceof Class_) {
-            $this->class->endLine              = $node->getAttribute('endLine');
-            $this->classes[$this->class->name] = $this->class;
-            $this->class                       = null;
-        } elseif ($node instanceof Interface_) {
-            $this->class->endLine              = $node->getAttribute('endLine');
-            $this->classes[$this->class->name] = $this->class;
-            $this->class                       = null;
-        } elseif ($node instanceof Trait_) {
+        } elseif ($node instanceof Class_ || $node instanceof Interface_ || $node instanceof Trait_) {
             $this->class->endLine              = $node->getAttribute('endLine');
             $this->classes[$this->class->name] = $this->class;
             $this->class                       = null;
@@ -249,10 +244,8 @@ class RefVisitor implements NodeVisitor
      */
     private function getFullClassName($name)
     {
-        if ($name instanceof Name) {
-            if ($name->isFullyQualified()) {
-                return $name->toString();
-            }
+        if ($name instanceof Name && $name->isFullyQualified()) {
+            return $name->toString();
         }
 
         $name = (string)$name;
@@ -296,6 +289,10 @@ class RefVisitor implements NodeVisitor
         if ($name instanceof NullableType) {
             $name   = $name->type;
             $prefix = '?';
+        }
+
+        if ($name instanceof Identifier) {
+            return $prefix . $name->name;
         }
 
         return $prefix . $this->getFullClassName($name);
@@ -345,6 +342,12 @@ class RefVisitor implements NodeVisitor
         $ref->isStatic   = $node->isStatic();
         $ref->line       = $node->getLine();
         $ref->docComment = $this->createDocComment($node);
+
+        $ref->type = $this->getTypeName($node->type);
+
+        if ($ref->docComment && preg_match('/@var (.*)/', $ref->docComment->text, $matches)) {
+            $ref->type = $matches[1];
+        }
 
         return $ref;
     }
