@@ -35,7 +35,7 @@ class CodeParser extends BaseParser
         Filesystem $filesystem = null
     ) {
         if ($phpParser === null) {
-            $phpParser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
+            $phpParser = (new ParserFactory())->createForNewestSupportedVersion();
         }
 
         if ($traverser === null) {

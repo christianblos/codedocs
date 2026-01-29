@@ -14,7 +14,7 @@ class CodeParserTest extends TestCase
         $parser = new CodeParser();
         $refs   = $parser->parse([__DIR__ . '/samples']);
 
-        self::assertCount(6, $refs);
+        self::assertCount(7, $refs);
 
         self::assertArrayHasKey('Simple', $refs);
         self::assertArrayHasKey('CodeDocs\Integration\Base', $refs);
@@ -22,6 +22,7 @@ class CodeParserTest extends TestCase
         self::assertArrayHasKey('CodeDocs\Integration\InterSecond', $refs);
         self::assertArrayHasKey('CodeDocs\Integration\Complex', $refs);
         self::assertArrayHasKey('CodeDocs\Integration\SomeTrait', $refs);
+        self::assertArrayHasKey('CodeDocs\Integration\SomeEnum', $refs);
 
         $this->checkSimple($refs['Simple']);
 
@@ -60,6 +61,11 @@ class CodeParserTest extends TestCase
         self::assertTrue($ref->isTrait);
         self::assertSame(26, $ref->startLine);
         self::assertSame(28, $ref->endLine);
+
+        $ref = $refs['CodeDocs\Integration\SomeEnum'];
+        self::assertEquals(['CodeDocs\Integration\SomeTrait'], $ref->traits);
+        self::assertSame(30, $ref->startLine);
+        self::assertSame(33, $ref->endLine);
     }
 
     private function checkSimple(RefClass $class)
