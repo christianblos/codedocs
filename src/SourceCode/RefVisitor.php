@@ -17,8 +17,8 @@ use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
 use PhpParser\Node\NullableType;
 use PhpParser\Node\Param;
-use PhpParser\Node\Scalar\DNumber;
-use PhpParser\Node\Scalar\LNumber;
+use PhpParser\Node\Scalar\Float_;
+use PhpParser\Node\Scalar\Int_;
 use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassConst;
@@ -119,7 +119,7 @@ class RefVisitor implements NodeVisitor
     {
         if ($node instanceof Namespace_) {
             $this->namespace->name = null;
-        } elseif ($node instanceof Class_ || $node instanceof Interface_ || $node instanceof Trait_) {
+        } elseif ($node instanceof Class_ || $node instanceof Interface_ || $node instanceof Trait_ || $node instanceof Enum_) {
             $this->class->endLine              = $node->getAttribute('endLine');
             $this->classes[$this->class->name] = $this->class;
             $this->class                       = null;
@@ -156,7 +156,7 @@ class RefVisitor implements NodeVisitor
         $ref->name       = $this->getFullClassName((string)$node->name);
         $ref->docComment = $this->createDocComment($node);
 
-        $ref->startLine = $node->getLine();
+        $ref->startLine = $node->getStartLine();
 
         foreach ($node->implements as $implement) {
             $ref->implements[] = $this->getFullClassName($implement);
@@ -186,7 +186,7 @@ class RefVisitor implements NodeVisitor
         $ref->name       = $this->getFullClassName((string)$node->name);
         $ref->docComment = $this->createDocComment($node);
 
-        $ref->startLine = $node->getLine();
+        $ref->startLine = $node->getStartLine();
 
         foreach ($node->implements as $implement) {
             $ref->implements[] = $this->getFullClassName($implement);
@@ -209,7 +209,7 @@ class RefVisitor implements NodeVisitor
         $ref->name        = $this->getFullClassName((string)$node->name);
         $ref->docComment  = $this->createDocComment($node);
 
-        $ref->startLine = $node->getLine();
+        $ref->startLine = $node->getStartLine();
 
         foreach ($node->extends as $implement) {
             $ref->implements[] = $this->getFullClassName($implement);
@@ -232,7 +232,7 @@ class RefVisitor implements NodeVisitor
         $ref->name       = $this->getFullClassName((string)$node->name);
         $ref->docComment = $this->createDocComment($node);
 
-        $ref->startLine = $node->getLine();
+        $ref->startLine = $node->getStartLine();
 
         return $ref;
     }
@@ -312,8 +312,8 @@ class RefVisitor implements NodeVisitor
 
         $ref            = new RefComment();
         $ref->text      = $docComment->getText();
-        $ref->startLine = $docComment->getLine();
-        $ref->endLine   = $node->getLine() - 1;
+        $ref->startLine = $docComment->getStartLine();
+        $ref->endLine   = $node->getStartLine() - 1;
 
         return $ref;
     }
@@ -340,7 +340,7 @@ class RefVisitor implements NodeVisitor
         }
 
         $ref->isStatic   = $node->isStatic();
-        $ref->line       = $node->getLine();
+        $ref->line       = $node->getStartLine();
         $ref->docComment = $this->createDocComment($node);
 
         $ref->type = $this->getTypeName($node->type);
@@ -364,7 +364,7 @@ class RefVisitor implements NodeVisitor
         $ref->class      = $this->class;
         $ref->name       = (string)$node->consts[0]->name;
         $ref->value      = $this->getValue($node->consts[0]->value);
-        $ref->line       = $node->getLine();
+        $ref->line       = $node->getStartLine();
         $ref->docComment = $this->createDocComment($node);
 
         return $ref;
@@ -450,7 +450,7 @@ class RefVisitor implements NodeVisitor
             return null;
         }
 
-        if ($value instanceof String_ || $value instanceof LNumber || $value instanceof DNumber) {
+        if ($value instanceof String_ || $value instanceof Int_ || $value instanceof Float_) {
             return $value->value;
         } elseif ($value instanceof ConstFetch) {
             $value = (string)$value->name;
